@@ -1,0 +1,13 @@
+# The original upload archive is kept on disk as a rollback reference.
+# It is intentionally not tracked by git.
+magadh_netlify.zip
+
+# Node tooling is only used for local validation, never for the deployed site.
+node_modules/
+package.json
+package-lock.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
