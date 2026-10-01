@@ -1,3 +1,12 @@
+# AI tile visualization endpoint. Netlify matches serverless functions BEFORE
+# redirects, and redirects are fallbacks, so the /* catch-all below does not
+# shadow /api/tile-visualize.
+[functions]
+  directory = "netlify/functions"
+
+[functions.tile-visualize]
+  runtime = "nodejs20.x"
+
 # The tile visualizer is a real page. These rules must stay ABOVE the catch-all
 # below, because Netlify applies the first matching rule and would otherwise
 # serve the homepage for /tile-visualizer.

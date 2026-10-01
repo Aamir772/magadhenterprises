@@ -1,0 +1,108 @@
+{
+  "generatedAt": "2026-10-01T17:59:09.298Z",
+  "promptVersion": "v1",
+  "tiles": [
+    {
+      "id": "tile-01",
+      "name": "Tile 01",
+      "actual": "assets/images/tiles/tile-01/actual.jpg",
+      "source": "assets/images/visual/Tiles- (3).jpg"
+    },
+    {
+      "id": "tile-02",
+      "name": "Tile 02",
+      "actual": "assets/images/tiles/tile-02/actual.jpg",
+      "source": "assets/images/visual/Tiles- (4).jpg"
+    },
+    {
+      "id": "tile-03",
+      "name": "Tile 03",
+      "actual": "assets/images/tiles/tile-03/actual.jpg",
+      "source": "assets/images/visual/Tiles- (5).jpg"
+    },
+    {
+      "id": "tile-04",
+      "name": "Tile 04",
+      "actual": "assets/images/tiles/tile-04/actual.jpg",
+      "source": "assets/images/visual/Tiles- (6).jpg"
+    },
+    {
+      "id": "tile-05",
+      "name": "Tile 05",
+      "actual": "assets/images/tiles/tile-05/actual.jpg",
+      "source": "assets/images/visual/Tiles- (7).jpg"
+    },
+    {
+      "id": "tile-06",
+      "name": "Tile 06",
+      "actual": "assets/images/tiles/tile-06/actual.jpg",
+      "source": "assets/images/visual/Tiles- (8).jpg"
+    },
+    {
+      "id": "tile-07",
+      "name": "Tile 07",
+      "actual": "assets/images/tiles/tile-07/actual.jpg",
+      "source": "assets/images/visual/Tiles- (9).jpg"
+    },
+    {
+      "id": "tile-08",
+      "name": "Tile 08",
+      "actual": "assets/images/tiles/tile-08/actual.jpg",
+      "source": "assets/images/visual/Tiles- (10).jpg"
+    },
+    {
+      "id": "tile-09",
+      "name": "Tile 09",
+      "actual": "assets/images/tiles/tile-09/actual.jpg",
+      "source": "assets/images/visual/Tiles- (11).jpg"
+    },
+    {
+      "id": "tile-10",
+      "name": "Tile 10",
+      "actual": "assets/images/tiles/tile-10/actual.jpg",
+      "source": "assets/images/visual/Tiles- (12).jpg"
+    },
+    {
+      "id": "tile-11",
+      "name": "Tile 11",
+      "actual": "assets/images/tiles/tile-11/actual.jpg",
+      "source": "assets/images/visual/Tiles- (13).jpg"
+    },
+    {
+      "id": "tile-12",
+      "name": "Tile 12",
+      "actual": "assets/images/tiles/tile-12/actual.jpg",
+      "source": "assets/images/visual/Tiles- (14).jpg"
+    },
+    {
+      "id": "tile-13",
+      "name": "Tile 13",
+      "actual": "assets/images/tiles/tile-13/actual.jpg",
+      "source": "assets/images/visual/Tiles- (15).jpg"
+    },
+    {
+      "id": "tile-14",
+      "name": "Tile 14",
+      "actual": "assets/images/tiles/tile-14/actual.jpg",
+      "source": "assets/images/visual/Tiles- (16).jpg"
+    },
+    {
+      "id": "tile-15",
+      "name": "Tile 15",
+      "actual": "assets/images/tiles/tile-15/actual.jpg",
+      "source": "assets/images/visual/Tiles- (17).jpg"
+    },
+    {
+      "id": "tile-16",
+      "name": "Tile 16",
+      "actual": "assets/images/tiles/tile-16/actual.jpg",
+      "source": "assets/images/visual/Tiles- (18).jpg"
+    },
+    {
+      "id": "tile-17",
+      "name": "Tile 17",
+      "actual": "assets/images/tiles/tile-17/actual.jpg",
+      "source": "assets/images/visual/Tiles- (19).jpg"
+    }
+  ]
+}

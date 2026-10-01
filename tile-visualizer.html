@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>Tile Visualizer — See Your Tile in Real Spaces | Magadh Enterprises, Gaya</title>
-<meta name="description" content="Choose a tile and a space at Magadh Enterprises, Gaya, to see how it looks before you visit. Tiles, marble and granite with installation products under one roof.">
+<title>AI Tile Visualizer — Preview a Tile in Real Rooms | Magadh Enterprises, Gaya</title>
+<meta name="description" content="Choose a tile and a room at Magadh Enterprises, Gaya, and generate an AI visualization of how it could look. Illustrative preview only — visit the showroom to see the real tile.">
 
 <link rel="canonical" href="https://magadhenterprises.netlify.app/tile-visualizer">
 <meta name="theme-color" content="#F7F3EC">
@@ -13,16 +13,16 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Magadh Enterprises">
-<meta property="og:title" content="Tile Visualizer — See Your Tile in Real Spaces | Magadh Enterprises">
-<meta property="og:description" content="Choose a tile and a space at Magadh Enterprises, Gaya, to see how it looks before you visit.">
+<meta property="og:title" content="AI Tile Visualizer — Preview a Tile in Real Rooms | Magadh Enterprises">
+<meta property="og:description" content="Choose a tile and a room, and generate an illustrative AI visualization of how it could look. Not an exact representation — visit the showroom to see the real tile.">
 <meta property="og:url" content="https://magadhenterprises.netlify.app/tile-visualizer">
 <meta property="og:image" content="https://magadhenterprises.netlify.app/assets/images/showroom/hero-showroom.jpg">
 <meta property="og:image:alt" content="Magadh Enterprises showroom interior with tile and marble displays">
 <meta property="og:locale" content="en_IN">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tile Visualizer — See Your Tile in Real Spaces | Magadh Enterprises">
-<meta name="twitter:description" content="Choose a tile and a space at Magadh Enterprises, Gaya, to see how it looks before you visit.">
+<meta name="twitter:title" content="AI Tile Visualizer — Preview a Tile in Real Rooms | Magadh Enterprises">
+<meta name="twitter:description" content="Choose a tile and a room, and generate an illustrative AI visualization of how it could look. Not an exact representation — visit the showroom to see the real tile.">
 <meta name="twitter:image" content="https://magadhenterprises.netlify.app/assets/images/showroom/hero-showroom.jpg">
 <meta name="twitter:image:alt" content="Magadh Enterprises showroom interior with tile and marble displays">
 
@@ -34,7 +34,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 
 <link rel="preload" as="image" href="assets/images/showroom/hero-showroom.jpg" fetchpriority="high">
-<link rel="preload" as="image" href="assets/images/tiles/category-tiles.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/tiles/tile-01/actual.jpg" fetchpriority="high">
 
 <link rel="stylesheet" href="assets/css/styles.css">
 <link rel="stylesheet" href="assets/css/tile-visualizer.css">
@@ -90,8 +90,8 @@
   <div class="tv-hero-text">
     <p class="t-label">Tile Visualizer</p>
     <div class="divider"></div>
-    <h1 class="t-display" id="tv-hero-heading">See Your Tile<br><em>in Real Spaces</em></h1>
-    <p class="t-body" style="margin-top:1.5rem">Choose a tile, choose where it goes, and look at it before you make the trip. Every preview on this page is a photograph taken at our own showroom &mdash; not a rendering, not an illustration.</p>
+    <h1 class="t-display" id="tv-hero-heading">Preview Your Tile<br><em>in Real Rooms</em></h1>
+    <p class="t-body" style="margin-top:1.5rem">Pick a tile, pick a room, and generate an AI visualization of how it could look in that space. It is an illustrative preview, not a photograph of your future room &mdash; come to the showroom to judge the real tile.</p>
   </div>
   <div class="tv-hero-image">
     <img src="assets/images/showroom/hero-showroom.jpg" width="1200" height="800"
@@ -117,9 +117,9 @@
           <p class="tv-panel-caption">The tile as supplied</p>
         </div>
         <div class="tv-panel-body">
-          <img id="tv-actual-image" src="assets/images/tiles/category-tiles.jpg"
-               alt="Tiles Range on display at the Magadh Enterprises showroom, Gaya"
-               width="1000" height="523" decoding="async">
+          <img id="tv-actual-image" src="assets/images/tiles/tile-01/actual.jpg"
+               alt="Tile 01 from the Magadh Enterprises tile range, Gaya"
+               width="1350" height="1800" decoding="async">
           <div class="tv-empty" id="tv-actual-fallback" hidden>
             <span class="tv-empty-mark" aria-hidden="true">&middot;</span>
             <p class="tv-empty-title">Photograph coming soon</p>
@@ -130,11 +130,42 @@
 
       <div class="tv-panel">
         <div class="tv-panel-head">
-          <p class="t-label">Installed Look</p>
-          <p class="tv-panel-caption" id="tv-installed-status">&nbsp;</p>
+          <p class="t-label">AI Visualization</p>
+          <p class="tv-panel-caption" id="tv-ai-status">Not generated yet</p>
         </div>
-        <div class="tv-panel-body" id="tv-installed-body">
-          <p class="visually-hidden" id="tv-installed-live" role="status" aria-live="polite">&nbsp;</p>
+        <div class="tv-panel-body" id="tv-ai-body" aria-busy="false">
+          <p class="visually-hidden" id="tv-ai-live" role="status" aria-live="polite">&nbsp;</p>
+
+          <div class="tv-ai-state" id="tv-ai-idle">
+            <span class="tv-empty-mark" aria-hidden="true">&middot;</span>
+            <p class="tv-empty-title">Ready to visualize</p>
+            <p class="tv-empty-note" id="tv-ai-idle-note">Choose a tile and a room, then press Generate AI Preview.</p>
+          </div>
+
+          <div class="tv-ai-state" id="tv-ai-loading" hidden>
+            <span class="tv-spinner" aria-hidden="true"></span>
+            <p class="tv-empty-title">Creating your visualization&hellip;</p>
+            <p class="tv-empty-note">This usually takes under a minute. Please keep this page open.</p>
+          </div>
+
+          <div class="tv-ai-state" id="tv-ai-error" hidden>
+            <p class="tv-empty-title">We could not create that preview</p>
+            <p class="tv-empty-note" id="tv-ai-error-note">&nbsp;</p>
+            <button type="button" class="btn btn-ghost" id="tv-ai-retry">Try Again</button>
+          </div>
+
+          <img id="tv-ai-image" alt="" width="1024" height="1024" hidden decoding="async">
+          <p class="tv-ai-badge" id="tv-ai-badge" hidden>AI Visualization</p>
+        </div>
+
+        <div class="tv-ai-actions" id="tv-ai-actions" hidden>
+          <div class="btn-row">
+            <button type="button" class="btn btn-ghost" id="tv-ai-regenerate">Regenerate</button>
+            <button type="button" class="btn btn-ghost" id="tv-ai-other-space">Try Another Space</button>
+            <button type="button" class="btn btn-ghost" id="tv-ai-change-tile">Change Tile</button>
+            <a href="#" class="btn btn-primary" id="tv-ai-whatsapp" rel="noopener">Get Price on WhatsApp</a>
+          </div>
+          <p class="tv-ai-disclaimer" id="tv-ai-disclaimer">&nbsp;</p>
         </div>
       </div>
     </div>
@@ -150,6 +181,13 @@
         <h2 id="tv-spaces-label">Choose a space</h2>
         <div class="tv-spaces" id="tv-spaces" role="radiogroup" aria-labelledby="tv-spaces-label"></div>
       </div>
+    </div>
+
+    <!-- GENERATE -->
+    <div class="tv-generate">
+      <button type="button" class="btn btn-primary tv-generate-btn" id="tv-generate">Generate AI Preview</button>
+      <p class="tv-generate-note">One preview is generated per click and usually takes under a minute. Nothing is generated until you ask for it.</p>
+      <p class="tv-ai-note" id="tv-ai-note">&nbsp;</p>
     </div>
 
     <!-- TILE INFORMATION -->
@@ -181,8 +219,8 @@
       </div>
       <div class="tv-step">
         <p class="tv-step-marker" aria-hidden="true">03</p>
-        <h3>Visualize</h3>
-        <p>See the tile where we can show it truthfully. For everything else, we will hold samples for you at the showroom.</p>
+        <h3>Generate a preview</h3>
+        <p>We use your chosen tile as the material reference and generate an illustrative image of that room. It is a guide, not a promise &mdash; we will hold the real sample for you at the showroom.</p>
       </div>
     </div>
   </div>

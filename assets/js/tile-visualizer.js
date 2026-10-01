@@ -2,12 +2,15 @@
  * Magadh Enterprises — Tile Visualizer behaviour.
  *
  * Responsibilities:
- *   1. Render the tile picker and the space picker from window.MAGADH_TILES
- *   2. Swap the ACTUAL TILE and INSTALLED LOOK panels for the current selection
- *   3. Render an honest empty state when a tile has no genuine photograph for
- *      the chosen space — never a substitute image, never a broken <img>
+ *   1. Render the tile picker and the room picker from window.MAGADH_TILES
+ *   2. Swap the ACTUAL TILE panel for the current selection
+ *   3. Run the AI generation flow against /api/tile-visualize: idle -> loading
+ *      -> result or error, never a fabricated intermediate state
  *   4. Mirror selection into the URL (?tile=…&space=…) and restore from it
- *   5. Keep the WhatsApp enquiry message in sync with the selection
+ *   5. Keep both WhatsApp enquiry links in sync with the selection
+ *
+ * Nothing is generated until the visitor asks for it, and a generated image is
+ * always labelled as an illustrative preview.
  *
  * Selection model is a radio group per control, so arrow keys, Home/End and
  * roving tabindex behave the way assistive technology expects.
@@ -24,9 +27,25 @@
     spaces: document.getElementById('tv-spaces'),
     actualImage: document.getElementById('tv-actual-image'),
     actualFallback: document.getElementById('tv-actual-fallback'),
-    installedBody: document.getElementById('tv-installed-body'),
-    installedStatus: document.getElementById('tv-installed-status'),
-    installedLive: document.getElementById('tv-installed-live'),
+    aiBody: document.getElementById('tv-ai-body'),
+    aiStatus: document.getElementById('tv-ai-status'),
+    aiLive: document.getElementById('tv-ai-live'),
+    aiImage: document.getElementById('tv-ai-image'),
+    aiBadge: document.getElementById('tv-ai-badge'),
+    aiIdle: document.getElementById('tv-ai-idle'),
+    aiIdleNote: document.getElementById('tv-ai-idle-note'),
+    aiLoading: document.getElementById('tv-ai-loading'),
+    aiError: document.getElementById('tv-ai-error'),
+    aiErrorNote: document.getElementById('tv-ai-error-note'),
+    aiRetry: document.getElementById('tv-ai-retry'),
+    aiActions: document.getElementById('tv-ai-actions'),
+    aiDisclaimer: document.getElementById('tv-ai-disclaimer'),
+    aiRegenerate: document.getElementById('tv-ai-regenerate'),
+    aiOtherSpace: document.getElementById('tv-ai-other-space'),
+    aiChangeTile: document.getElementById('tv-ai-change-tile'),
+    aiWhatsApp: document.getElementById('tv-ai-whatsapp'),
+    generate: document.getElementById('tv-generate'),
+    aiNote: document.getElementById('tv-ai-note'),
     info: document.getElementById('tv-info-grid'),
     selection: document.getElementById('tv-enquiry-selection'),
     whatsApp: document.getElementById('tv-whatsapp')
@@ -42,11 +61,32 @@
     space: data.spaces[0].id
   };
 
+  /* Local demo mode. Gated on a local hostname as well as the query flag, so a
+     published link can never be used to make the live site serve placeholders. */
+  var LOCAL_HOST = /^(localhost|127\.0\.0\.1|\[::1\]|)$/.test(window.location.hostname);
+  var DEMO = LOCAL_HOST && /[?&]demo=true/.test(window.location.search);
+
+  var DEMO_PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024">' +
+    '<rect width="1024" height="1024" fill="#EFEAE1"/>' +
+    '<text x="512" y="500" text-anchor="middle" font-family="sans-serif" ' +
+    'font-size="52" fill="#8C4F35">DEMO MODE</text>' +
+    '<text x="512" y="560" text-anchor="middle" font-family="sans-serif" ' +
+    'font-size="26" fill="#6B655D">Placeholder &#8212; not a real AI preview</text>' +
+    '</svg>');
+
+  /* Results already paid for in this session, keyed tileId|environment. Keeps
+     re-selecting a space from spending credits a second time. */
+  var results = {};
+  var inFlight = null;
+  var busy = false;
+
   /* --- selection helpers -------------------------------------------------- */
 
   function tile() { return tileById[state.tile]; }
   function space() { return spaceById[state.space]; }
-  function installedSrc() { return data.resolve(tile(), state.space); }
+  function spaceLabel(id) { return spaceById[id] ? spaceById[id].label : id; }
+  function resultKey(id, environment) { return id + '|' + environment; }
 
   /* --- rendering ---------------------------------------------------------- */
 
@@ -128,8 +168,8 @@
     if (src) {
       els.actualImage.src = src;
       els.actualImage.alt = item.alt || (item.name + ' tile');
-      els.actualImage.width = item.actualWidth || 1000;
-      els.actualImage.height = item.actualHeight || 523;
+      els.actualImage.width = item.actualWidth || 1350;
+      els.actualImage.height = item.actualHeight || 1800;
       els.actualImage.hidden = false;
       els.actualFallback.hidden = true;
       return;
@@ -140,61 +180,199 @@
     els.actualFallback.hidden = false;
   }
 
-  function renderInstalled() {
-    var item = tile();
-    var src = installedSrc();
-    var has = Boolean(src);
+  /* --- AI panel states ----------------------------------------------------- */
 
-    els.installedBody.querySelectorAll('img').forEach(function (img) { img.remove(); });
-    els.installedBody.querySelectorAll('.tv-empty').forEach(function (node) { node.remove(); });
+  function showState(name) {
+    els.aiIdle.hidden = name !== 'idle';
+    els.aiLoading.hidden = name !== 'loading';
+    els.aiError.hidden = name !== 'error';
+    var isResult = name === 'result';
+    els.aiImage.hidden = !isResult;
+    els.aiBadge.hidden = !isResult;
+    els.aiActions.hidden = !isResult;
+  }
 
-    if (has) {
-      var img = document.createElement('img');
-      img.src = src;
-      img.alt = item.name + ' installed in a ' + space().label.toLowerCase();
-      img.width = 1000;
-      img.height = 750;
-      img.decoding = 'async';
-      els.installedBody.insertBefore(img, els.installedLive);
-    } else {
-      var empty = document.createElement('div');
-      empty.className = 'tv-empty';
+  function setBusy(value) {
+    busy = value;
+    els.generate.disabled = value;
+    els.generate.setAttribute('aria-busy', value ? 'true' : 'false');
+    els.aiBody.setAttribute('aria-busy', value ? 'true' : 'false');
+  }
 
-      var mark = document.createElement('span');
-      mark.className = 'tv-empty-mark';
-      mark.setAttribute('aria-hidden', 'true');
-      mark.textContent = '·';
-      empty.appendChild(mark);
+  function cancelInFlight() {
+    if (!inFlight) return;
+    inFlight.abort();
+    inFlight = null;
+    setBusy(false);
+  }
 
-      var title = document.createElement('p');
-      title.className = 'tv-empty-title';
-      title.textContent = 'Installation preview coming soon';
-      empty.appendChild(title);
+  function resetPanel(message) {
+    els.aiImage.removeAttribute('src');
+    els.aiStatus.textContent = 'Not generated yet';
+    els.aiIdleNote.textContent =
+      'Choose a tile and a space, then press Generate AI Preview.';
+    els.aiLive.textContent = message || 'Ready to generate.';
+    showState('idle');
+  }
 
-      var note = document.createElement('p');
-      note.className = 'tv-empty-note';
-      note.textContent = 'We do not have a photograph of ' + item.name +
-        ' installed in a ' + space().label.toLowerCase() +
-        ' yet. Our team at the Gaya showroom can show you the tile in person.';
-      empty.appendChild(note);
+  function renderResult(result) {
+    els.aiImage.src = result.src;
+    els.aiImage.alt = result.demo
+      ? 'Demo placeholder. No AI preview was generated.'
+      : 'AI-generated illustrative preview of ' + result.tileName + ' in a ' +
+        spaceLabel(result.environment).toLowerCase() +
+        '. Illustrative only, not an exact representation of the finished installation.';
+    els.aiImage.width = 1024;
+    els.aiImage.height = 1024;
+    els.aiBadge.textContent = result.demo ? 'Demo Output' : data.api.badge;
+    els.aiDisclaimer.textContent = result.demo
+      ? 'DEMO MODE — this is a placeholder, not a real AI preview. ' + data.api.disclaimer
+      : data.api.disclaimer;
+    els.aiStatus.textContent = result.demo ? 'Demo output' : 'Preview ready';
+    els.aiLive.textContent = result.demo
+      ? 'Demo placeholder shown. No AI preview was generated.'
+      : 'AI preview ready for ' + result.tileName + ' in the ' +
+        spaceLabel(result.environment).toLowerCase() + '. Illustrative preview only.';
+    applyAiWhatsApp(result);
+    showState('result');
+  }
 
-      els.installedBody.insertBefore(empty, els.installedLive);
+  function renderError(message) {
+    els.aiErrorNote.textContent = message;
+    els.aiStatus.textContent = 'Preview failed';
+    els.aiLive.textContent = message;
+    showState('error');
+  }
+
+  function syncPanelForSelection() {
+    var cached = results[resultKey(state.tile, state.space)];
+    if (cached) renderResult(cached);
+    else resetPanel();
+  }
+
+  /* --- generation --------------------------------------------------------- */
+
+  function generate() {
+    if (busy) return; // duplicate-click guard: one generation in flight
+
+    var key = resultKey(state.tile, state.space);
+    var cached = results[key];
+    if (cached) { renderResult(cached); return; }
+
+    var requestedTile = state.tile;
+    var requestedSpace = state.space;
+    var requestedName = tile().name;
+
+    if (DEMO) {
+      var placeholder = {
+        src: DEMO_PLACEHOLDER,
+        demo: true,
+        tileName: requestedName,
+        environment: requestedSpace
+      };
+      results[key] = placeholder;
+      renderResult(placeholder);
+      return;
     }
 
-    // Per-space availability is also announced on the control itself, so the
-    // state is discoverable without activating anything.
+    setBusy(true);
+    showState('loading');
+    els.aiStatus.textContent = 'Generating';
+    els.aiLive.textContent = 'Creating your visualization for ' + requestedName +
+      ' in the ' + spaceLabel(requestedSpace).toLowerCase() +
+      '. This usually takes under a minute.';
+
+    var controller = new AbortController();
+    inFlight = controller;
+
+    fetch(data.api.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tileId: requestedTile,
+        environment: requestedSpace
+      }),
+      signal: controller.signal
+    })
+      .then(function (response) {
+        return response.json()
+          .catch(function () { return null; })
+          .then(function (payload) {
+            return { status: response.status, payload: payload };
+          });
+      })
+      .then(function (outcome) {
+        if (controller.signal.aborted) return;
+
+        var payload = outcome.payload;
+
+        if (outcome.status !== 200 || !payload || !payload.success) {
+          renderError(
+            (payload && payload.message) ||
+            'AI visualization is temporarily unavailable. Please try again.'
+          );
+          return;
+        }
+
+        // A demo response never spends credits and is never labelled as real.
+        if (payload.demo === true) {
+          results[resultKey(requestedTile, requestedSpace)] = {
+            src: DEMO_PLACEHOLDER,
+            demo: true,
+            tileName: payload.tileName || requestedName,
+            environment: requestedSpace
+          };
+          renderResult(results[resultKey(requestedTile, requestedSpace)]);
+          return;
+        }
+
+        var image = payload.image;
+        if (typeof image !== 'string' || image.length < 64 || image.length > 9000000) {
+          renderError('That preview came back unusable. Please try again.');
+          return;
+        }
+
+        var out = {
+          src: 'data:image/png;base64,' + image,
+          demo: false,
+          tileName: payload.tileName || requestedName,
+          environment: requestedSpace
+        };
+        results[resultKey(requestedTile, requestedSpace)] = out;
+        renderResult(out);
+      })
+      .catch(function (error) {
+        if (controller.signal.aborted || (error && error.name === 'AbortError')) return;
+        renderError('AI visualization is temporarily unavailable. Please try again.');
+      })
+      .then(function () {
+        if (inFlight === controller) {
+          inFlight = null;
+          setBusy(false);
+        }
+      });
+  }
+
+  function applyAiWhatsApp(result) {
+    var config = window.MAGADH_CONFIG;
+    if (!config || !config.whatsapp) return;
+    var template = config.whatsapp.messages.product;
+    if (!template) return;
+    var product = result.tileName + ' (' + spaceLabel(result.environment) + ')';
+    els.aiWhatsApp.setAttribute(
+      'href',
+      config.whatsapp.base + '?text=' + encodeURIComponent(template.replace('{product}', product))
+    );
+  }
+
+  function syncSpaceStatus() {
+    var item = tile();
     data.spaces.forEach(function (candidate) {
       var button = els.spaces.querySelector('[data-space="' + candidate.id + '"]');
       if (!button) return;
-      var available = Boolean(data.resolve(item, candidate.id));
       button.querySelector('.tv-space-status').textContent =
-        available ? 'Preview available' : 'Preview coming soon';
+        item.generatable ? 'AI preview available' : 'Preview unavailable';
     });
-
-    els.installedLive.textContent = has
-      ? 'Showing ' + item.name + ' installed in a ' + space().label.toLowerCase() + '.'
-      : 'An installation photograph of ' + item.name + ' in a ' +
-        space().label.toLowerCase() + ' is not available yet.';
   }
 
   function renderInfo() {
@@ -205,7 +383,7 @@
       { label: 'Application', value: item.type },
       { label: 'Size', value: item.size },
       { label: 'Finish', value: item.finish },
-      { label: 'Spaces visualised', value: environmentSummary(item) }
+      { label: 'AI previews', value: environmentSummary(item) }
     ];
 
     var html = rows.map(function (row) {
@@ -219,17 +397,16 @@
   }
 
   function environmentSummary(item) {
-    var available = data.spaces.filter(function (candidate) {
-      return Boolean(data.resolve(item, candidate.id));
-    }).map(function (candidate) { return candidate.label; });
-
-    return available.length ? available.join(', ') : null;
+    if (!item.generatable) return null;
+    return data.spaces
+      .map(function (candidate) { return candidate.label; })
+      .join(', ');
   }
 
   function renderEnquiry() {
     var item = tile();
     els.selection.innerHTML = 'You selected <strong>' + escapeHtml(item.name) +
-      '</strong> — visualised for <strong>' + escapeHtml(space().label) + '</strong>.';
+      '</strong> — previewed for <strong>' + escapeHtml(space().label) + '</strong>.';
 
     // Keeps the existing data-wa contract in config.js working unchanged.
     els.whatsApp.setAttribute('data-product', item.name + ' (' + space().label + ')');
@@ -273,9 +450,10 @@
   function renderAll() {
     syncControls();
     renderActual();
-    renderInstalled();
+    syncSpaceStatus();
     renderInfo();
     renderEnquiry();
+    syncPanelForSelection();
   }
 
   /* --- URL state ---------------------------------------------------------- */
@@ -293,7 +471,8 @@
     if (!window.history || !window.history.replaceState) return;
     var url = window.location.pathname +
       '?tile=' + encodeURIComponent(state.tile) +
-      '&space=' + encodeURIComponent(state.space);
+      '&space=' + encodeURIComponent(state.space) +
+      (DEMO ? '&demo=true' : '');
     try {
       window.history[mode === 'push' ? 'pushState' : 'replaceState']({}, '', url);
     } catch (error) {
@@ -302,6 +481,22 @@
   }
 
   /* --- interaction -------------------------------------------------------- */
+
+  function selectTile(id) {
+    if (!tileById[id] || id === state.tile) return;
+    state.tile = id;
+    cancelInFlight();
+    renderAll();
+    writeUrl('push');
+  }
+
+  function selectSpace(id) {
+    if (!spaceById[id] || id === state.space) return;
+    state.space = id;
+    cancelInFlight();
+    renderAll();
+    writeUrl('push');
+  }
 
   function wireRadioGroup(container, attribute, apply) {
     container.addEventListener('click', function (event) {
@@ -343,26 +538,47 @@
     renderTiles();
     renderSpaces();
     readUrl();
+
+    els.aiNote.textContent = data.api.disclaimer;
     renderAll();
 
     // Replace the URL so it is shareable without adding a history entry.
     writeUrl('replace');
 
-    wireRadioGroup(els.tiles, 'data-tile', function (id) {
-      if (!tileById[id] || id === state.tile) return;
-      state.tile = id;
-      renderAll();
-      writeUrl('push');
+    wireRadioGroup(els.tiles, 'data-tile', selectTile);
+    wireRadioGroup(els.spaces, 'data-space', selectSpace);
+
+    els.generate.addEventListener('click', generate);
+    els.aiRetry.addEventListener('click', function () { cancelInFlight(); generate(); });
+
+    els.aiRegenerate.addEventListener('click', function () {
+      cancelInFlight();
+      // Explicitly drop the cached result: regenerating is a fresh cost.
+      delete results[resultKey(state.tile, state.space)];
+      generate();
     });
 
-    wireRadioGroup(els.spaces, 'data-space', function (id) {
-      if (!spaceById[id] || id === state.space) return;
-      state.space = id;
-      renderAll();
-      writeUrl('push');
+    els.aiOtherSpace.addEventListener('click', function () {
+      var index = -1;
+      data.spaces.forEach(function (candidate, position) {
+        if (candidate.id === state.space) index = position;
+      });
+      var next = data.spaces[(index + 1) % data.spaces.length];
+      selectSpace(next.id);
+      var button = els.spaces.querySelector('[data-space="' + next.id + '"]');
+      if (button) button.focus();
+    });
+
+    els.aiChangeTile.addEventListener('click', function () {
+      var current = els.tiles.querySelector('[data-tile="' + state.tile + '"]');
+      if (current) {
+        current.focus();
+        current.scrollIntoView({ block: 'center' });
+      }
     });
 
     window.addEventListener('popstate', function () {
+      cancelInFlight();
       state.tile = data.tiles[0].id;
       state.space = data.spaces[0].id;
       readUrl();

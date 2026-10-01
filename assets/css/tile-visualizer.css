@@ -87,6 +87,11 @@
   object-fit: cover;
 }
 
+/* The supplied tile photographs are portrait (3:4) originals. `cover` in a 4:3
+   frame would crop roughly half the tile away, so the actual-tile panel shows
+   the whole photograph instead and letterboxes against the panel colour. */
+#tv-actual-image { object-fit: contain }
+
 /* Honest empty state ----------------------------------------------------- */
 .tv-empty {
   position: absolute;
@@ -139,6 +144,108 @@
   color: var(--muted);
   max-width: 34ch;
   line-height: 1.6;
+}
+
+/* AI visualization states ------------------------------------------------- */
+.tv-ai-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: 2rem;
+  text-align: center;
+  background: #EFEAE1;
+}
+
+/* Same reason as .tv-empty[hidden]: an author `display` beats the UA sheet, so
+   the state has to be restated or it keeps covering the generated image. */
+.tv-ai-state[hidden] { display: none }
+
+.tv-spinner {
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: tv-spin 900ms linear infinite;
+}
+
+@keyframes tv-spin { to { transform: rotate(360deg) } }
+
+/* Global prefers-reduced-motion kills the animation, which leaves a static
+   ring. That is intentional and still legible next to the status text. */
+
+.tv-ai-badge {
+  position: absolute;
+  left: .85rem;
+  bottom: .85rem;
+  margin: 0;
+  padding: .4rem .7rem;
+  background: rgba(24, 23, 22, .82);
+  color: var(--white);
+  font-size: .66rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.tv-ai-badge[hidden] { display: none }
+
+/* styles.css sets `img { display: block }` globally. That is an author rule, so
+   it wins over the UA sheet's `[hidden] { display: none }`, and combined with
+   the absolute fill on `.tv-panel-body img` the hidden result image stays on top
+   of the panel swallowing clicks. Guard it explicitly. */
+#tv-ai-image[hidden] { display: none }
+
+.tv-ai-actions {
+  padding: 1.1rem 1.5rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.tv-ai-actions[hidden] { display: none }
+
+.tv-ai-disclaimer {
+  margin: .9rem 0 0;
+  font-size: .72rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Generate control -------------------------------------------------------- */
+.tv-generate {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--border);
+}
+
+.tv-generate-btn {
+  min-height: 52px;
+  padding-inline: 2.25rem;
+}
+
+.tv-generate-btn[disabled] {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.tv-generate-note {
+  margin: .9rem 0 0;
+  font-size: .78rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* The disclaimer is shown before generating as well as alongside the result,
+   so the nature of the output is never a surprise. */
+.tv-ai-note {
+  margin: .6rem 0 0;
+  font-size: .78rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 68ch;
 }
 
 /* Controls --------------------------------------------------------------- */
@@ -366,4 +473,6 @@
   .tv-info-grid { grid-template-columns: 1fr; gap: 1rem }
   .tv-tiles { grid-template-columns: repeat(2, 1fr) }
   .tv-panel-head { flex-direction: column; gap: .2rem }
+  .tv-generate-btn { width: 100%; padding-inline: 1rem }
+  .tv-ai-actions .btn-row .btn { width: 100% }
 }

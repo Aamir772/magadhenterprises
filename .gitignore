@@ -2,6 +2,11 @@
 # It is intentionally not tracked by git.
 magadh_netlify.zip
 
+# The 17 full-resolution source photographs (approx. 150MB). Kept on disk as the
+# provenance record; the rotation-corrected web derivatives under
+# assets/images/tiles/ are the tracked versions actually served to visitors.
+assets/images/visual/
+
 # Node tooling is only used for local validation, never for the deployed site.
 node_modules/
 package.json
