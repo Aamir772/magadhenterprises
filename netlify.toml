@@ -1,3 +1,16 @@
+# The tile visualizer is a real page. These rules must stay ABOVE the catch-all
+# below, because Netlify applies the first matching rule and would otherwise
+# serve the homepage for /tile-visualizer.
+[[redirects]]
+  from = "/tile-visualizer"
+  to = "/tile-visualizer.html"
+  status = 200
+
+[[redirects]]
+  from = "/tile-visualizer/"
+  to = "/tile-visualizer.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -1,0 +1,369 @@
+/* ==========================================================================
+   Tile Visualizer — page-specific layout.
+
+   Everything here extends the shared tokens in styles.css rather than
+   redefining them, so the visualizer inherits the showroom's typography,
+   colour and spacing and stays consistent as the site evolves.
+   ========================================================================== */
+
+/* Hero ------------------------------------------------------------------ */
+.tv-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 60vh;
+  background: var(--dark);
+}
+
+.tv-hero-text {
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tv-hero .t-label { color: rgba(255, 255, 255, .5) }
+.tv-hero .t-display,
+.tv-hero .t-h2 { color: var(--white) }
+.tv-hero .t-body { color: rgba(255, 255, 255, .62); max-width: 46ch }
+.tv-hero .divider { background: rgba(255, 255, 255, .2) }
+
+.tv-hero-image { position: relative; overflow: hidden; min-height: 320px }
+.tv-hero-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Stage: the two side-by-side previews ---------------------------------- */
+.tv-stage-wrap { padding-block: clamp(3rem, 7vw, 5rem) }
+
+.tv-stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.tv-panel {
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tv-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tv-panel-head .t-label { color: var(--muted) }
+
+.tv-panel-caption {
+  font-size: .72rem;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
+
+.tv-panel-body {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #EFEAE1;
+}
+
+.tv-panel-body img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Honest empty state ----------------------------------------------------- */
+.tv-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: 2rem;
+  text-align: center;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #F2EDE4,
+      #F2EDE4 12px,
+      #EDE7DC 12px,
+      #EDE7DC 24px
+    );
+}
+
+/* An author `display` beats the UA sheet's `[hidden] { display: none }`, so the
+   toggle has to be restated or the empty state covers the real photograph. */
+.tv-empty[hidden] { display: none }
+
+.tv-empty-mark {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .75);
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.tv-empty-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.tv-empty-note {
+  font-size: .82rem;
+  color: var(--muted);
+  max-width: 34ch;
+  line-height: 1.6;
+}
+
+/* Controls --------------------------------------------------------------- */
+.tv-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.tv-control-group { min-width: 0 }
+
+.tv-control-group > h2 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: .02em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+/* Tile picker ------------------------------------------------------------ */
+.tv-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: .75rem;
+}
+
+.tv-tile {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+
+.tv-tile:hover { border-color: var(--accent) }
+
+.tv-tile[aria-checked='true'] {
+  border-color: var(--ink);
+  background: #EFEBE3;
+}
+
+.tv-tile-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #EFEAE1;
+}
+
+.tv-tile-name {
+  display: block;
+  padding: .7rem .85rem .8rem;
+  font-size: .82rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.tv-tile-brand {
+  display: block;
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: .2rem;
+}
+
+/* Space picker */
+.tv-spaces {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+}
+
+.tv-space {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding: 1rem 1.1rem;
+  text-align: left;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+
+.tv-space:hover { border-color: var(--accent) }
+
+.tv-space[aria-checked='true'] {
+  border-color: var(--ink);
+  background: #EFEBE3;
+}
+
+.tv-space-label {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.tv-space-note {
+  font-size: .7rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.tv-space-status {
+  font-size: .68rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: .2rem;
+}
+
+/* Tile information ------------------------------------------------------- */
+.tv-info {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--border);
+  background: #EFEBE3;
+}
+
+.tv-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.tv-info dt {
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .3rem;
+}
+
+.tv-info dd {
+  margin: 0;
+  font-size: .92rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.tv-info dd.is-unknown { color: var(--muted); font-style: italic }
+
+/* How it works ----------------------------------------------------------- */
+.tv-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.tv-step-marker {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 300;
+  color: #928472;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.tv-step h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: .5rem;
+}
+
+.tv-step p {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 32ch;
+}
+
+/* Enquiry CTA ------------------------------------------------------------ */
+.tv-enquiry .t-label { color: rgba(255, 255, 255, .5) }
+.tv-enquiry .t-h2 { color: var(--white) }
+.tv-enquiry .t-body { color: rgba(255, 255, 255, .62) }
+.tv-enquiry .divider { background: rgba(255, 255, 255, .2) }
+
+.tv-enquiry-selection {
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, .16);
+  font-size: .85rem;
+  color: rgba(255, 255, 255, .75);
+  line-height: 1.6;
+}
+
+.tv-enquiry-selection strong {
+  font-weight: 400;
+  color: var(--white);
+}
+
+/* Focus ------------------------------------------------------------------
+   The shared default is accent-on-light, which is the right contrast on the
+   warm background. The hero and the enquiry band are dark, so they need the
+   white override the other dark sections already use. */
+.tv-hero :focus-visible,
+.tv-enquiry :focus-visible { outline-color: #fff }
+
+/* Responsive ------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .tv-info-grid { grid-template-columns: repeat(2, 1fr) }
+}
+
+@media (max-width: 768px) {
+  .tv-hero { grid-template-columns: 1fr }
+  .tv-hero-image { min-height: 240px; order: -1 }
+  .tv-stage { grid-template-columns: 1fr }
+  .tv-controls { grid-template-columns: 1fr }
+  .tv-steps { grid-template-columns: 1fr; gap: 2rem }
+  .tv-panel-body { aspect-ratio: 3 / 2 }
+}
+
+@media (max-width: 540px) {
+  .tv-spaces { grid-template-columns: 1fr }
+  .tv-info-grid { grid-template-columns: 1fr; gap: 1rem }
+  .tv-tiles { grid-template-columns: repeat(2, 1fr) }
+  .tv-panel-head { flex-direction: column; gap: .2rem }
+}
