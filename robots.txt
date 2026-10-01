@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://magadh-enterprises.netlify.app/sitemap.xml
