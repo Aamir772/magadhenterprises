@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Magadh Enterprises â€” stylesheet
+   Magadh Enterprises — stylesheet
    Single-page showroom site. Sections:
    1. Design tokens & reset
    2. Typography & shared primitives
@@ -17,7 +17,7 @@
    ========================================================================== */
 
 /* 1. Design tokens & reset ----------------------------------------------
-   Brand palette â€” Terracotta + Warm Neutral. These six are the source of
+   Brand palette — Terracotta + Warm Neutral. These six are the source of
    truth and are never re-approximated anywhere else in the sheet.
 
    Measured contrast (WCAG 2.1) governs which of them may carry text:
@@ -32,8 +32,8 @@
    --------------------------------------------------------------------- */
 :root {
   /* Brand palette */
-  --terracotta: #E76F51;   /* primary â€” buttons, key actions, fills */
-  --copper: #B87333;       /* sparing â€” borders, rules, large marks */
+  --terracotta: #E76F51;   /* primary — buttons, key actions, fills */
+  --copper: #B87333;       /* sparing — borders, rules, large marks */
   --ivory: #F7F3ED;        /* page background */
   --cream: #FFFDF9;        /* raised surfaces, cards, light panels */
   --charcoal: #242321;     /* body text, dark sections */
@@ -51,7 +51,7 @@
   --border: var(--sand);
 
   /* #716B63 as in the baseline, darkened one step to #6B655D. It clears
-     4.5:1 on ivory, cream and the warm hover tint (5.2â€“5.7:1), which the
+     4.5:1 on ivory, cream and the warm hover tint (5.2–5.7:1), which the
      original did not, and stays visually the same warm grey. */
   --muted: #6B655D;
   /* Deepened warm brown for small accent text on light backgrounds.
@@ -304,6 +304,10 @@ img { max-width: 100%; height: auto; display: block }
   padding: .5rem 1.1rem;
   font-size: .68rem !important;
   letter-spacing: .12em !important;
+  /* The one rounded element on the site: this is the primary commercial
+     action, and a softened rectangle separates it from the square-edged
+     editorial buttons without going as far as a pill. */
+  border-radius: 8px;
 }
 
 .nav-cta:hover { background: var(--charcoal) !important; color: var(--cream) !important }
@@ -345,11 +349,12 @@ body.nav-open .site-header { z-index: 101 }
 /* 4. Introduction & promo banner ------------------------------------------- */
 .intro { padding-block: clamp(3.5rem, 8vw, 7rem) 0 }
 
-/* Categories now sits between the hero and What We Do, so the hero's bottom
-   padding collapses (Categories supplies its own) and the remaining intro
-   block carries its own bottom padding before the promo banner. */
-.intro-detail { padding-bottom: clamp(3rem, 7vw, 6rem) }
-.intro-detail > .container > .intro-block:first-child { margin-top: 0 }
+/* The former .intro-detail block (a text-only duplicate of What We Do plus the
+   How We Help / What We Offer split) has been folded into #what-we-do, which
+   now renders those two panels as bordered boxes. The .intro-* rules that only
+   styled that block were removed with it; the hero keeps its own .intro-*
+   classes (.intro-head, .intro-lede, .intro-ctas, .intro-place,
+   .intro-services), which are unaffected. */
 
 .intro-head { max-width: 1120px }
 .intro-heading { margin-top: .25rem }
@@ -362,82 +367,6 @@ body.nav-open .site-header { z-index: 101 }
   margin-top: clamp(1.75rem, 3vw, 2.75rem);
 }
 .intro-lede .t-body { margin: 0 }
-
-.intro-block { margin-top: clamp(3rem, 6vw, 5rem) }
-.intro-block .t-h3 { margin-top: .9rem; max-width: 26ch }
-
-.intro-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2.5rem);
-  margin-top: clamp(1.75rem, 3vw, 2.5rem);
-}
-.intro-card { border-top: 1px solid var(--border); padding-top: 1.15rem }
-.intro-card-title {
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: .5rem 0 .45rem;
-}
-.intro-card-text { font-size: .88rem; line-height: 1.65; color: var(--muted) }
-
-/* How We Help + What We Offer share a row on wide screens. */
-.intro-split {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
-}
-.intro-split > .intro-block { margin-top: clamp(3rem, 6vw, 5rem) }
-
-.intro-steps { margin-top: clamp(1.5rem, 3vw, 2.25rem) }
-.intro-step {
-  display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  column-gap: 1.25rem;
-  padding-block: 1.05rem;
-  border-top: 1px solid var(--border);
-}
-.intro-step-num {
-  grid-area: 1 / 1;
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  line-height: 1.4;
-  color: var(--accent);
-  letter-spacing: .04em;
-}
-.intro-step-title {
-  grid-area: 1 / 2;
-  font-family: var(--sans);
-  font-size: .76rem;
-  font-weight: 500;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-.intro-step-text {
-  grid-area: 2 / 2;
-  font-size: .88rem;
-  line-height: 1.6;
-  color: var(--muted);
-  margin-top: .35rem;
-}
-
-.intro-offer-list {
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(1.25rem, 3vw, 2.5rem);
-}
-.intro-offer-list li {
-  font-family: var(--sans);
-  font-size: .74rem;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding-block: .95rem;
-  border-top: 1px solid var(--border);
-}
 
 /* Hero service row sits above the buttons, so the button block needs less air
    than it did when the lede was followed straight by the CTAs. */
@@ -495,12 +424,14 @@ body.nav-open .site-header { z-index: 101 }
 .promo-banner img {
   display: block;
   width: 100%;
+  /* height: auto keeps the banner's intrinsic ratio, so no height is ever
+     forced and the image cannot be stretched. object-fit is deliberately
+     unset: with an auto height the box already matches the artwork. */
   height: auto;
   max-width: 100%;
-  object-fit: fill;
 }
 
-/* Terracotta band with charcoal type â€” the highest-contrast use of the primary
+/* Terracotta band with charcoal type — the highest-contrast use of the primary
    colour on the page, and the first thing seen on a phone. */
 .phone-banner { background: var(--terracotta); padding: .75rem 1rem; text-align: center }
 
@@ -525,7 +456,7 @@ body.nav-open .site-header { z-index: 101 }
 /* Full-bleed banner. Same rule as .promo-banner: the complete artwork is shown
    at its native ratio, never cropped into a fixed-height box. */
 .brand-banner { width: 100%; overflow: hidden; line-height: 0; background: var(--charcoal) }
-.brand-banner img { width: 100%; height: auto; display: block; max-width: 100%; object-fit: fill }
+.brand-banner img { width: 100%; height: auto; display: block; max-width: 100% }
 /* Category photography is 3:2 landscape. The old 3:4 portrait box with
    object-fit: cover cut the sides off every one of these, so the frame now
    matches the artwork and the image is contained, never cropped. */
@@ -748,14 +679,17 @@ body.tiles-lightbox-open { overflow: hidden }
 /* The owner photo is 3:2. Letting the text column set the row height would
    force the image into a portrait box and crop ~24% off its width, so the
    image keeps its own ratio and both columns centre against each other. */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; align-items: center }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); min-height: 560px; align-items: center }
 .about-image { overflow: hidden; position: relative; width: 100%; aspect-ratio: 3 / 2 }
 .about-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover }
 .about-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+  /* Horizontal padding is now the container's job. The column gap supplies the
+     separation from the photo, so this text can sit flush on the container's
+     right edge like every other section instead of floating inside it. */
+  padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 /* Raised from .4 to .5 white: the original 3.7:1 contrast failed WCAG AA.
    Visually near-identical, still reads as a quiet label on the dark panel. */
@@ -887,44 +821,230 @@ body.tiles-lightbox-open { overflow: hidden }
 .g-item:nth-child(1) { grid-column: 1/3 }
 .g-item:nth-child(4) { grid-column: 3/5 }
 
-/* 9. Why ------------------------------------------------------------------- */
-.why { background: var(--bg) }
-.why-grid {
+/* 9. What We Do ------------------------------------------------------------- */
+/* Replaces the old four-column "Why Visit Us" band. That version ran four
+   3rem Roman numerals over four bordered cells and pushed the section past
+   700px tall. This is a two-column editorial header over three flat cards:
+   the numeral is a quiet label rather than a display element, and the cards
+   carry a single hairline instead of a full box, so the section reads as
+   compact and premium rather than as a table. */
+.what-we-do { background: var(--bg) }
+
+.what-we-do-head {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
 }
-.why-item {
-  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.25rem);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+.what-we-do-intro .t-h2 { margin-block: .5rem 0 }
+.what-we-do-lede {
+  font-size: .95rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 46ch;
+  padding-bottom: .35rem;
 }
-/* Numerals are decorative (aria-hidden) but still painted text, so they need the
-   3:1 large-text minimum. Sand only gave 1.56:1 on ivory; copper clears it at
-   3.43:1 and keeps the same washed-out warm read. */
-.why-item .marker { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: var(--copper); line-height: 1; margin-bottom: 1.25rem }
-.why-item h3 {
+
+/* Three visual cards. The media panel is a fixed-ratio window (see .wwd-media)
+   so all three images occupy exactly the same height regardless of their
+   native size, which is what makes the row read as one editorial unit. */
+.what-we-do-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+  /* stretch (not start) so the three cards share one baseline and equal
+     height; the body uses flex so the EXPLORE link pins to the bottom. */
+  align-items: stretch;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+.wwd-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  /* 8px echoes the nav CTA radius: softened, but still architectural. */
+  border-radius: 8px;
+  overflow: hidden;
+  /* Only a hint of lift; the border does most of the separation work. */
+  box-shadow: 0 1px 2px rgba(26, 23, 20, .04);
+}
+.wwd-media {
+  /* 4:3 is the widest of the three native ratios (marble 1536x1024), so this
+     crops the two wide showroom shots on their left/right edges only. Both
+     are environmental displays with no centred face or single hero pack, so
+     nothing important is lost. */
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--cream-deep, #e9e2d7);
+  flex: none;
+}
+.wwd-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* A slow settle on hover; disabled under prefers-reduced-motion below. */
+  transition: transform .5s ease;
+}
+.wwd-card:hover .wwd-media img { transform: scale(1.03) }
+.wwd-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(1.1rem, 1.6vw, 1.5rem);
+}
+/* Numerals are decoration but still painted text, so they need the 3:1
+   large-text minimum. Sand only reached 1.56:1 on ivory; copper clears it
+   at 3.43:1 and keeps the same washed-out warm read. */
+.wwd-num {
   font-family: var(--sans);
-  font-size: .71rem;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--copper);
+  line-height: 1;
+  margin-bottom: .7rem;
+}
+.wwd-title {
+  font-family: var(--sans);
+  font-size: .78rem;
   font-weight: 500;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: .6rem;
+  margin-bottom: .55rem;
+  /* Long enough to wrap to two lines ("Installation & Finishing") without
+     pushing the card taller than its siblings. */
+  text-wrap: balance;
 }
-.why-item p { font-size: .85rem; color: var(--muted); line-height: 1.65; max-width: 26ch }
+.wwd-text {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1.1rem;
+}
+.wwd-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  align-self: flex-start;
+  transition: gap .2s ease, color .2s ease;
+}
+.wwd-link:hover,
+.wwd-link:focus-visible { gap: .7rem; color: var(--ink) }
+.wwd-card:focus-within { border-color: var(--terracotta) }
+
+/* HOW WE HELP / WHAT WE OFFER ------------------------------------------------ */
+/* Two panels under the cards. Panels are bordered boxes rather than loose
+   text, which keeps the section dense: no large blank areas between the
+   cards and this row, and both panels share one height via stretch. */
+.what-we-do-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+  align-items: stretch;
+}
+.wwd-panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2vw, 1.85rem);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+.wwd-panel .t-label { margin-bottom: .85rem }
+.wwd-panel-title {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  color: var(--ink);
+  margin-bottom: clamp(1.1rem, 2vw, 1.5rem);
+  text-wrap: balance;
+}
+.wwd-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(.9rem, 1.6vw, 1.25rem);
+}
+.wwd-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .9rem;
+  align-items: start;
+}
+.wwd-step-num {
+  font-family: var(--sans);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--copper);
+  line-height: 1.7;
+}
+.wwd-step-title {
+  font-family: var(--sans);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.wwd-step-text { font-size: .85rem; color: var(--muted); line-height: 1.6 }
+
+/* Eight compact rows. A bordered list reads denser than loose links and
+   keeps the arrow aligned in a single column at every width. */
+.wwd-offer {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+.wwd-offer li { border-bottom: 1px solid var(--border) }
+.wwd-offer a,
+.wwd-offer-static {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem .25rem;
+  font-size: .85rem;
+  color: var(--ink);
+  transition: color .2s ease, padding-left .2s ease;
+}
+.wwd-offer a span { color: var(--terracotta); transition: transform .2s ease }
+.wwd-offer a:hover,
+.wwd-offer a:focus-visible { color: var(--terracotta); padding-left: .6rem }
+.wwd-offer a:hover span { transform: translateX(.2rem) }
+/* Sanitaryware has no section on the site yet, so it stays a non-interactive
+   label rather than a link to nowhere. */
+.wwd-offer-static { color: var(--muted) }
 
 /* 10. Location & map -------------------------------------------------------- */
 /* Cream separates this band from the ivory page without needing a new hue. */
 .band-warm { background: var(--cream) }
 .location { background: var(--cream); overflow: hidden }
-.location-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 460px }
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); min-height: 460px }
 .location-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+  /* Container owns the horizontal gutter; see .about-text. */
+  padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 .location-text .t-h2 { margin-block: .5rem 1.5rem }
 .address-block { margin-bottom: 2rem }
@@ -985,6 +1105,70 @@ body.tiles-lightbox-open { overflow: hidden }
 .footer-col ul { display: flex; flex-direction: column; gap: .55rem }
 .footer-col a { font-size: .85rem; color: rgba(255, 253, 249, .72); transition: color .2s }
 .footer-col a:hover { color: var(--terracotta) }
+
+/* Social icons ------------------------------------------------------------ */
+/* Local 1254x1254 PNGs in assets/images/social/. No icon font and no CDN:
+   an icon font would add a render-blocking request and a FOUT for five marks.
+   The anchors keep the full 40px touch target while the artwork sits at 28px,
+   and flex-wrap means the row reflows instead of overflowing on narrow screens. */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin-top: .25rem;
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid rgba(255, 253, 249, .18);
+  transition: border-color .2s, opacity .2s, transform .2s;
+}
+.social-links a:hover,
+.social-links a:focus-visible {
+  border-color: var(--terracotta);
+  opacity: .82;
+  transform: translateY(-1px);
+}
+.social-links img {
+  width: 28px;
+  height: 28px;
+  /* contain, never cover: these are square marks and must not be cropped. */
+  object-fit: contain;
+  display: block;
+}
+
+/* Inline icon inside a labelled button, banner or link. Decorative, so the
+   <img> carries alt="" and the visible label carries the meaning. */
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  flex: none;
+}
+.phone-banner .btn-icon { width: 16px; height: 16px }
+
+/* The marks are supplied as full-colour PNGs on light backgrounds. On the dark
+   CTA buttons and the terracotta banner they need a touch more presence, so
+   they sit on a soft light chip rather than being recoloured. */
+.btn-light .btn-icon,
+.phone-banner .btn-icon {
+  background: rgba(255, 253, 249, .92);
+  border-radius: 4px;
+  padding: 2px;
+  width: 22px;
+  height: 22px;
+}
+.phone-banner .btn-icon { width: 20px; height: 20px }
+
+@media (prefers-reduced-motion: reduce) {
+  .social-links a,
+  .social-links a:hover { transform: none; transition: none }
+}
 .footer-bottom {
   margin-top: clamp(2rem, 4vw, 3.5rem);
   padding-top: 1.5rem;
@@ -1233,7 +1417,8 @@ body.g-lightbox-open { overflow: hidden }
    360 (smallest phones). Everything else is fluid via clamp()/min(). */
 @media (max-width: 1024px) {
   .intro-lede { grid-template-columns: 1fr }
-  .intro-split { grid-template-columns: 1fr }
+  /* The What We Do panels stay two-up until the 768 breakpoint, matching the
+     card grid, so the section keeps one consistent collapse point. */
   .tile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) }
   .about-grid { grid-template-columns: 1fr }
   /* min-height here would beat the 3/2 ratio on phones and re-introduce a
@@ -1252,13 +1437,16 @@ body.g-lightbox-open { overflow: hidden }
 
 @media (max-width: 768px) {
   .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-  .why-grid { grid-template-columns: 1fr 1fr }
+  /* Tablet: two cards on the first row, the third alone beneath it. */
+  .what-we-do-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  /* The panels stack, but they share the same two-column split as the cards
+     so the section keeps its left/right rhythm. */
+  .what-we-do-split { grid-template-columns: 1fr }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 200px) }
   .g-item:nth-child(1),
   .g-item:nth-child(4) { grid-column: 1/3 }
   .location-grid { grid-template-columns: 1fr }
   .map-area { min-height: 280px }
-  .intro-cards { grid-template-columns: 1fr }
   .featured { grid-template-columns: 1fr; gap: clamp(1.75rem, 4vw, 2.5rem) }
   .featured-media { max-width: 340px }
   .g-lightbox-nav { top: auto; bottom: clamp(.5rem, 2vw, 1.25rem); transform: none }
@@ -1273,14 +1461,30 @@ body.g-lightbox-open { overflow: hidden }
   .tile-lightbox-figure img { max-height: 56vh }
 }
 
+/* A .btn carrying an icon reserves space for the 22px chip, so the long
+   "Order on Call: 96615 55733" label no longer fits on one line at 320px.
+   Letting the label wrap keeps the button inside the viewport instead of
+   pushing a horizontal scrollbar onto the whole page. Short labels such as
+   "WhatsApp" stay on a single line because they never reach the wrap point. */
+@media (max-width: 420px) {
+  .btn { white-space: normal; text-align: center; justify-content: center }
+  .btn:has(.btn-icon) { max-width: 100% }
+}
+
 @media (max-width: 540px) {
-  .why-grid { grid-template-columns: 1fr }
+  /* Mobile: single column, and the editorial header stacks above the cards. */
+  .what-we-do-grid { grid-template-columns: 1fr }
+  .what-we-do-head { grid-template-columns: 1fr; align-items: start; gap: 1.25rem }
+  /* A 4:3 window on a narrow phone crops the wide showroom shots harder, so
+     the media relaxes to 16:11. More of the composition survives and the card
+     still reads as a landscape band rather than a tall stack. */
+  .wwd-media { aspect-ratio: 16 / 11 }
+  .wwd-card:hover .wwd-media img { transform: none }
   .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto }
   .g-item:nth-child(1),
   .g-item:nth-child(4) { grid-column: 1; grid-row: auto }
   .g-item { min-height: 220px }
   .footer-grid { grid-template-columns: 1fr }
-  .intro-offer-list { grid-template-columns: 1fr }
   .intro-ctas { flex-direction: column }
   .intro-ctas .btn { justify-content: center }
   /* .products-grid is deliberately absent: its base auto-fit track decides the
@@ -1322,4 +1526,10 @@ body.g-lightbox-open { overflow: hidden }
   *,
   *::before,
   *::after { transition: none !important; animation: none !important }
+  /* A transform is a position change even with no transition, so the What We Do
+     media zoom and the arrow nudges are switched off outright. */
+  .wwd-card:hover .wwd-media img { transform: none }
+  .wwd-link:hover,
+  .wwd-link:focus-visible { gap: .4rem }
+  .wwd-offer a:hover { padding-left: .25rem }
 }
