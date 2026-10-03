@@ -1,7 +1,7 @@
 /**
  * Magadh Enterprises — Tile Visualizer catalogue.
  *
- * Source photography: assets/images/visual/ (17 display photographs supplied
+ * Source photography: assets/images/visual/ (display photographs supplied
  * by the business). Web-ready derivatives live in assets/images/tiles/<id>/.
  * Originals are never modified.
  *
@@ -15,11 +15,13 @@
  *
  * ENVIRONMENT IMAGES
  * ------------------
- * There are no per-space installation photographs. The four environments are
- * generated on demand by the server-side AI pipeline (netlify/functions/
- * tile-visualize.mjs) using the selected tile's `actual` image as the source
- * material reference. `environments` is therefore reserved for cached results
- * and stays empty here; nothing is ever faked client-side.
+ * The picker is data-driven: add a path under `environments` for any space and
+ * the Installed Look panel will use that real photograph instead of asking the
+ * AI pipeline to invent one. Nothing has been supplied for any space yet, so
+ * all four are null and the page falls back to the server-side AI pipeline
+ * (netlify/functions/tile-visualize.mjs) using the selected tile's `actual`
+ * image as source material. A null entry never produces a fake client-side
+ * placeholder — the panel shows an honest "ready" state and waits.
  */
 window.MAGADH_TILES = (function () {
   'use strict';
@@ -48,6 +50,7 @@ window.MAGADH_TILES = (function () {
 
   var ACTUAL_W = 1350;
   var ACTUAL_H = 1800;
+  var THUMB = 320;
 
   var tiles = RAW.map(function (entry) {
     var id = entry[0];
@@ -60,12 +63,20 @@ window.MAGADH_TILES = (function () {
       type: null,
       alt: 'Tile ' + id.slice(-2) + ' from the Magadh Enterprises tile range, Gaya',
       actual: 'assets/images/tiles/' + id + '/actual.jpg',
+      // Square centre crop of the same photograph, used only for the picker
+      // thumbnail. Generated from `actual`; the tile itself is never altered
+      // and the full-resolution original stays the source of truth.
+      actualSquare: 'assets/images/tiles/' + id + '/actual-square.jpg',
       actualWidth: ACTUAL_W,
       actualHeight: ACTUAL_H,
+      thumbWidth: THUMB,
+      thumbHeight: THUMB,
       source: 'assets/images/visual/' + entry[1],
       // This tile may be sent to the AI pipeline as the source material.
       generatable: true,
-      // No pre-existing installation photography exists for any space.
+      // Drop a real installation photograph in here (for example
+      // 'assets/images/tiles/tile-01/kitchen.jpg') and the Installed Look panel
+      // will prefer it over generating anything. All four are currently null.
       environments: { kitchen: null, floor: null, wall: null, bathroom: null }
     };
   });
@@ -82,10 +93,24 @@ window.MAGADH_TILES = (function () {
       disclaimer: DISCLAIMER,
       badge: 'AI Visualization'
     },
-    /** Resolve a real image asset, or null when none exists. */
+    /**
+     * Resolve a real image asset, or null when none exists.
+     * Slots: 'actual', 'actual-square', or any space id from SPACES.
+     */
     resolve: function (tile, slot) {
-      var value = slot === 'actual' ? tile.actual : tile.environments[slot];
+      var value;
+      if (slot === 'actual') value = tile.actual;
+      else if (slot === 'actual-square') value = tile.actualSquare;
+      else value = tile.environments[slot];
       return typeof value === 'string' && value ? value : null;
+    },
+    /**
+     * The real installation photograph for a tile in a space, or null when the
+     * business has not supplied one. A null here is what routes the panel to
+     * the AI pipeline instead.
+     */
+    suppliedEnvironment: function (tile, spaceId) {
+      return this.resolve(tile, spaceId);
     }
   };
 })();

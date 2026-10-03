@@ -6,7 +6,8 @@
  *   1. Sticky-header elevation on scroll
  *   2. Mobile navigation overlay (open/close, Escape, focus management, scroll lock)
  *   3. Prefilled WhatsApp enquiry links
- *   4. Smooth in-page hash navigation with sticky-header offset
+ *   3. Smooth in-page hash navigation with sticky-header offset
+ *   4. Active navigation state as sections scroll past
  *
  * Everything is progressive enhancement: with JS disabled the page still renders,
  * every phone link still works and the product cards remain readable.
@@ -161,38 +162,40 @@
 
   /* 4. Hash navigation with sticky-header offset ---------------------------- */
   function initHashNavigation() {
-    var links = document.querySelectorAll('a[href^="#"]');
+    /* Delegated on document rather than bound per link, so links whose href is
+       set at runtime (e.g. the empty-state CTA in the tile filters) still get the
+       sticky-header offset and the focus handling below. */
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest ? event.target.closest('a[href^="#"]') : null;
+      if (!link) return;
 
-    Array.prototype.forEach.call(links, function (link) {
-      link.addEventListener('click', function (event) {
-        var hash = link.getAttribute('href');
-        if (!hash || hash === '#') return;
+      var hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
 
-        var target;
-        try {
-          target = document.querySelector(hash);
-        } catch (error) {
-          return;
-        }
-        if (!target) return;
+      var target;
+      try {
+        target = document.querySelector(hash);
+      } catch (error) {
+        return;
+      }
+      if (!target) return;
 
-        event.preventDefault();
+      event.preventDefault();
 
-        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var top = target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var top = target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
 
-        window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
+      window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
 
-        // Keep the URL and keyboard focus in sync with the visual jump.
-        if (window.history && window.history.replaceState) {
-          window.history.replaceState(null, '', hash);
-        }
+      // Keep the URL and keyboard focus in sync with the visual jump.
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', hash);
+      }
 
-        if (!target.hasAttribute('tabindex')) {
-          target.setAttribute('tabindex', '-1');
-        }
-        target.focus({ preventScroll: true });
-      });
+      if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
+      }
+      target.focus({ preventScroll: true });
     });
   }
 
@@ -248,7 +251,134 @@
     }
   }
 
-  /* 6. Year stamp ----------------------------------------------------------- */
+  /* 5. Active navigation state ---------------------------------------------
+     Marks the nav item for the section currently on screen. Only in-page
+     links participate, so "Tile Visualizer" (a separate page) never lights up
+     on the homepage. */
+  function initScrollSpy() {
+    var nav = document.querySelector('.site-nav');
+    if (!nav || !('IntersectionObserver' in window)) return;
+
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var map = {};
+    var targets = [];
+
+    links.forEach(function (link) {
+      var section;
+      try { section = document.querySelector(link.getAttribute('href')); } catch (e) { return; }
+      if (!section) return;
+      map[section.id] = link;
+      targets.push(section);
+    });
+    if (!targets.length) return;
+
+    var visible = {};
+
+    function setActive(id) {
+      links.forEach(function (link) {
+        var on = id !== null && link === map[id];
+        if (on) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+        link.classList.toggle('is-current', !!on);
+      });
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        visible[entry.target.id] = entry.isIntersecting;
+      });
+
+      // Prefer the first section on screen; otherwise fall back to the last one
+      // scrolled past so the highlight is never blank between sections.
+      var active = null;
+      for (var i = 0; i < targets.length; i++) {
+        if (visible[targets[i].id]) { active = targets[i].id; break; }
+      }
+      if (!active) {
+        var best = null;
+        targets.forEach(function (section) {
+          var top = section.getBoundingClientRect().top;
+          if (top <= HEADER_OFFSET && (best === null || top > best.top)) {
+            best = { id: section.id, top: top };
+          }
+        });
+        if (best) active = best.id;
+      }
+      setActive(active);
+    }, { rootMargin: '-' + HEADER_OFFSET + 'px 0px -55% 0px', threshold: 0 });
+
+    targets.forEach(function (section) { io.observe(section); });
+  }
+
+  /* 7. Scroll reveal -------------------------------------------------------
+     Fades content up as it enters the viewport. Strictly an enhancement:
+     without JS nothing is hidden, under prefers-reduced-motion the effect is
+     skipped, and a timer reveals everything even if the observer misbehaves. */
+  function initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var targets = Array.prototype.slice.call(document.querySelectorAll(
+      '.section .t-h2, .section .t-body, .cat-card, .tile-card, .product-card, ' +
+      '.g-item, .featured, .intro-card, .value-item'
+    ));
+    if (!targets.length) return;
+
+    // Siblings cascade slightly instead of popping in together.
+    targets.forEach(function (el) {
+      var p = el.parentElement;
+      if (!p) return;
+      if (p.__revealN === undefined) p.__revealN = 0;
+      var n = p.__revealN++;
+      if (n > 0 && n < 6) el.style.transitionDelay = (n * 0.07) + 's';
+      el.classList.add('reveal');
+    });
+
+    document.documentElement.classList.add('js-reveal');
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+
+    targets.forEach(function (el) { io.observe(el); });
+
+    /* Safety net, driven by scrolling rather than a blanket timer: anything at
+       or above the fold must be visible even if the observer is throttled
+       (background tab, headless, or a reduced-motion toggle mid-session). A
+       timer would have force-revealed the whole page and killed the effect for
+       anyone still scrolling. */
+    var pending = targets.slice();
+
+    function sweep() {
+      var limit = window.innerHeight;
+      pending = pending.filter(function (el) {
+        if (el.getBoundingClientRect().top < limit) {
+          el.classList.add('is-in');
+          return false;
+        }
+        return true;
+      });
+      if (!pending.length) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+    }
+
+    /* Deliberately not rAF-throttled: the list only ever shrinks, so each
+       scroll event costs one cheap pass, and correctness does not depend on a
+       frame callback ever being scheduled. */
+    function onScroll() { sweep(); }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    sweep();
+  }
+
+  /* 8. Year stamp ----------------------------------------------------------- */
   function initYear() {
     var nodes = document.querySelectorAll('[data-current-year]');
     if (!nodes.length) return;
@@ -263,6 +393,8 @@
     initMobileNav();
     initWhatsAppLinks();
     initHashNavigation();
+    initScrollSpy();
+    initReveal();
     initYear();
     initCatalogueCheck();
   }

@@ -7,6 +7,11 @@ magadh_netlify.zip
 # assets/images/tiles/ are the tracked versions actually served to visitors.
 assets/images/visual/
 
+# Second, larger full-resolution upload drop (19 original "Tiles- (N).jpg" files,
+# approx. 167MB). Same reasoning as above: on-disk archive only. The tracked
+# 900x1350 derivatives under assets/images/tiles/collection/ are what visitors get.
+assets/images/original/
+
 # Node tooling is only used for local validation, never for the deployed site.
 node_modules/
 package.json

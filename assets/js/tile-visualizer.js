@@ -45,6 +45,7 @@
     aiChangeTile: document.getElementById('tv-ai-change-tile'),
     aiWhatsApp: document.getElementById('tv-ai-whatsapp'),
     generate: document.getElementById('tv-generate'),
+    generateNote: document.getElementById('tv-generate-note'),
     aiNote: document.getElementById('tv-ai-note'),
     info: document.getElementById('tv-info-grid'),
     selection: document.getElementById('tv-enquiry-selection'),
@@ -68,12 +69,20 @@
 
   var DEMO_PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024">' +
-    '<rect width="1024" height="1024" fill="#EFEAE1"/>' +
+    '<rect width="1024" height="1024" fill="#EDE6DA"/>' +
     '<text x="512" y="500" text-anchor="middle" font-family="sans-serif" ' +
     'font-size="52" fill="#8C4F35">DEMO MODE</text>' +
     '<text x="512" y="560" text-anchor="middle" font-family="sans-serif" ' +
     'font-size="26" fill="#6B655D">Placeholder &#8212; not a real AI preview</text>' +
     '</svg>');
+
+  /* Shown instead of the AI badge/disclaimer when the business has supplied a
+     real photograph of the tile installed in that space. */
+  var PHOTO_BADGE = 'Reference photograph';
+  var PHOTO_NOTE =
+    'Photograph supplied for this space. A real installation still varies with ' +
+    'lighting, laying pattern, grout and the room it sits in — ask us to hold ' +
+    'the sample for you.';
 
   /* Results already paid for in this session, keyed tileId|environment. Keeps
      re-selecting a space from spending credits a second time. */
@@ -88,6 +97,17 @@
   function spaceLabel(id) { return spaceById[id] ? spaceById[id].label : id; }
   function resultKey(id, environment) { return id + '|' + environment; }
 
+  /* A real installation photograph supplied by the business for this tile in
+     this space, or null. Null is what routes the panel to the AI pipeline. */
+  function suppliedFor(tileItem, spaceId) {
+    if (!data.suppliedEnvironment) return null;
+    return data.suppliedEnvironment(tileItem, spaceId);
+  }
+
+  function suppliedForSelection() {
+    return suppliedFor(tile(), state.space);
+  }
+
   /* --- rendering ---------------------------------------------------------- */
 
   function renderTiles() {
@@ -100,7 +120,7 @@
       button.setAttribute('role', 'radio');
       button.setAttribute('data-tile', item.id);
 
-      var src = data.resolve(item, 'actual');
+      var src = data.resolve(item, 'actual-square') || data.resolve(item, 'actual');
       if (src) {
         var img = document.createElement('img');
         img.className = 'tv-tile-img';
@@ -108,8 +128,9 @@
         img.alt = '';
         img.loading = 'lazy';
         img.decoding = 'async';
-        img.width = item.actualWidth || 400;
-        img.height = item.actualHeight || 300;
+        // Square picker crop when available, otherwise the full portrait frame.
+        img.width = item.thumbWidth || 320;
+        img.height = item.thumbHeight || 320;
         button.appendChild(img);
       }
 
@@ -244,16 +265,57 @@
     showState('error');
   }
 
+  /* A real supplied photograph outranks any generated preview: it is the
+     business's own record of the tile installed, so it is shown as-is and the
+     Generate control is withdrawn. */
+  function renderPhoto(photo) {
+    var item = tile();
+    els.aiImage.src = photo;
+    els.aiImage.alt = item.name + ' installed as a ' +
+      spaceLabel(state.space).toLowerCase() + ' — reference photograph';
+    els.aiImage.width = 1024;
+    els.aiImage.height = 768;
+    els.aiBadge.textContent = PHOTO_BADGE;
+    els.aiDisclaimer.textContent = PHOTO_NOTE;
+    els.aiStatus.textContent = 'Reference photograph';
+    els.aiLive.textContent = 'Showing the supplied ' +
+      spaceLabel(state.space).toLowerCase() + ' photograph for ' + item.name + '.';
+    applyAiWhatsApp({ tileName: item.name, environment: state.space });
+    showState('result');
+  }
+
   function syncPanelForSelection() {
+    var supplied = suppliedForSelection();
+    if (supplied) { renderPhoto(supplied); return; }
+
     var cached = results[resultKey(state.tile, state.space)];
     if (cached) renderResult(cached);
     else resetPanel();
+  }
+
+  /* Withdrawing the Generate control whenever a photograph already answers the
+     request, so the visitor is never offered a slow, paid preview they do not
+     need. An author `display` on .btn beats the UA [hidden] rule, hence the
+     .tv-generate-btn[hidden] guard in tile-visualizer.css. */
+  function syncGenerateAvailability() {
+    var supplied = suppliedForSelection();
+    els.generate.hidden = Boolean(supplied);
+    els.generateNote.hidden = Boolean(supplied);
+    if (supplied) {
+      els.aiNote.textContent = '';
+    } else {
+      els.aiNote.textContent = data.api.disclaimer;
+    }
   }
 
   /* --- generation --------------------------------------------------------- */
 
   function generate() {
     if (busy) return; // duplicate-click guard: one generation in flight
+
+    // A supplied photograph already answers this request; never spend a
+    // generation on it even if the control was triggered programmatically.
+    if (suppliedForSelection()) { syncPanelForSelection(); return; }
 
     var key = resultKey(state.tile, state.space);
     var cached = results[key];
@@ -370,8 +432,11 @@
     data.spaces.forEach(function (candidate) {
       var button = els.spaces.querySelector('[data-space="' + candidate.id + '"]');
       if (!button) return;
-      button.querySelector('.tv-space-status').textContent =
-        item.generatable ? 'AI preview available' : 'Preview unavailable';
+      var status = button.querySelector('.tv-space-status');
+      if (!status) return;
+      if (suppliedFor(item, candidate.id)) status.textContent = 'Photograph available';
+      else if (item.generatable) status.textContent = 'AI preview available';
+      else status.textContent = 'Preview unavailable';
     });
   }
 
@@ -383,7 +448,7 @@
       { label: 'Application', value: item.type },
       { label: 'Size', value: item.size },
       { label: 'Finish', value: item.finish },
-      { label: 'AI previews', value: environmentSummary(item) }
+      { label: 'Previews', value: environmentSummary(item) }
     ];
 
     var html = rows.map(function (row) {
@@ -396,11 +461,15 @@
     els.info.innerHTML = html;
   }
 
+  /* Marks each space with how its Installed Look is produced, so the page never
+   implies a photograph exists where one does not. */
   function environmentSummary(item) {
-    if (!item.generatable) return null;
-    return data.spaces
-      .map(function (candidate) { return candidate.label; })
-      .join(', ');
+    var labels = data.spaces.map(function (candidate) {
+      if (suppliedFor(item, candidate.id)) return candidate.label + ' (photo)';
+      if (item.generatable) return candidate.label + ' (AI)';
+      return null;
+    }).filter(Boolean);
+    return labels.length ? labels.join(', ') : null;
   }
 
   function renderEnquiry() {
@@ -453,6 +522,7 @@
     syncSpaceStatus();
     renderInfo();
     renderEnquiry();
+    syncGenerateAvailability();
     syncPanelForSelection();
   }
 

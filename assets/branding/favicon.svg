@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Magadh Enterprises">
-  <rect width="64" height="64" fill="#242321"/>
-  <rect x="5" y="5" width="54" height="54" fill="none" stroke="#8C4F35" stroke-width="1.5"/>
-  <text x="32" y="41" text-anchor="middle"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="27" letter-spacing="1" fill="#F7F3EC">ME</text>
-</svg>

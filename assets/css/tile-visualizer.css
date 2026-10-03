@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 60vh;
-  background: var(--dark);
+  background: var(--charcoal);
 }
 
 .tv-hero-text {
@@ -21,11 +21,11 @@
   justify-content: center;
 }
 
-.tv-hero .t-label { color: rgba(255, 255, 255, .5) }
+.tv-hero .t-label { color: rgba(255, 253, 249, .55) }
 .tv-hero .t-display,
-.tv-hero .t-h2 { color: var(--white) }
-.tv-hero .t-body { color: rgba(255, 255, 255, .62); max-width: 46ch }
-.tv-hero .divider { background: rgba(255, 255, 255, .2) }
+.tv-hero .t-h2 { color: var(--cream) }
+.tv-hero .t-body { color: rgba(255, 253, 249, .66); max-width: 46ch }
+.tv-hero .divider { background: var(--terracotta) }
 
 .tv-hero-image { position: relative; overflow: hidden; min-height: 320px }
 .tv-hero-image img {
@@ -48,7 +48,7 @@
 }
 
 .tv-panel {
-  background: var(--bg);
+  background: var(--surface);
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -76,7 +76,7 @@
   flex: 1;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #EFEAE1;
+  background: var(--surface-alt);
 }
 
 .tv-panel-body img {
@@ -106,10 +106,10 @@
   background:
     repeating-linear-gradient(
       45deg,
-      #F2EDE4,
-      #F2EDE4 12px,
-      #EDE7DC 12px,
-      #EDE7DC 24px
+      var(--bg),
+      var(--bg) 12px,
+      var(--surface-alt) 12px,
+      var(--surface-alt) 24px
     );
 }
 
@@ -124,7 +124,7 @@
   place-items: center;
   border: 1px solid var(--border);
   border-radius: 50%;
-  background: rgba(255, 255, 255, .75);
+  background: var(--cream);
   font-family: var(--serif);
   font-size: 1.4rem;
   color: var(--accent);
@@ -157,7 +157,7 @@
   gap: .6rem;
   padding: 2rem;
   text-align: center;
-  background: #EFEAE1;
+  background: var(--surface-alt);
 }
 
 /* Same reason as .tv-empty[hidden]: an author `display` beats the UA sheet, so
@@ -168,7 +168,7 @@
   width: 42px;
   height: 42px;
   border: 2px solid var(--border);
-  border-top-color: var(--accent);
+  border-top-color: var(--terracotta);
   border-radius: 50%;
   animation: tv-spin 900ms linear infinite;
 }
@@ -184,8 +184,8 @@
   bottom: .85rem;
   margin: 0;
   padding: .4rem .7rem;
-  background: rgba(24, 23, 22, .82);
-  color: var(--white);
+  background: rgba(36, 35, 33, .82);
+  color: var(--cream);
   font-size: .66rem;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -229,6 +229,11 @@
   opacity: .55;
   cursor: not-allowed;
 }
+
+/* Author `display: inline-flex` on .btn outranks the UA [hidden] rule, so the
+   control has to be restated or a withdrawn Generate button stays on screen. */
+.tv-generate-btn[hidden],
+.tv-generate-note[hidden] { display: none }
 
 .tv-generate-note {
   margin: .9rem 0 0;
@@ -279,17 +284,21 @@
   width: 100%;
   padding: 0;
   text-align: left;
-  background: var(--bg);
+  background: var(--surface);
   border: 1.5px solid var(--border);
   cursor: pointer;
   transition: border-color .2s, background .2s;
 }
 
-.tv-tile:hover { border-color: var(--accent) }
+.tv-tile:hover { border-color: var(--copper) }
 
+/* Selected: a terracotta bar plus cream fill. The bar carries the state at a
+   glance and terracotta is decorative here, so the 2.80:1 it makes against
+   ivory is not load-bearing on its own. */
 .tv-tile[aria-checked='true'] {
-  border-color: var(--ink);
-  background: #EFEBE3;
+  border-color: var(--terracotta);
+  box-shadow: inset 3px 0 0 var(--terracotta);
+  background: var(--cream);
 }
 
 .tv-tile-img {
@@ -297,7 +306,7 @@
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
-  background: #EFEAE1;
+  background: var(--surface-alt);
 }
 
 .tv-tile-name {
@@ -330,17 +339,20 @@
   gap: .25rem;
   padding: 1rem 1.1rem;
   text-align: left;
-  background: var(--bg);
+  background: var(--surface);
   border: 1.5px solid var(--border);
   cursor: pointer;
   transition: border-color .2s, background .2s;
 }
 
-.tv-space:hover { border-color: var(--accent) }
+.tv-space:hover { border-color: var(--copper) }
 
+/* Same terracotta selected treatment as the tile picker, so the two control
+   groups read as one system. */
 .tv-space[aria-checked='true'] {
-  border-color: var(--ink);
-  background: #EFEBE3;
+  border-color: var(--terracotta);
+  box-shadow: inset 3px 0 0 var(--terracotta);
+  background: var(--cream);
 }
 
 .tv-space-label {
@@ -369,7 +381,7 @@
   margin-top: clamp(2rem, 4vw, 3rem);
   padding: clamp(1.5rem, 3vw, 2.25rem);
   border: 1px solid var(--border);
-  background: #EFEBE3;
+  background: var(--cream);
 }
 
 .tv-info-grid {
@@ -407,7 +419,7 @@
   font-family: var(--serif);
   font-size: 3rem;
   font-weight: 300;
-  color: #928472;
+  color: var(--copper);
   line-height: 1;
   margin-bottom: 1rem;
 }
@@ -428,31 +440,31 @@
 }
 
 /* Enquiry CTA ------------------------------------------------------------ */
-.tv-enquiry .t-label { color: rgba(255, 255, 255, .5) }
-.tv-enquiry .t-h2 { color: var(--white) }
-.tv-enquiry .t-body { color: rgba(255, 255, 255, .62) }
-.tv-enquiry .divider { background: rgba(255, 255, 255, .2) }
+.tv-enquiry .t-label { color: rgba(255, 253, 249, .55) }
+.tv-enquiry .t-h2 { color: var(--cream) }
+.tv-enquiry .t-body { color: rgba(255, 253, 249, .66) }
+.tv-enquiry .divider { background: var(--terracotta) }
 
 .tv-enquiry-selection {
   margin-top: 1.75rem;
   padding: 1rem 1.25rem;
-  border: 1px solid rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 253, 249, .18);
   font-size: .85rem;
-  color: rgba(255, 255, 255, .75);
+  color: rgba(255, 253, 249, .78);
   line-height: 1.6;
 }
 
 .tv-enquiry-selection strong {
   font-weight: 400;
-  color: var(--white);
+  color: var(--cream);
 }
 
 /* Focus ------------------------------------------------------------------
-   The shared default is accent-on-light, which is the right contrast on the
+   The shared default is copper-on-light, which is the right contrast on the
    warm background. The hero and the enquiry band are dark, so they need the
-   white override the other dark sections already use. */
+   cream override the other dark sections already use. */
 .tv-hero :focus-visible,
-.tv-enquiry :focus-visible { outline-color: #fff }
+.tv-enquiry :focus-visible { outline-color: var(--cream) }
 
 /* Responsive ------------------------------------------------------------- */
 @media (max-width: 1024px) {

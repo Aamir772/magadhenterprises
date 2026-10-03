@@ -8,7 +8,7 @@
 <meta name="description" content="Choose a tile and a room at Magadh Enterprises, Gaya, and generate an AI visualization of how it could look. Illustrative preview only — visit the showroom to see the real tile.">
 
 <link rel="canonical" href="https://magadhenterprises.netlify.app/tile-visualizer">
-<meta name="theme-color" content="#F7F3EC">
+<meta name="theme-color" content="#E76F51">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
@@ -26,8 +26,15 @@
 <meta name="twitter:image" content="https://magadhenterprises.netlify.app/assets/images/showroom/hero-showroom.jpg">
 <meta name="twitter:image:alt" content="Magadh Enterprises showroom interior with tile and marble displays">
 
-<link rel="icon" href="assets/branding/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/images/branding/logo.png">
+<!-- Favicon and PWA icons. Identical block to index.html, all generated from
+     the supplied brand mark at the project root. -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="/icon-512.png" sizes="512x512" type="image/png">
+<link rel="manifest" href="/manifest.webmanifest">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,9 +64,9 @@
              alt="Magadh Enterprises — Building Beautiful Spaces" class="header-logo">
       </a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="tile-visualizer.html" aria-current="page">Tile Visualizer</a>
-        <a href="index.html#categories">Deals In</a>
-        <a href="index.html#installation">Products</a>
+        <a href="index.html#location">Me Gaya</a>
+        <a href="index.html#deals">Deals In</a>
+        <a href="index.html#products">Products</a>
         <a href="index.html#gallery">Gallery</a>
         <a href="index.html#about">About</a>
         <a href="index.html#contact">Contact</a>
@@ -74,11 +81,11 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" inert>
-  <a href="tile-visualizer.html" class="mobile-link" aria-current="page">Tile Visualizer</a>
-  <a href="index.html#categories" class="mobile-link">Deals In</a>
-  <a href="index.html#about" class="mobile-link">About</a>
-  <a href="index.html#installation" class="mobile-link">Products</a>
+  <a href="index.html#location" class="mobile-link">Me Gaya</a>
+  <a href="index.html#deals" class="mobile-link">Deals In</a>
+  <a href="index.html#products" class="mobile-link">Products</a>
   <a href="index.html#gallery" class="mobile-link">Gallery</a>
+  <a href="index.html#about" class="mobile-link">About</a>
   <a href="index.html#contact" class="mobile-link">Contact</a>
   <a href="tel:+919661555733" class="mobile-link">Call +91&nbsp;96615&nbsp;55733</a>
 </nav>
@@ -130,7 +137,7 @@
 
       <div class="tv-panel">
         <div class="tv-panel-head">
-          <p class="t-label">AI Visualization</p>
+          <p class="t-label">Installed Look</p>
           <p class="tv-panel-caption" id="tv-ai-status">Not generated yet</p>
         </div>
         <div class="tv-panel-body" id="tv-ai-body" aria-busy="false">
@@ -186,7 +193,7 @@
     <!-- GENERATE -->
     <div class="tv-generate">
       <button type="button" class="btn btn-primary tv-generate-btn" id="tv-generate">Generate AI Preview</button>
-      <p class="tv-generate-note">One preview is generated per click and usually takes under a minute. Nothing is generated until you ask for it.</p>
+      <p class="tv-generate-note" id="tv-generate-note">One preview is generated per click and usually takes under a minute. Nothing is generated until you ask for it.</p>
       <p class="tv-ai-note" id="tv-ai-note">&nbsp;</p>
     </div>
 
@@ -266,19 +273,18 @@
       <div class="footer-col">
         <h3>Products</h3>
         <ul>
-          <li><a href="index.html#categories">Tiles</a></li>
-          <li><a href="index.html#categories">Marble</a></li>
-          <li><a href="index.html#categories">Granite</a></li>
-          <li><a href="index.html#categories">Sanitaryware</a></li>
-          <li><a href="index.html#installation">MYK Laticrete</a></li>
-          <li><a href="index.html#installation">MYK Arment</a></li>
+          <li><a href="index.html#deals">Tiles</a></li>
+          <li><a href="index.html#deals">Marble</a></li>
+          <li><a href="index.html#deals">Granite</a></li>
+          <li><a href="index.html#deals">Sanitaryware</a></li>
+          <li><a href="index.html#products">MYK Laticrete</a></li>
+          <li><a href="index.html#products">MYK Arment</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h3>Navigate</h3>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="tile-visualizer.html">Tile Visualizer</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#gallery">Gallery</a></li>
           <li><a href="index.html#location">Find Us</a></li>

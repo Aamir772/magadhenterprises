@@ -22,6 +22,7 @@ window.MAGADH_PRODUCTS = (function () {
       items: [
         {
           name: 'Latafix 305',
+            purpose: 'Tile Adhesives',
           image: 'assets/images/laticrete/latafix-305.jpg',
           width: 900,
           height: 900,
@@ -30,6 +31,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Laticrete 303',
+            purpose: 'Tile Adhesives',
           image: 'assets/images/laticrete/laticrete-303.jpg',
           width: 900,
           height: 900,
@@ -38,6 +40,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: '315 Plus & 325 High Flex',
+            purpose: 'Tile Adhesives',
           image: 'assets/images/laticrete/315-plus-325-high-flex.jpg',
           width: 900,
           height: 600,
@@ -46,6 +49,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Super Set',
+            purpose: 'Tile Adhesives',
           image: 'assets/images/laticrete/super-set.jpg',
           width: 600,
           height: 900,
@@ -54,6 +58,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Latapoxy',
+            purpose: 'Grouts & Epoxy',
           image: 'assets/images/laticrete/latapoxy.jpg',
           width: 600,
           height: 900,
@@ -62,6 +67,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Dazzle',
+            purpose: 'Grouts & Epoxy',
           image: 'assets/images/laticrete/dazzle.jpg',
           width: 600,
           height: 900,
@@ -70,6 +76,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'SP-100 Duo',
+            purpose: 'Grouts & Epoxy',
           image: 'assets/images/laticrete/sp-100-duo.jpg',
           width: 600,
           height: 900,
@@ -78,6 +85,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Grout Admix Plus 1776',
+            purpose: 'Grouts & Epoxy',
           image: 'assets/images/laticrete/grout-admix-plus-1776.jpg',
           width: 600,
           height: 900,
@@ -86,6 +94,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Clenza TC',
+            purpose: 'Tile Care',
           image: 'assets/images/laticrete/clenza-tc.jpg',
           width: 600,
           height: 900,
@@ -94,6 +103,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Tile Spacers',
+            purpose: 'Tools & Accessories',
           image: 'assets/images/laticrete/tile-spacers.jpg',
           width: 755,
           height: 900,
@@ -102,6 +112,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Tile Leveling Clips',
+            purpose: 'Tools & Accessories',
           image: 'assets/images/laticrete/tile-leveling-clips.jpg',
           width: 600,
           height: 900,
@@ -117,6 +128,7 @@ window.MAGADH_PRODUCTS = (function () {
       items: [
         {
           name: 'AquaArm SuperFlex',
+            purpose: 'Waterproofing',
           image: 'assets/images/arment/aquaarm-superflex.jpg',
           width: 900,
           height: 900,
@@ -125,6 +137,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'AquaArm Proof WP-10',
+            purpose: 'Waterproofing',
           image: 'assets/images/arment/aquaarm-proof-wp10.jpg',
           width: 900,
           height: 900,
@@ -133,6 +146,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'AquaArm ExTeCoat',
+            purpose: 'Waterproofing',
           image: 'assets/images/arment/aquaarm-extecoat.jpg',
           width: 900,
           height: 900,
@@ -141,6 +155,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'AquaArm Sani Guard Primer',
+            purpose: 'Primers & Bonding Agents',
           image: 'assets/images/arment/aquaarm-sani-guard-primer.jpg',
           width: 900,
           height: 900,
@@ -149,6 +164,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'ReArm KrackFill Paste',
+            purpose: 'Crack Repair',
           image: 'assets/images/arment/rearm-krackfill-paste.jpg',
           width: 900,
           height: 900,
@@ -157,6 +173,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'ReArm Super Bond',
+            purpose: 'Primers & Bonding Agents',
           image: 'assets/images/arment/rearm-super-bond.jpg',
           width: 900,
           height: 900,
@@ -165,6 +182,7 @@ window.MAGADH_PRODUCTS = (function () {
         },
         {
           name: 'Armix Durafast ACL',
+            purpose: 'Primers & Bonding Agents',
           image: 'assets/images/arment/armix-durafast-acl.jpg',
           width: 900,
           height: 900,
