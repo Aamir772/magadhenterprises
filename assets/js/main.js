@@ -223,11 +223,22 @@
       var descEl = card.querySelector('.product-desc');
       var img = card.querySelector('img');
       if (!section || !nameEl || !img) return;
+      /* A card serves a responsive variant, not the master file products.js
+         records: src points at the small variant and srcset carries the rest
+         up to the master. So the image check has to ask "is the master one of
+         the candidates?" instead of "is src the master?", otherwise every
+         correctly-built card reports a false mismatch. */
+      var candidates = [img.getAttribute('src') || ''];
+      (img.getAttribute('srcset') || '').split(',').forEach(function (entry) {
+        var url = entry.trim().split(/\s+/)[0];
+        if (url) candidates.push(url);
+      });
       rendered[section.id + '|' + nameEl.textContent.trim()] = {
-        image: img.getAttribute('src'),
+        candidates: candidates,
         description: descEl ? descEl.textContent.replace(/\s+/g, ' ').trim() : '',
         width: Number(img.getAttribute('width')),
-        height: Number(img.getAttribute('height'))
+        height: Number(img.getAttribute('height')),
+        category: card.getAttribute('data-category')
       };
     });
 
@@ -237,14 +248,46 @@
       var item = expected[key];
       var out = rendered[key];
       if (!out) { problems.push('missing from markup: ' + key); return; }
-      if (out.image !== item.image) problems.push('image mismatch: ' + key);
+      if (out.candidates.indexOf(item.image) === -1) problems.push('image mismatch: ' + key);
       if (out.description !== item.description) problems.push('description mismatch: ' + key);
-      if (out.width !== item.width || out.height !== item.height) problems.push('dimensions mismatch: ' + key);
+      /* width/height describe whichever variant sits in src, so compare shape
+         rather than pixel count - the variants are the same crop at two sizes. */
+      if (!item.height || !out.height ||
+          Math.abs((out.width / out.height) - (item.width / item.height)) > 0.01) {
+        problems.push('dimensions mismatch: ' + key);
+      }
+      /* The category tabs in #products filter on data-category, so a drift
+         between the two would silently drop a product out of a tab. */
+      if (out.category !== item.category) problems.push('category mismatch: ' + key);
     });
 
     Object.keys(rendered).forEach(function (key) {
       if (!expected[key]) problems.push('not in catalogue: ' + key);
     });
+
+    /* Every tab must resolve to at least one rendered card, otherwise a tab
+       would filter to an empty grid. This is what guarantees the tab bar can
+       never advertise a category the page does not actually stock. */
+    var categories = window.MAGADH_PRODUCT_CATEGORIES;
+    if (categories) {
+      categories.forEach(function (cat) {
+        if (cat.id === 'all' || cat.count) return;
+        problems.push('tab has no products: ' + cat.id);
+      });
+
+      var tabIds = Array.prototype.map.call(
+        document.querySelectorAll('#product-filters [data-product-filter]'),
+        function (tab) { return tab.getAttribute('data-product-filter'); }
+      );
+      categories.forEach(function (cat) {
+        if (tabIds.indexOf(cat.id) === -1) problems.push('tab missing from markup: ' + cat.id);
+      });
+      tabIds.forEach(function (id) {
+        if (!categories.some(function (cat) { return cat.id === id; })) {
+          problems.push('tab not in products.js: ' + id);
+        }
+      });
+    }
 
     if (problems.length) {
       console.warn('Magadh: products.js and index.html are out of sync.\n' + problems.join('\n'));
@@ -320,7 +363,7 @@
 
     var targets = Array.prototype.slice.call(document.querySelectorAll(
       '.section .t-h2, .section .t-body, .cat-card, .tile-card, .product-card, ' +
-      '.g-item, .featured, .intro-card, .value-item'
+      '.featured, .intro-card, .value-item'
     ));
     if (!targets.length) return;
 

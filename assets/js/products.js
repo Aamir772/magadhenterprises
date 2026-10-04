@@ -10,6 +10,24 @@
  * IMPORTANT: every value below is copied verbatim from the original baseline
  * site. No specifications, prices or claims have been added. If you edit a
  * product here, mirror the change in index.html (or add a generator).
+ *
+ * CATEGORIES
+ * ----------
+ * `category` is the slug the "Explore Products" tabs filter on and must match
+ * the `data-category` attribute on the matching .product-card in index.html.
+ * It is derived from `purpose`, which is the business's own classification:
+ *
+ *   Tile Adhesives ............ adhesives
+ *   Grouts & Epoxy ............ grouts-epoxy
+ *   Waterproofing ............. waterproofing
+ *   Tile Care ................. tile-care
+ *   Tools & Accessories ....... tile-care
+ *   Primers & Bonding Agents .. primers-repair
+ *   Crack Repair .............. primers-repair
+ *
+ * Marble, granite and sanitaryware are showroom categories (see the category
+ * cards in index.html) with no product records, so they have no tab and no
+ * products are fabricated for them.
  */
 window.MAGADH_PRODUCTS = (function () {
   'use strict';
@@ -23,6 +41,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Latafix 305',
             purpose: 'Tile Adhesives',
+            category: 'adhesives',
           image: 'assets/images/laticrete/latafix-305.jpg',
           width: 900,
           height: 900,
@@ -32,6 +51,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Laticrete 303',
             purpose: 'Tile Adhesives',
+            category: 'adhesives',
           image: 'assets/images/laticrete/laticrete-303.jpg',
           width: 900,
           height: 900,
@@ -41,6 +61,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: '315 Plus & 325 High Flex',
             purpose: 'Tile Adhesives',
+            category: 'adhesives',
           image: 'assets/images/laticrete/315-plus-325-high-flex.jpg',
           width: 900,
           height: 600,
@@ -50,6 +71,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Super Set',
             purpose: 'Tile Adhesives',
+            category: 'adhesives',
           image: 'assets/images/laticrete/super-set.jpg',
           width: 600,
           height: 900,
@@ -59,6 +81,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Latapoxy',
             purpose: 'Grouts & Epoxy',
+            category: 'grouts-epoxy',
           image: 'assets/images/laticrete/latapoxy.jpg',
           width: 600,
           height: 900,
@@ -68,6 +91,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Dazzle',
             purpose: 'Grouts & Epoxy',
+            category: 'grouts-epoxy',
           image: 'assets/images/laticrete/dazzle.jpg',
           width: 600,
           height: 900,
@@ -77,6 +101,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'SP-100 Duo',
             purpose: 'Grouts & Epoxy',
+            category: 'grouts-epoxy',
           image: 'assets/images/laticrete/sp-100-duo.jpg',
           width: 600,
           height: 900,
@@ -86,6 +111,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Grout Admix Plus 1776',
             purpose: 'Grouts & Epoxy',
+            category: 'grouts-epoxy',
           image: 'assets/images/laticrete/grout-admix-plus-1776.jpg',
           width: 600,
           height: 900,
@@ -95,6 +121,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Clenza TC',
             purpose: 'Tile Care',
+            category: 'tile-care',
           image: 'assets/images/laticrete/clenza-tc.jpg',
           width: 600,
           height: 900,
@@ -104,6 +131,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Tile Spacers',
             purpose: 'Tools & Accessories',
+            category: 'tile-care',
           image: 'assets/images/laticrete/tile-spacers.jpg',
           width: 755,
           height: 900,
@@ -113,6 +141,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Tile Leveling Clips',
             purpose: 'Tools & Accessories',
+            category: 'tile-care',
           image: 'assets/images/laticrete/tile-leveling-clips.jpg',
           width: 600,
           height: 900,
@@ -129,6 +158,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'AquaArm SuperFlex',
             purpose: 'Waterproofing',
+            category: 'waterproofing',
           image: 'assets/images/arment/aquaarm-superflex.jpg',
           width: 900,
           height: 900,
@@ -138,6 +168,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'AquaArm Proof WP-10',
             purpose: 'Waterproofing',
+            category: 'waterproofing',
           image: 'assets/images/arment/aquaarm-proof-wp10.jpg',
           width: 900,
           height: 900,
@@ -147,6 +178,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'AquaArm ExTeCoat',
             purpose: 'Waterproofing',
+            category: 'waterproofing',
           image: 'assets/images/arment/aquaarm-extecoat.jpg',
           width: 900,
           height: 900,
@@ -156,6 +188,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'AquaArm Sani Guard Primer',
             purpose: 'Primers & Bonding Agents',
+            category: 'primers-repair',
           image: 'assets/images/arment/aquaarm-sani-guard-primer.jpg',
           width: 900,
           height: 900,
@@ -165,6 +198,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'ReArm KrackFill Paste',
             purpose: 'Crack Repair',
+            category: 'primers-repair',
           image: 'assets/images/arment/rearm-krackfill-paste.jpg',
           width: 900,
           height: 900,
@@ -174,6 +208,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'ReArm Super Bond',
             purpose: 'Primers & Bonding Agents',
+            category: 'primers-repair',
           image: 'assets/images/arment/rearm-super-bond.jpg',
           width: 900,
           height: 900,
@@ -183,6 +218,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Armix Durafast ACL',
             purpose: 'Primers & Bonding Agents',
+            category: 'primers-repair',
           image: 'assets/images/arment/armix-durafast-acl.jpg',
           width: 900,
           height: 900,
@@ -192,4 +228,48 @@ window.MAGADH_PRODUCTS = (function () {
       ]
     }
   ];
+})();
+
+/**
+ * The "Explore Products" category tabs, in display order.
+ *
+ * `count` is derived from the catalogue above rather than typed by hand, so a
+ * tab can never advertise a number the grid does not hold. The tab bar itself
+ * is static markup in index.html (crawlable, and visible without scripting);
+ * this list documents the taxonomy the filter reads from the DOM.
+ *
+ * Marble, granite and sanitaryware are showroom categories, not product
+ * groups: the business has photography and category cards for them but no
+ * product records, so they get no tab and no invented products.
+ */
+window.MAGADH_PRODUCT_CATEGORIES = (function () {
+  'use strict';
+
+  var ORDER = [
+    { id: 'all', label: 'All Products' },
+    { id: 'adhesives', label: 'Tile Adhesives' },
+    { id: 'grouts-epoxy', label: 'Grouts & Epoxy' },
+    { id: 'waterproofing', label: 'Waterproofing' },
+    { id: 'tile-care', label: 'Tile Care & Accessories' },
+    { id: 'primers-repair', label: 'Primers & Repair' }
+  ];
+
+  var counts = {};
+  var total = 0;
+
+  (window.MAGADH_PRODUCTS || []).forEach(function (group) {
+    group.items.forEach(function (item) {
+      if (!item.category) return;
+      counts[item.category] = (counts[item.category] || 0) + 1;
+      total += 1;
+    });
+  });
+
+  return ORDER.map(function (cat) {
+    return {
+      id: cat.id,
+      label: cat.label,
+      count: cat.id === 'all' ? total : (counts[cat.id] || 0)
+    };
+  });
 })();

@@ -39,7 +39,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700&display=swap" rel="stylesheet">
 
 <link rel="preload" as="image" href="assets/images/showroom/brand-banner-1440.webp"
       imagesrcset="assets/images/showroom/brand-banner-640.webp 640w, assets/images/showroom/brand-banner-1024.webp 1024w, assets/images/showroom/brand-banner-1440.webp 1440w, assets/images/showroom/brand-banner-1733.webp 1733w"
@@ -102,23 +102,24 @@
       <a href="#main" class="brand logo-brand" aria-label="Magadh Enterprises — home">
         <img src="assets/images/branding/logo-320.png"
            srcset="assets/images/branding/logo-320.png 320w, assets/images/branding/logo-640.png 640w, assets/images/branding/logo.png 1774w"
-           sizes="180px"
-           width="180" height="90"
+           sizes="140px"
+           width="140" height="70"
              alt="Magadh Enterprises — Building Beautiful Spaces" class="header-logo">
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="#deals">Deals In</a>
         <a href="#products">Products</a>
-        <a href="#gallery">Gallery</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a href="#find-us">Me Gaya</a>
-        <a href="tel:+919661555733" class="nav-cta btn">Order on Call</a>
       </nav>
-      <button class="hamburger" id="hamburger" type="button"
-              aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header-actions">
+        <a href="tel:+919661555733" class="nav-cta btn">Order on Call</a>
+        <button class="hamburger" id="hamburger" type="button"
+                aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -126,7 +127,6 @@
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" inert>
   <a href="#deals" class="mobile-link">Deals In</a>
   <a href="#products" class="mobile-link">Products</a>
-  <a href="#gallery" class="mobile-link">Gallery</a>
   <a href="#about" class="mobile-link">About</a>
   <a href="#contact" class="mobile-link">Contact</a>
   <a href="#find-us" class="mobile-link">Me Gaya</a>
@@ -173,10 +173,10 @@
 <section class="section categories" id="deals" aria-labelledby="categories-heading">
   <div class="container">
     <header class="section-header">
-      <p class="t-label">What We Offer</p>
+      <p class="t-label">Deals In</p>
       <div class="divider"></div>
-      <h2 class="t-h2" id="categories-heading">Our categories.</h2>
-      <p class="t-body sub">Materials for the surfaces, spaces and finishing details that bring a project together.</p>
+      <h2 class="t-h2" id="categories-heading">Brands we stock.</h2>
+      <p class="t-body sub">Tiles, granite and marble from the brands we carry &mdash; plus MYK Laticrete and MYK Arment installation products.</p>
     </header>
   </div>
   <div class="cat-grid">
@@ -209,7 +209,7 @@
         <p class="t-label">Category 02</p>
         <h3 class="cat-card-name">Granite &amp; Marble</h3>
         <p class="cat-card-desc">Natural granite and marble for floors, walls, countertops and other interior and exterior applications.</p>
-        <a class="cat-card-link" href="#gallery">See stone on display<span aria-hidden="true"> &rarr;</span></a>
+        <a class="cat-card-link" href="#products">See stone on display<span aria-hidden="true"> &rarr;</span></a>
       </div>
     </article>
     <article class="cat-card">
@@ -247,365 +247,35 @@
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<!-- Tile cards are generated from assets/js/tile-collection.js. Do not hand-edit. -->
+<!-- PRODUCTS â€” EXPLORE + CATEGORY TABS -->
 <section class="section products" id="products" aria-labelledby="products-heading">
   <div class="container">
     <header class="section-header">
-      <p class="t-label">Our Products</p>
+      <p class="t-label">Explore Products</p>
       <div class="divider"></div>
-      <h2 class="t-h2" id="products-heading">Our products.</h2>
-      <p class="t-body sub">Explore our collection of surfaces, tiles and installation solutions.</p>
+      <h2 class="t-h2" id="products-heading">Our product categories.</h2>
+      <p class="t-body sub">Our range covers marble, granite, sanitaryware and tiles, together with tile adhesives, grouts and epoxy, waterproofing, primers, repair compounds and accessories for installation, finishing and care.</p>
     </header>
   </div>
 
-  <!-- FEATURED COLLECTION -->
+  <!-- CATEGORY TABS
+       Progressive enhancement. The bar ships hidden and is revealed by
+       assets/js/product-filters.js, so a visitor without scripting sees every
+       product card in full and is never shown a dead control. The buttons are
+       a group of toggles rather than ARIA tabs: they filter the page instead of
+       switching panels, so aria-pressed is the correct state and focus is not
+       trapped. Counts come from assets/js/products.js at runtime. -->
   <div class="container">
-    <div class="featured">
-      <figure class="featured-media">
-        <img src="assets/images/tiles/collection/tile-08-480.png"
-               srcset="assets/images/tiles/collection/tile-08-480.png 480w,
-                       assets/images/tiles/collection/tile-08-720.jpg 720w,
-                       assets/images/tiles/collection/tile-08.jpg 900w"
-               sizes="(max-width: 1024px) 380px, 440px"
-               width="480" height="720"
-             alt="Featured tile from the Magadh Enterprises collection — premium surface for contemporary spaces"
-               class="featured-img" loading="lazy" decoding="async">
-      </figure>
-      <div class="featured-body">
-        <p class="t-label">Featured Collection</p>
-        <div class="divider"></div>
-        <h3 class="t-h3">Featured Tile</h3>
-        <p class="t-body">Premium surfaces for contemporary spaces.</p>
-        <div class="btn-row spaced">
-          <a href="#tile-discovery" class="btn btn-primary">Explore Collection</a>
-        </div>
+    <div class="product-filter" id="product-filters" role="group" aria-label="Filter products by category" hidden>
+      <div class="ptab-row">
+        <button type="button" class="ptab is-active" data-product-filter="all" aria-pressed="true">All Products</button>
+        <button type="button" class="ptab" data-product-filter="adhesives" aria-pressed="false">Tile Adhesives</button>
+        <button type="button" class="ptab" data-product-filter="grouts-epoxy" aria-pressed="false">Grouts &amp; Epoxy</button>
+        <button type="button" class="ptab" data-product-filter="waterproofing" aria-pressed="false">Waterproofing</button>
+        <button type="button" class="ptab" data-product-filter="tile-care" aria-pressed="false">Tile Care &amp; Accessories</button>
+        <button type="button" class="ptab" data-product-filter="primers-repair" aria-pressed="false">Primers &amp; Repair</button>
       </div>
-    </div>
-  </div>
-
-  <!-- FIND YOUR TILE -->
-  <div class="container" id="tile-discovery">
-    <div class="discovery">
-      <p class="t-label">Find Your Tile</p>
-      <div class="chip-row" id="tile-filters" role="group" aria-label="Filter tiles by category">
-        <button type="button" class="chip is-active" data-tile-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip" data-tile-filter="tiles" aria-pressed="false">Tiles</button>
-        <button type="button" class="chip" data-tile-filter="marble" aria-pressed="false">Marble</button>
-        <button type="button" class="chip" data-tile-filter="granite" aria-pressed="false">Granite</button>
-        <button type="button" class="chip" data-tile-filter="sanitaryware" aria-pressed="false">Sanitaryware</button>
-        <button type="button" class="chip" data-tile-filter="installation" aria-pressed="false">Installation</button>
-      </div>
-      <p class="t-body sub discovery-note" id="tile-filter-note">Catalogue photography only. Finish, size and batch details are confirmed in-store at Nagmatiya Road, Gaya.</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="tile-grid" id="tile-grid">
-    <article class="tile-card" data-tile="tile-01" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-01-480.png"
-             alt="Tile 01 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-01-480.png 480w, assets/images/tiles/collection/tile-01-720.jpg 720w, assets/images/tiles/collection/tile-01.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 01</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-01" aria-label="View Tile 01 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-02" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-02-480.png"
-             alt="Tile 02 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-02-480.png 480w, assets/images/tiles/collection/tile-02-720.jpg 720w, assets/images/tiles/collection/tile-02.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 02</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-02" aria-label="View Tile 02 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-03" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-03-480.png"
-             alt="Tile 03 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-03-480.png 480w, assets/images/tiles/collection/tile-03-720.jpg 720w, assets/images/tiles/collection/tile-03.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 03</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-03" aria-label="View Tile 03 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-04" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-04-480.png"
-             alt="Tile 04 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-04-480.png 480w, assets/images/tiles/collection/tile-04-720.jpg 720w, assets/images/tiles/collection/tile-04.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 04</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-04" aria-label="View Tile 04 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-05" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-05-480.png"
-             alt="Tile 05 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-05-480.png 480w, assets/images/tiles/collection/tile-05-720.jpg 720w, assets/images/tiles/collection/tile-05.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 05</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-05" aria-label="View Tile 05 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-06" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-06-480.png"
-             alt="Tile 06 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-06-480.png 480w, assets/images/tiles/collection/tile-06-720.jpg 720w, assets/images/tiles/collection/tile-06.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 06</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-06" aria-label="View Tile 06 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-07" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-07-480.png"
-             alt="Tile 07 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-07-480.png 480w, assets/images/tiles/collection/tile-07-720.jpg 720w, assets/images/tiles/collection/tile-07.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 07</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-07" aria-label="View Tile 07 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-08" data-category="tiles">
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-08-480.png"
-             alt="Tile 08 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-08-480.png 480w, assets/images/tiles/collection/tile-08-720.jpg 720w, assets/images/tiles/collection/tile-08.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 08</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-08" aria-label="View Tile 08 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-09" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-09-480.png"
-             alt="Tile 09 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-09-480.png 480w, assets/images/tiles/collection/tile-09-720.jpg 720w, assets/images/tiles/collection/tile-09.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 09</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-09" aria-label="View Tile 09 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-10" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-10-480.png"
-             alt="Tile 10 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-10-480.png 480w, assets/images/tiles/collection/tile-10-720.jpg 720w, assets/images/tiles/collection/tile-10.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 10</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-10" aria-label="View Tile 10 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-11" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-11-480.png"
-             alt="Tile 11 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-11-480.png 480w, assets/images/tiles/collection/tile-11-720.jpg 720w, assets/images/tiles/collection/tile-11.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 11</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-11" aria-label="View Tile 11 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-12" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-12-480.png"
-             alt="Tile 12 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-12-480.png 480w, assets/images/tiles/collection/tile-12-720.jpg 720w, assets/images/tiles/collection/tile-12.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 12</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-12" aria-label="View Tile 12 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-13" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-13-480.png"
-             alt="Tile 13 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-13-480.png 480w, assets/images/tiles/collection/tile-13-720.jpg 720w, assets/images/tiles/collection/tile-13.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 13</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-13" aria-label="View Tile 13 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-14" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-14-480.png"
-             alt="Tile 14 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-14-480.png 480w, assets/images/tiles/collection/tile-14-720.jpg 720w, assets/images/tiles/collection/tile-14.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 14</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-14" aria-label="View Tile 14 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-15" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-15-480.png"
-             alt="Tile 15 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-15-480.png 480w, assets/images/tiles/collection/tile-15-720.jpg 720w, assets/images/tiles/collection/tile-15.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 15</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-15" aria-label="View Tile 15 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-16" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-16-480.png"
-             alt="Tile 16 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-16-480.png 480w, assets/images/tiles/collection/tile-16-720.jpg 720w, assets/images/tiles/collection/tile-16.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 16</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-16" aria-label="View Tile 16 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-17" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-17-480.png"
-             alt="Tile 17 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-17-480.png 480w, assets/images/tiles/collection/tile-17-720.jpg 720w, assets/images/tiles/collection/tile-17.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 17</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-17" aria-label="View Tile 17 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-18" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-18-480.png"
-             alt="Tile 18 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-18-480.png 480w, assets/images/tiles/collection/tile-18-720.jpg 720w, assets/images/tiles/collection/tile-18.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 18</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-18" aria-label="View Tile 18 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-19" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-19-480.png"
-             alt="Tile 19 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-19-480.png 480w, assets/images/tiles/collection/tile-19-720.jpg 720w, assets/images/tiles/collection/tile-19.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 19</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-19" aria-label="View Tile 19 in detail">View Tile</button>
-      </div>
-    </article>
-    <article class="tile-card" data-tile="tile-20" data-category="tiles" hidden>
-      <div class="tile-card-img">
-        <img src="assets/images/tiles/collection/tile-20-480.png"
-             alt="Tile 20 from the Magadh Enterprises tile range, Gaya" loading="lazy" decoding="async"
-               srcset="assets/images/tiles/collection/tile-20-480.png 480w, assets/images/tiles/collection/tile-20-720.jpg 720w, assets/images/tiles/collection/tile-20.jpg 900w"
-               sizes="(max-width: 360px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-               width="480" height="720">
-      </div>
-      <div class="tile-card-body">
-        <p class="t-label">Tile Collection</p>
-        <h3 class="tile-card-name">Tile 20</h3>
-        <button type="button" class="tile-card-cta" data-tile-open="tile-20" aria-label="View Tile 20 in detail">View Tile</button>
-      </div>
-    </article>
-  </div>
-  </div>
-
-  <div class="container">
-    <div class="tile-empty" id="tile-empty" hidden>
-      <p class="t-body" id="tile-empty-text"></p>
-      <div class="btn-row spaced">
-        <a class="btn btn-ghost" id="tile-empty-cta" href="#deals">See our showroom categories</a>
-      </div>
-    </div>
-  </div>
-
-  <noscript>
-    <style>
-      /* No scripting: reveal the full collection and hide the inert controls. */
-      .tile-card[hidden] { display: flex !important }
-      #tile-load-more, #tile-filters, #tile-empty { display: none !important }
-    </style>
-  </noscript>
-
-  <div class="container">
-    <div class="tile-grid-more">
-      <button type="button" class="btn btn-ghost" id="tile-load-more">Load more tiles</button>
-      <p class="t-label tile-grid-count" id="tile-grid-count" role="status"></p>
+      <p class="product-filter-count" id="product-filter-count" role="status"></p>
     </div>
   </div>
 </section>
@@ -631,13 +301,6 @@
   </picture>
 </section>
 
-<!-- PHONE BANNER -->
-<div class="phone-banner">
-  <a href="tel:+919661555733">
-    <img class="btn-icon" src="assets/images/social/call.png" alt="" width="16" height="16" loading="lazy" decoding="async">&nbsp; Call Now: +91&nbsp;96615&nbsp;55733 &nbsp;·&nbsp; Nagmatiya Road, Gaya, Bihar
-  </a>
-</div>
-
 <!-- INSTALLATION SOLUTIONS — MYK LATICRETE -->
 <section class="section installation" id="installation" aria-labelledby="installation-heading">
   <div class="container">
@@ -649,7 +312,7 @@
     </header>
     <div class="products-grid">
 
-      <div class="product-card">
+      <div class="product-card" data-category="adhesives">
         <div class="product-card-img">
           <img src="assets/images/laticrete/latafix-305-480.jpg"
                alt="MYK Laticrete Latafix 305 Floor and Wall Tile Adhesive" loading="lazy" decoding="async"
@@ -666,7 +329,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="adhesives">
         <div class="product-card-img">
           <img src="assets/images/laticrete/laticrete-303-480.jpg"
                alt="MYK Laticrete 303 Floor and Wall Tile Adhesive" loading="lazy" decoding="async"
@@ -683,7 +346,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="adhesives">
         <div class="product-card-img">
           <img src="assets/images/laticrete/315-plus-325-high-flex-480.jpg"
                alt="MYK Laticrete 315 Plus and 325 High Flex Tile Adhesive" loading="lazy" decoding="async"
@@ -700,7 +363,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="adhesives">
         <div class="product-card-img">
           <img src="assets/images/laticrete/super-set-480.jpg"
                alt="MYK Laticrete Super Set cement slurry additive" loading="lazy" decoding="async"
@@ -717,7 +380,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grouts-epoxy">
         <div class="product-card-img">
           <img src="assets/images/laticrete/latapoxy-480.jpg"
                alt="MYK Laticrete Latapoxy All Purpose Epoxy Adhesive" loading="lazy" decoding="async"
@@ -734,7 +397,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grouts-epoxy">
         <div class="product-card-img">
           <img src="assets/images/laticrete/dazzle-480.jpg"
                alt="MYK Laticrete Dazzle Latapoxy Decorative Glitter Grout" loading="lazy" decoding="async"
@@ -751,7 +414,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grouts-epoxy">
         <div class="product-card-img">
           <img src="assets/images/laticrete/sp-100-duo-480.jpg"
                alt="MYK Laticrete SP-100 Duo Stainfree Epoxy Grout" loading="lazy" decoding="async"
@@ -768,7 +431,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="grouts-epoxy">
         <div class="product-card-img">
           <img src="assets/images/laticrete/grout-admix-plus-1776-480.jpg"
                alt="MYK Laticrete Grout Admix Plus 1776 grout additive" loading="lazy" decoding="async"
@@ -785,7 +448,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="tile-care">
         <div class="product-card-img">
           <img src="assets/images/laticrete/clenza-tc-480.jpg"
                alt="MYK Laticrete Clenza TC Advanced Tile Cleaner" loading="lazy" decoding="async"
@@ -802,7 +465,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="tile-care">
         <div class="product-card-img">
           <img src="assets/images/laticrete/tile-spacers-480.jpg"
                alt="MYK Laticrete Tile Joint Spacers 3mm" loading="lazy" decoding="async"
@@ -819,7 +482,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="tile-care">
         <div class="product-card-img">
           <img src="assets/images/laticrete/tile-leveling-clips-480.jpg"
                alt="MYK Laticrete Tile Leveling Clips and Wedges" loading="lazy" decoding="async"
@@ -851,7 +514,7 @@
     </header>
     <div class="products-grid">
 
-      <div class="product-card">
+      <div class="product-card" data-category="waterproofing">
         <div class="product-card-img">
           <img src="assets/images/arment/aquaarm-superflex-480.jpg"
                alt="MYK Arment AquaArm SuperFlex flexible waterproof coating" loading="lazy" decoding="async"
@@ -868,7 +531,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="waterproofing">
         <div class="product-card-img">
           <img src="assets/images/arment/aquaarm-proof-wp10-480.jpg"
                alt="MYK Arment AquaArm Proof WP-10 integral waterproofing liquid" loading="lazy" decoding="async"
@@ -885,7 +548,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="waterproofing">
         <div class="product-card-img">
           <img src="assets/images/arment/aquaarm-extecoat-480.jpg"
                alt="MYK Arment AquaArm ExTeCoat exterior waterproof coating" loading="lazy" decoding="async"
@@ -902,7 +565,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="primers-repair">
         <div class="product-card-img">
           <img src="assets/images/arment/aquaarm-sani-guard-primer-480.jpg"
                alt="MYK Arment AquaArm Sani Guard Primer antifungal primer" loading="lazy" decoding="async"
@@ -919,7 +582,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="primers-repair">
         <div class="product-card-img">
           <img src="assets/images/arment/rearm-krackfill-paste-480.jpg"
                alt="MYK Arment ReArm KrackFill Paste crack filler" loading="lazy" decoding="async"
@@ -936,7 +599,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="primers-repair">
         <div class="product-card-img">
           <img src="assets/images/arment/rearm-super-bond-480.jpg"
                alt="MYK Arment ReArm Super Bond epoxy concrete bonding agent" loading="lazy" decoding="async"
@@ -953,7 +616,7 @@
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" data-category="primers-repair">
         <div class="product-card-img">
           <img src="assets/images/arment/armix-durafast-acl-480.jpg"
                alt="MYK Arment Armix Durafast ACL acrylic liquid for concrete" loading="lazy" decoding="async"
@@ -979,96 +642,6 @@
   <img src="assets/images/showroom/hero-showroom.jpg" width="1000" height="400"
        alt="Magadh Enterprises — Tiles, Marble, Granite, Sanitaryware, Adhesives, Waterproofing — Nagmatiya Road, Gaya, Bihar"
        loading="lazy" decoding="async">
-</section>
-
-<!-- GALLERY -->
-<section class="section gallery" id="gallery" aria-labelledby="gallery-heading">
-  <div class="container">
-    <header class="section-header center">
-      <p class="t-label">The Showroom</p>
-      <div class="divider center"></div>
-      <h2 class="t-h2" id="gallery-heading">Visit the showroom.</h2>
-      <p class="t-body sub">See tiles, marble, granite and installation solutions in person — Nagmatiya Road, Gaya, Bihar.</p>
-    </header>
-  </div>
-  <div class="container">
-    <div class="gallery-grid">
-    <figure class="g-item">
-      <button type="button" class="g-open" data-gallery-open="0"
-              data-gallery-caption="Magadh Enterprises showroom interior with tile and marble displays"
-              aria-label="View larger: Magadh Enterprises showroom interior with tile and marble displays">
-          <img src="assets/images/showroom/hero-showroom.jpg" width="900" height="471"
-               alt="Magadh Enterprises showroom interior with tile and marble displays"
-               loading="lazy" decoding="async">
-        <span class="g-open-label" aria-hidden="true">View</span>
-      </button>
-    </figure>
-    <figure class="g-item">
-      <button type="button" class="g-open" data-gallery-open="1"
-              data-gallery-caption="MYK Arment waterproofing product display at Magadh Enterprises"
-              aria-label="View larger: MYK Arment waterproofing product display at Magadh Enterprises">
-          <img src="assets/images/arment/gallery-waterproofing-display.jpg" width="1000" height="523"
-               alt="MYK Arment waterproofing product display at Magadh Enterprises"
-               loading="lazy" decoding="async">
-        <span class="g-open-label" aria-hidden="true">View</span>
-      </button>
-    </figure>
-    <figure class="g-item">
-      <button type="button" class="g-open" data-gallery-open="2"
-              data-gallery-caption="Magadh Enterprises owner with MYK Laticrete product range"
-              aria-label="View larger: Magadh Enterprises owner with MYK Laticrete product range">
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/showroom/owner-myk-laticrete-640.webp 640w,
-                            assets/images/showroom/owner-myk-laticrete-1024.webp 1024w,
-                            assets/images/showroom/owner-myk-laticrete-1536.webp 1536w"
-                    sizes="(max-width: 1024px) 100vw, 50vw">
-            <img src="assets/images/showroom/owner-myk-laticrete-1536.jpg" width="1536" height="1024"
-                 srcset="assets/images/showroom/owner-myk-laticrete-640.jpg 640w,
-                         assets/images/showroom/owner-myk-laticrete-1024.jpg 1024w,
-                         assets/images/showroom/owner-myk-laticrete-1536.jpg 1536w"
-                 sizes="(max-width: 1024px) 100vw, 50vw"
-                 alt="Magadh Enterprises owner with MYK Laticrete product range"
-                 loading="lazy" decoding="async">
-          </picture>
-        <span class="g-open-label" aria-hidden="true">View</span>
-      </button>
-    </figure>
-    <figure class="g-item">
-      <button type="button" class="g-open" data-gallery-open="3"
-              data-gallery-caption="Marble and large format tile display at Magadh Enterprises"
-              aria-label="View larger: Marble and large format tile display at Magadh Enterprises">
-          <picture>
-            <source type="image/jpeg" srcset="assets/images/marble/marble-cat-640.jpg 640w, assets/images/marble/marble-cat-1024.jpg 1024w, assets/images/marble/marble-cat-1536.jpg 1536w" sizes="(max-width: 768px) 100vw, 50vw">
-            <img src="assets/images/marble/marble-cat-1024.jpg" width="1536" height="1024"
-                 alt="Marble and large format tile display at Magadh Enterprises"
-                 loading="lazy" decoding="async">
-          </picture>
-        <span class="g-open-label" aria-hidden="true">View</span>
-      </button>
-    </figure>
-    <figure class="g-item">
-      <button type="button" class="g-open" data-gallery-open="4"
-              data-gallery-caption="Magadh Enterprises store with the full product range including tiles, adhesives and installation solutions"
-              aria-label="View larger: Magadh Enterprises store with the full product range including tiles, adhesives and installation solutions">
-          <img src="assets/images/showroom/store-full-range.jpg" width="900" height="471"
-               alt="Magadh Enterprises store with the full product range including tiles, adhesives and installation solutions"
-               loading="lazy" decoding="async">
-        <span class="g-open-label" aria-hidden="true">View</span>
-      </button>
-    </figure>
-    <figure class="g-item">
-      <button type="button" class="g-open" data-gallery-open="5"
-              data-gallery-caption="MYK Arment waterproofing solutions display at Magadh Enterprises showroom"
-              aria-label="View larger: MYK Arment waterproofing solutions display at Magadh Enterprises showroom">
-          <img src="assets/images/arment/waterproofing-solutions-display.jpg" width="900" height="471"
-               alt="MYK Arment waterproofing solutions display at Magadh Enterprises showroom"
-               loading="lazy" decoding="async">
-        <span class="g-open-label" aria-hidden="true">View</span>
-      </button>
-    </figure>
-  </div>
-  </div>
 </section>
 
 <!-- ABOUT -->
@@ -1118,93 +691,290 @@
       <p class="what-we-do-lede">From premium surface materials to bathroom solutions and installation accessories &mdash; everything you need to create beautiful, lasting spaces.</p>
     </header>
 
+    <!-- Photography: the three supplied compositions in assets/images/visual, used
+         as-is at their native 1536x1024. Space in the filenames is percent-encoded;
+         no external or generated imagery is used anywhere in this section. -->
     <div class="what-we-do-grid">
       <article class="wwd-card">
         <div class="wwd-media">
-          <img src="assets/images/marble/marble-cat-1536.jpg" width="1536" height="1024"
-               alt="Marble surface sample from the Magadh Enterprises range"
+          <img src="assets/images/visual/surface%20materials.png" width="1536" height="1024"
+               alt="Tile, marble and granite surface samples from the Magadh Enterprises range"
                loading="lazy" decoding="async">
         </div>
         <div class="wwd-body">
-          <p class="wwd-num">01</p>
+          <div class="wwd-head">
+            <span class="wwd-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 3.4 20.6 7.6 12 11.8 3.4 7.6 12 3.4Z"></path>
+                <path d="M3.4 12.2 12 16.4l8.6-4.2"></path>
+                <path d="M3.4 16.4 12 20.6l8.6-4.2"></path>
+              </svg>
+            </span>
+            <span class="wwd-num" aria-hidden="true">01</span>
+          </div>
           <h3 class="wwd-title">Surface Materials</h3>
           <p class="wwd-text">Tiles, marble and granite for floors, walls, kitchens and interior spaces.</p>
-          <a class="wwd-link" href="#deals">Explore <span aria-hidden="true">&rarr;</span></a>
+          <a class="wwd-link" href="#deals">
+            <span>Explore</span>
+            <svg class="wwd-link-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path>
+              <path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
         </div>
       </article>
 
       <article class="wwd-card">
         <div class="wwd-media">
-          <img src="assets/images/showroom/store-full-range.jpg" width="900" height="471"
-               alt="Magadh Enterprises store showing the full product range for complete bathroom spaces"
+          <img src="assets/images/visual/Bathroom%20Solution.png" width="1536" height="1024"
+               alt="Sanitaryware and bathroom products on display at Magadh Enterprises, Gaya"
                loading="lazy" decoding="async">
         </div>
         <div class="wwd-body">
-          <p class="wwd-num">02</p>
+          <div class="wwd-head">
+            <span class="wwd-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M2.8 11.6h18.4"></path>
+                <path d="M4.6 11.6V6.4a2 2 0 0 1 4 0"></path>
+                <path d="M2.8 11.6v2.8A3.6 3.6 0 0 0 6.4 18h11.2a3.6 3.6 0 0 0 3.6-3.6v-2.8"></path>
+                <path d="M6.8 18v1.8"></path>
+                <path d="M17.2 18v1.8"></path>
+              </svg>
+            </span>
+            <span class="wwd-num" aria-hidden="true">02</span>
+          </div>
           <h3 class="wwd-title">Bathroom Solutions</h3>
           <p class="wwd-text">Sanitaryware and related products for complete bathroom spaces.</p>
-          <a class="wwd-link" href="#deals">Explore <span aria-hidden="true">&rarr;</span></a>
+          <a class="wwd-link" href="#deals">
+            <span>Explore</span>
+            <svg class="wwd-link-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path>
+              <path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
         </div>
       </article>
 
       <article class="wwd-card">
         <div class="wwd-media">
-          <img src="assets/images/laticrete/category-grouts-adhesives.jpg" width="1000" height="523"
-               alt="MYK Laticrete tile adhesives and grouts used for tile and stone installation"
+          <img src="assets/images/visual/Installtion.png" width="1536" height="1024"
+               alt="Tile adhesives, grouts and waterproofing products from the Magadh Enterprises range"
                loading="lazy" decoding="async">
         </div>
         <div class="wwd-body">
-          <p class="wwd-num">03</p>
+          <div class="wwd-head">
+            <span class="wwd-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+            </span>
+            <span class="wwd-num" aria-hidden="true">03</span>
+          </div>
           <h3 class="wwd-title">Installation &amp; Finishing</h3>
           <p class="wwd-text">Adhesives, grouts, epoxy, waterproofing, cleaners and installation accessories.</p>
-          <a class="wwd-link" href="#installation">Explore <span aria-hidden="true">&rarr;</span></a>
+          <a class="wwd-link" href="#installation">
+            <span>Explore</span>
+            <svg class="wwd-link-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path>
+              <path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
         </div>
       </article>
     </div>
 
-    <div class="what-we-do-split">
-      <div class="wwd-panel">
-        <p class="t-label">How We Help</p>
-        <h3 class="wwd-panel-title">A simple way to plan your materials.</h3>
-        <ol class="wwd-steps">
-          <li class="wwd-step">
-            <p class="wwd-step-num">01</p>
-            <div class="wwd-step-body">
-              <h4 class="wwd-step-title">Explore</h4>
+<!-- HOW WE HELP: full width, directly below WHAT WE DO -->
+    <div class="what-we-do-block what-we-do-block--help">
+      <div class="wwd-help">
+        <span class="wwd-help-media" aria-hidden="true"></span>
+        <span class="wwd-plant" aria-hidden="true"></span>
+        <span class="wwd-slabs" aria-hidden="true">
+          <i class="wwd-slab wwd-slab--wood"></i>
+          <i class="wwd-slab wwd-slab--light"></i>
+          <i class="wwd-slab wwd-slab--dark"></i>
+        </span>
+        <div class="wwd-help-body">
+          <p class="wwd-help-eyebrow"><span>How We Help</span><i class="wwd-help-rule" aria-hidden="true"></i></p>
+          <h3 class="wwd-help-title">A simple way to plan<br>your materials.</h3>
+          <ol class="wwd-steps">
+            <li class="wwd-step">
+              <span class="wwd-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M14.9 14.9 19.5 19.5"></path></svg>
+              </span>
+              <div class="wwd-step-head"><span class="wwd-step-num">01.</span><h4 class="wwd-step-title">Explore</h4></div>
               <p class="wwd-step-text">Browse materials, finishes and product options.</p>
-            </div>
-          </li>
-          <li class="wwd-step">
-            <p class="wwd-step-num">02</p>
-            <div class="wwd-step-body">
-              <h4 class="wwd-step-title">Choose</h4>
+            </li>
+            <li class="wwd-step">
+              <span class="wwd-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 3.5 7.5 12 11.5l8.5-4L12 3.5Z"></path><path d="M3.5 12.5 12 16.5l8.5-4"></path><path d="M3.5 17 12 21l8.5-4"></path></svg>
+              </span>
+              <div class="wwd-step-head"><span class="wwd-step-num">02.</span><h4 class="wwd-step-title">Choose</h4></div>
               <p class="wwd-step-text">Compare suitable products for your project requirements.</p>
-            </div>
-          </li>
-          <li class="wwd-step">
-            <p class="wwd-step-num">03</p>
-            <div class="wwd-step-body">
-              <h4 class="wwd-step-title">Plan</h4>
-              <p class="wwd-step-text">Get guidance and finalise suitable materials.</p>
-            </div>
-          </li>
-        </ol>
+            </li>
+            <li class="wwd-step">
+              <span class="wwd-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false"><path d="M6.5 3.5h7.5l4 4v13h-11.5z"></path><path d="M14 3.5v4h4"></path><path d="M9.2 14.2l2 2 3.6-3.9"></path></svg>
+              </span>
+              <div class="wwd-step-head"><span class="wwd-step-num">03.</span><h4 class="wwd-step-title">Plan</h4></div>
+              <p class="wwd-step-text">Get expert guidance and finalise the best materials.</p>
+            </li>
+          </ol>
+        </div>
       </div>
+    </div>
 
-      <div class="wwd-panel">
+    <!-- WHAT WE OFFER: full-width section below HOW WE HELP, on its own row -->
+    <div class="what-we-do-block what-we-do-block--offer">
+      <header class="wwd-offer-head">
         <p class="t-label">What We Offer</p>
-        <h3 class="wwd-panel-title">Product categories.</h3>
-        <ul class="wwd-offer">
-          <li><a href="#products">Tiles <span aria-hidden="true">&rarr;</span></a></li>
-          <li><a href="#deals">Marble <span aria-hidden="true">&rarr;</span></a></li>
-          <li><a href="#deals">Granite <span aria-hidden="true">&rarr;</span></a></li>
-          <li><span class="wwd-offer-static">Sanitaryware</span></li>
-          <li><a href="#installation">Tile Adhesives <span aria-hidden="true">&rarr;</span></a></li>
-          <li><a href="#installation">Grouts &amp; Epoxy <span aria-hidden="true">&rarr;</span></a></li>
-          <li><a href="#arment">Waterproofing <span aria-hidden="true">&rarr;</span></a></li>
-          <li><a href="#installation">Tile Care &amp; Accessories <span aria-hidden="true">&rarr;</span></a></li>
-        </ul>
-      </div>
+        <h3 class="wwd-offer-title">Our categories.</h3>
+        <p class="wwd-offer-lede">Materials for the surfaces, spaces and finishing details that bring a project together.</p>
+      </header>
+
+      <ul class="wwd-offer">
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#products">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1"></rect>
+                <rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1"></rect>
+                <rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1"></rect>
+                <rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1"></rect>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Tiles</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#deals">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M3.2 4.6h17.6"></path>
+                <path d="M3.2 10.4c3.2-2.6 5.6 1.6 8.8-1s5.4-1 8.8 1"></path>
+                <path d="M3.2 16.6c3.2-2.6 5.6 1.6 8.8-1s5.4-1 8.8 1"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Marble</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#deals">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 3.2 20.4 8.4 18.2 18.6H5.8L3.6 8.4 12 3.2Z"></path>
+                <path d="M9.3 10.6h.01"></path><path d="M14.7 9.6h.01"></path>
+                <path d="M12.9 14.2h.01"></path><path d="M8.2 15.4h.01"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Granite</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#products">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M2.8 11.6h18.4"></path>
+                <path d="M4.6 11.6V6.4a2 2 0 0 1 4 0"></path>
+                <path d="M2.8 11.6v2.8A3.6 3.6 0 0 0 6.4 18h11.2a3.6 3.6 0 0 0 3.6-3.6v-2.8"></path>
+                <path d="M6.8 18v1.8"></path><path d="M17.2 18v1.8"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Sanitaryware</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#installation">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M6.6 9.6h10.8l-1 10.6H7.6L6.6 9.6Z"></path>
+                <path d="M6.9 9.6a5.1 5.1 0 0 1 10.2 0"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Tile Adhesives</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#installation">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M13.6 4.4 19.6 10.4l-6.4 6.4a1.8 1.8 0 0 1-2.6 0l-2.4-2.4a1.8 1.8 0 0 1 0-2.6l6.4-6.4Z"></path>
+                <path d="M11.4 7.2 5.8 12.8"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Grouts &amp; Epoxy</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#arment">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 3.4 20 6.2v5.6c0 4.6-3.2 7.6-8 8.8-4.8-1.2-8-4.2-8-8.8V6.2l8-2.8Z"></path>
+                <path d="M12 9.4c1.5 1.8 2.5 3.1 2.5 4.3a2.5 2.5 0 0 1-5 0c0-1.2 1-2.5 2.5-4.3Z"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Waterproofing</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="wwd-offer-item">
+          <a class="wwd-offer-link" href="#installation">
+            <span class="wwd-offer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M8.6 8.4h6a2 2 0 0 1 2 2v8.2a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-8.2a2 2 0 0 1 2-2Z"></path>
+                <path d="M10.6 8.4V6.2h4.2v2.2"></path>
+                <path d="M16.6 11.6h2.6v2.4h-2.6"></path>
+                <path d="M15.4 5h4.4"></path>
+              </svg>
+            </span>
+            <span class="wwd-offer-name">Tile Care &amp; Accessories</span>
+            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
+                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1306,7 +1076,6 @@
         <ul>
           <li><a href="#main">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#find-us">Find Us</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1314,7 +1083,6 @@
       <div class="footer-col">
         <h3>Contact</h3>
         <ul>
-          <li><a href="tel:+919661555733">+91&nbsp;96615&nbsp;55733</a></li>
           <li><a href="https://wa.me/919661555733" data-wa="visit" rel="noopener">WhatsApp</a></li>
         </ul>
         <h3 class="spaced">Follow Us</h3>
@@ -1346,9 +1114,7 @@
 
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/products.js" defer></script>
-<script src="assets/js/tile-collection.js" defer></script>
-<script src="assets/js/tiles-section.js" defer></script>
-<script src="assets/js/gallery.js" defer></script>
+<script src="assets/js/product-filters.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

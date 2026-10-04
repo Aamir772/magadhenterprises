@@ -8,7 +8,7 @@
    5. Categories
    6. About
    7. Product grids (MYK Laticrete / MYK Arment)
-   8. Gallery
+   8. What We Do
    9. Why
    10. Location & map
    11. CTA & footer
@@ -68,11 +68,29 @@
   --sans: 'DM Sans', system-ui, sans-serif;
 /* One content grid for the whole site. Every section is inset by the same
        fluid gutter and capped at the same maximum width, so Hero, Categories,
-       Products, About, Gallery, CTA and Footer share one set of alignment
+       Products, About, CTA and Footer share one set of alignment
        lines. Sections must not add their own horizontal margins. */
-    --container-max: 1320px;
-    --container-gutter: clamp(1.25rem, 5vw, 3rem);
-    --section: clamp(4rem, 8vw, 7rem);
+--container-max: 1320px;
+  --container-gutter: clamp(1.25rem, 5vw, 3rem);
+
+  /* Vertical rhythm. Deliberately asymmetric.
+     A section owns a generous "arrival" space above its content but only a short
+     "hand-off" space below it, because the space below one section and the space
+     above the next are the SAME piece of empty page - a reader experiences one
+     gap, not two. Giving both sides a full --section stacked two 112px paddings
+     into a 224px void at every single boundary, which is what the empty bands
+     between sections actually were.
+       --section      - arrival space above a section's content
+       --section-end  - hand-off below a section's content
+       --section-rule - hand-off before a full-bleed band, which needs more air
+       --section-pair - hand-off between two closely related sections (the brand
+                        grid into the product categories, one brand grid into
+                        the next), where a full arrival gap would read as a break
+                        between things that belong together */
+  --section:      clamp(3rem, 5vw, 4.5rem);
+  --section-end:  clamp(1.75rem, 2.75vw, 2.5rem);
+  --section-rule: clamp(2.75rem, 4.5vw, 4rem);
+  --section-pair: clamp(1rem, 1.75vw, 1.5rem);
 }
 
 *,
@@ -107,7 +125,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
    .img-responsive helper, which is deliberately not used: no framework is
    needed for this. Content images never exceed their column and always keep
    their intrinsic ratio, so nothing is stretched or clipped.
-   Deliberate crops (hero, gallery, map) opt back in via a class rule, which
+   Deliberate crops (hero, map) opt back in via a class rule, which
    outranks this element selector. */
 img { max-width: 100%; height: auto; display: block }
 
@@ -128,8 +146,8 @@ img { max-width: 100%; height: auto; display: block }
 .t-h2 {
   font-family: var(--serif);
   font-size: clamp(2rem, 4.5vw, 3.75rem);
-  font-weight: 300;
-  line-height: 1.05;
+  font-weight: 500;
+  line-height: 1.08;
   letter-spacing: -.01em;
 }
 
@@ -137,7 +155,7 @@ img { max-width: 100%; height: auto; display: block }
 .t-h3 {
   font-family: var(--serif);
   font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: -.01em;
 }
@@ -145,7 +163,7 @@ img { max-width: 100%; height: auto; display: block }
 .t-label {
   font-family: var(--sans);
   font-size: .68rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -160,7 +178,9 @@ img { max-width: 100%; height: auto; display: block }
 
 /* Small modifier hooks. These replace what used to be one-off style=""
    attributes on the markup, so spacing and focal points now live in one place. */
-.t-body.sub { margin-top: .75rem }
+/* 24px at desktop: enough air under a heading for the paragraph to read as a
+   new element, instead of the 12px it was sitting at. */
+.t-body.sub { margin-top: 1.5rem }
 .t-body.gap-below { margin-bottom: 1.25rem }
 .btn-row { display: flex; gap: .75rem; flex-wrap: wrap }
 .btn-row.spaced { margin-top: 2.5rem }
@@ -173,7 +193,7 @@ img { max-width: 100%; height: auto; display: block }
   gap: .5rem;
   font-family: var(--sans);
   font-size: .73rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
   padding: .85rem 1.75rem;
@@ -193,8 +213,11 @@ img { max-width: 100%; height: auto; display: block }
 .divider { width: 40px; height: 1px; background: var(--copper); margin-block: .75rem 1.5rem }
 .divider.center { margin-inline: auto }
 
-.section { padding-block: var(--section) }
-.section-header { margin-bottom: clamp(2.5rem, 5vw, 4rem) }
+.section { padding-block: var(--section) var(--section-end) }
+/* A header stays close to the content it introduces: at 3vw this is ~42px on
+   desktop, so the tab bar under #products lands inside the 35-50px band instead
+   of a full section gap away from its own paragraph. */
+.section-header { margin-bottom: clamp(1.75rem, 3vw, 2.75rem) }
 .section-header.center { text-align: center }
 .section-header.center .t-body { margin-inline: auto }
 
@@ -223,12 +246,20 @@ img { max-width: 100%; height: auto; display: block }
 
 .site-header.scrolled { box-shadow: 0 2px 20px rgba(0, 0, 0, .06) }
 
+/* The header runs on a narrower measure than the page body: 1240px with a 28px
+   gutter. On the body's 1320px the logo-to-CTA distance grows far enough that the
+   call stops reading as part of the navigation, which is the whole point of it. */
+.site-header > .container {
+  --container-max: 1240px;
+  --container-gutter: 1.75rem;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: .9rem;
-  gap: 1rem;
+  padding-block: .75rem;
+  gap: 1.5rem;
 }
 
 .brand { display: flex; flex-direction: column }
@@ -250,7 +281,7 @@ img { max-width: 100%; height: auto; display: block }
 }
 .logo-brand { display: block; line-height: 0 }
 .header-logo {
-    height: 90px;
+    height: 68px;
     width: auto;
     display: block;
     object-fit: contain;
@@ -258,16 +289,26 @@ img { max-width: 100%; height: auto; display: block }
 
 @media (max-width: 768px) {
     .header-logo {
-        height: 100px;
+        height: 56px;
     }
 }
 
-.site-nav { display: flex; align-items: center; gap: 2rem }
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  /* With the logo, the nav and the actions as three flex children, space-between
+     alone would float the nav in the middle and leave an equal void on either
+     side of it - including one between the last link and the call. Taking the
+     free space here instead groups the nav and the call at the right of the
+     header, so the logo holds the left edge and the CTA holds the right. */
+  margin-left: auto;
+}
 
 .site-nav a {
   font-family: var(--sans);
   font-size: .71rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -293,25 +334,60 @@ img { max-width: 100%; height: auto; display: block }
 .site-nav a:hover::after { width: 100% }
 
 /* Scrollspy state: the underline is already the hover affordance, so the active
-   item reuses it rather than introducing a second active treatment. */
-.site-nav a.is-current { color: var(--ink); font-weight: 500 }
+   item reuses it and only steps the weight up to separate it from the resting
+   600 of the other six labels. */
+.site-nav a.is-current { color: var(--ink); font-weight: 700 }
 .site-nav a.is-current::after { width: 100%; background: var(--terracotta) }
 
-/* Terracotta call-to-action in the nav; charcoal label clears 5.08:1. */
-.nav-cta {
-  background: var(--terracotta);
-  color: var(--charcoal) !important;
-  padding: .5rem 1.1rem;
-  font-size: .68rem !important;
-  letter-spacing: .12em !important;
-  /* The one rounded element on the site: this is the primary commercial
-     action, and a softened rectangle separates it from the square-edged
-     editorial buttons without going as far as a pill. */
-  border-radius: 8px;
+/* ORDER ON CALL. It lives in .header-actions, a sibling of the nav rather than a
+   child of it: while it was a nav child, the `a` selector below (.site-nav a,
+   0-1-1) outranked this rule (.nav-cta, 0-1-0) and took its horizontal padding and
+   font-weight back, collapsing the button to a 32px sliver of bare terracotta. */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex: none;
 }
 
-.nav-cta:hover { background: var(--charcoal) !important; color: var(--cream) !important }
-.nav-cta::after { display: none !important }
+/* Terracotta call-to-action; charcoal label clears 5.08:1. */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* A fixed floor so the label never wraps and the button never reads as a
+     second, accidental text run. */
+  min-width: 118px;
+  padding: .72rem 1.15rem;
+  background: var(--terracotta);
+  color: var(--charcoal);
+  border: 1.5px solid var(--terracotta);
+  /* The one softened rectangle on the site: the primary commercial action, set
+     apart from the square-edged editorial buttons without going as far as a pill. */
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .085em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(36, 35, 33, .10);
+  transition: background .2s, color .2s, border-color .2s,
+              transform .2s, box-shadow .2s;
+}
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+  color: var(--cream);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(36, 35, 33, .22);
+}
+.nav-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(36, 35, 33, .10);
+}
+.nav-cta::after { display: none }
 
 /* 44px touch target; the bars stay 22px so the visual weight is unchanged. */
 .hamburger { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-width: 44px; min-height: 44px; padding: .4rem; cursor: pointer }
@@ -425,26 +501,26 @@ body.nav-open .site-header { z-index: 101 }
   display: block;
   width: 100%;
   /* height: auto keeps the banner's intrinsic ratio, so no height is ever
-     forced and the image cannot be stretched. object-fit is deliberately
-     unset: with an auto height the box already matches the artwork. */
+     forced and the image cannot be stretched. The global `img { object-fit:
+     cover }` rule technically applies here, but it has nothing to crop: with an
+     auto height the box already matches the artwork, so cover, contain and fill
+     all resolve to the same pixels. Verified at every breakpoint — the rendered
+     and natural ratios agree to within sub-pixel rounding. */
   height: auto;
   max-width: 100%;
 }
 
-/* Terracotta band with charcoal type — the highest-contrast use of the primary
-   colour on the page, and the first thing seen on a phone. */
-.phone-banner { background: var(--terracotta); padding: .75rem 1rem; text-align: center }
-
-.phone-banner a {
-  font-family: var(--sans);
-  font-size: .85rem;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--charcoal);
-}
+/* The artwork keeps its native ratio (no crop, no letterbox, no forced height).
+   What read as dead space around it was the section rhythm stacked either side,
+   which the asymmetric scale above and the hand-off on .products now handle
+   without touching a single pixel of the image. */
 
 /* 5. Categories ------------------------------------------------------------ */
+/* The brand grid introduces the product categories sitting directly beneath it,
+   so it hands off with the short paired gap rather than a full arrival space -
+   the two read as one browsing step instead of two unrelated sections. */
+.categories { padding-bottom: var(--section-pair) }
+
 /* Cards sit on cream against sand gutters, so the grid reads as separate
    surfaces without needing shadows. */
 /* Four categories, auto-fit so they step down gracefully instead of forcing
@@ -471,12 +547,11 @@ body.nav-open .site-header { z-index: 101 }
 }
 .cat-card-img img { width: 100%; height: 100%; object-fit: contain }
 
-/* Responsive category/gallery sources are wrapped in <picture>, which is inline
-   by default. Without a definite box here, `height: 100%` on the img has nothing
-   to resolve against and the frame stops letterboxing. */
-.cat-card-img > picture,
-.g-item > picture,
-.map-area > picture { display: block; width: 100%; height: 100% }
+/* Responsive category sources are wrapped in <picture>, which is inline by
+   default. Without a definite box here, `height: 100%` on the img has nothing
+   to resolve against and the frame stops letterboxing. The location photo has
+   its own rule further down: it is absolutely positioned, not in flow. */
+.cat-card-img > picture { display: block; width: 100%; height: 100% }
 /* The old per-category focal-point offsets existed to hold a 3:4 crop on its
    subject. With the image contained rather than cropped there is nothing to
    reposition, so they are gone. The hover zoom went with them: a scaled image
@@ -486,8 +561,8 @@ body.nav-open .site-header { z-index: 101 }
 .cat-card-name { font-family: var(--serif); font-size: 1.45rem; font-weight: 300; color: var(--ink) }
 .cat-card-desc { font-size: .82rem; color: var(--muted); margin-top: .25rem; line-height: 1.5 }
 
-/* Quiet "Explore" affordance. Mirrors .tile-card-cta so the two discovery
-   surfaces feel like the same family. */
+/* Quiet "Explore" affordance. Matches .product-cta so the category cards and the
+   product cards read as the same family. */
 .cat-card-link {
   display: inline-block;
   margin-top: .55rem;
@@ -505,181 +580,14 @@ body.nav-open .site-header { z-index: 101 }
 .cat-card-link:hover,
 .cat-card-link:focus-visible { color: var(--accent); border-color: var(--accent) }
 
-/* 5b. Tile collection ------------------------------------------------------ */
-/* Source photographs are 1024x1536 (2:3). The frame uses that same ratio, so
-   object-fit: cover crops nothing and the image is never stretched. */
-.tiles { background: var(--bg) }
-
-.tile-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-
-.tile-card {
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  transition: background .2s;
-}
-
-.tile-card:hover { background: var(--surface-alt) }
-
-/* An author `display` declaration outranks the UA sheet's `[hidden]` rule, so
-   the pagination needs this or every card stays on screen. */
-.tile-card[hidden] { display: none }
-
-.tile-card-img {
-  position: relative;
-  aspect-ratio: 2 / 3;
-  overflow: hidden;
-  background: var(--surface-alt);
-}
-
-.tile-card-img img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .5s ease;
-}
-
-.tile-card:hover .tile-card-img img,
-.tile-card:focus-within .tile-card-img img { transform: scale(1.03) }
-
-.tile-card-body {
-  padding: 1.15rem 1.25rem 1.35rem;
-  border-top: 1px solid var(--border);
-  flex: 1;
-}
-
-.tile-card-body .t-label { margin-bottom: .3rem }
-
-.tile-card-name {
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  font-weight: 300;
-  line-height: 1.2;
-  color: var(--ink);
-}
-
-.tile-card-cta {
-  margin-top: .9rem;
-  padding: .35rem 0;
-  font-family: var(--sans);
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--border);
-  border-radius: 0;
-  cursor: pointer;
-  transition: color .2s, border-color .2s;
-}
-
-.tile-card-cta:hover,
-.tile-card-cta:focus-visible { color: var(--accent); border-color: var(--accent) }
-
-.tile-grid-more {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .9rem;
-  margin-top: clamp(2rem, 4vw, 3rem);
-}
-
-.tile-grid-more .btn[hidden] { display: none }
-
-.tile-grid-count { color: var(--muted); text-align: center }
-
-/* Lightbox ------------------------------------------------------------------ */
-body.tiles-lightbox-open { overflow: hidden }
-
-.tile-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 130;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(36, 35, 33, .93);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .25s ease, visibility .25s ease;
-}
-
-.tile-lightbox.open { opacity: 1; visibility: visible }
-
-.tile-lightbox-inner {
-  position: relative;
-  width: min(480px, 100%);
-  max-height: 100%;
-}
-
-.tile-lightbox-figure { margin: 0; overflow: hidden; background: var(--ink) }
-
-.tile-lightbox-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 68vh;
-  object-fit: contain;
-}
-
-.tile-lightbox-caption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: .5rem 1rem;
-  margin-top: 1rem;
-}
-
-.tile-lightbox-caption .t-label { color: rgba(255, 253, 249, .58) }
-
-.tile-lightbox-name {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--cream);
-  margin: 0;
-}
-
-.tile-lightbox-meta { width: 100%; font-size: .8rem; color: rgba(255, 253, 249, .64) }
-
-.tile-lightbox-cta { margin-top: 1rem }
-
-.tile-lightbox-close {
-  position: absolute;
-  top: -.5rem;
-  right: -.5rem;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.25rem;
-  line-height: 1;
-  color: var(--cream);
-  background: rgba(36, 35, 33, .7);
-  border: 1px solid rgba(255, 253, 249, .35);
-  border-radius: 0;
-  cursor: pointer;
-  transition: border-color .2s, color .2s;
-}
-
-.tile-lightbox-close:hover,
-.tile-lightbox-close:focus-visible { border-color: var(--cream); color: var(--terracotta) }
-
 /* 6. About ----------------------------------------------------------------- */
 .about { background: var(--charcoal); color: var(--cream) }
-/* The owner photo is 3:2. Letting the text column set the row height would
-   force the image into a portrait box and crop ~24% off its width, so the
-   image keeps its own ratio and both columns centre against each other. */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); min-height: 560px; align-items: center }
+/* The owner photo is 3:2 and holds that ratio through .about-image, so the grid
+   never needed a min-height to stay landscape. The one it had only made the row
+   look less short on desktop, and it survived the 1024px switch as a 560px forced
+   row under an already-stacked single column on phones. Content sets the height
+   at every width now and the image is never cropped. */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center }
 .about-image { overflow: hidden; position: relative; width: 100%; aspect-ratio: 3 / 2 }
 .about-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover }
 .about-text {
@@ -699,7 +607,10 @@ body.tiles-lightbox-open { overflow: hidden }
 .about-text .divider { background: var(--copper) }
 
 /* 7. Product grids --------------------------------------------------------- */
-.installation { background: var(--bg) }
+/* The two brand grids are consecutive and share a heading style, so this one
+   hands off to the next with the short paired gap. A full arrival space on both
+   sides stacked into a 209px break in the middle of one continuous catalogue. */
+.installation { background: var(--bg); padding-bottom: var(--section-pair) }
 
 /* The grid decides how many cards fit per row; nothing is assigned a width by
    hand and no script measures the viewport. auto-fit (not auto-fill) collapses
@@ -725,6 +636,10 @@ body.tiles-lightbox-open { overflow: hidden }
   transition: background .2s;
 }
 .product-card:hover { background: var(--surface-alt) }
+
+/* An author `display` declaration outranks the UA sheet's `[hidden]` rule, so
+   .product-card needs this or a filtered-out card stays on screen. */
+.product-card[hidden] { display: none }
 
 /* Product packaging must stay whole, so the frame is a fixed-ratio letterbox
    and the photo is contained rather than cropped. object-fit: cover was
@@ -800,28 +715,7 @@ body.tiles-lightbox-open { overflow: hidden }
 
 .product-card:hover .product-cta { border-color: var(--accent) }
 
-/* 8. Gallery --------------------------------------------------------------- */
-.gallery { background: var(--charcoal) }
-.gallery .t-h2 { color: var(--cream) }
-.gallery .t-label { color: rgba(255, 253, 249, .55) }
-.gallery .t-body { color: rgba(255, 253, 249, .66) }
-.gallery .divider { background: var(--copper) }
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 280px);
-  gap: 3px;
-  margin-top: 3rem;
-}
-
-.g-item { overflow: hidden; position: relative }
-.g-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s }
-.g-item:hover img { transform: scale(1.05) }
-.g-item:nth-child(1) { grid-column: 1/3 }
-.g-item:nth-child(4) { grid-column: 3/5 }
-
-/* 9. What We Do ------------------------------------------------------------- */
+/* 8. What We Do ------------------------------------------------------------- */
 /* Replaces the old four-column "Why Visit Us" band. That version ran four
    3rem Roman numerals over four bordered cells and pushed the section past
    700px tall. This is a two-column editorial header over three flat cards:
@@ -846,75 +740,129 @@ body.tiles-lightbox-open { overflow: hidden }
   padding-bottom: .35rem;
 }
 
-/* Three visual cards. The media panel is a fixed-ratio window (see .wwd-media)
-   so all three images occupy exactly the same height regardless of their
-   native size, which is what makes the row read as one editorial unit. */
+/* Three visual cards, horizontal: a fixed-proportion image panel on the left and
+   the copy on the right. The panel is a percentage of the card rather than a
+   fixed pixel width, so all three keep the same proportions at every breakpoint,
+   and align-items:stretch on the grid gives the three cards one height - which is
+   what lines the three EXPLORE CTAs up along a single horizontal line. */
 .what-we-do-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1rem, 1.8vw, 1.5rem);
-  /* stretch (not start) so the three cards share one baseline and equal
-     height; the body uses flex so the EXPLORE link pins to the bottom. */
+  /* stretch (not start) so the three cards share one baseline and equal height;
+     the body uses flex so the EXPLORE link pins to the bottom. */
   align-items: stretch;
-  margin-bottom: clamp(2rem, 4vw, 3.25rem);
 }
 .wwd-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-width: 0;
   background: var(--cream);
-  border: 1px solid var(--border);
-  /* 8px echoes the nav CTA radius: softened, but still architectural. */
-  border-radius: 8px;
+  /* No box: a soft shadow alone lifts the card off the ivory page, so the row
+     reads as three editorial plates rather than three bordered boxes. */
+  border: 0;
+  border-radius: 12px;
   overflow: hidden;
-  /* Only a hint of lift; the border does most of the separation work. */
-  box-shadow: 0 1px 2px rgba(26, 23, 20, .04);
+  box-shadow: 0 1px 2px rgba(26, 23, 20, .04),
+              0 12px 28px -22px rgba(26, 23, 20, .38);
 }
+/* Keyboard focus lands on the EXPLORE link, so the card it sits in takes a warm
+   edge rather than a rule - the same signal the border used to carry. */
+.wwd-card:focus-within {
+  box-shadow: 0 1px 2px rgba(26, 23, 20, .04),
+              0 14px 30px -20px rgba(140, 79, 53, .45);
+}
+
+/* Image panel: 45% of the card, full bleed. The image is absolutely positioned so
+   the panel's height is settled entirely by the content column beside it - that
+   is what makes the three photos exactly the same height even though their
+   descriptions run to different line counts. */
 .wwd-media {
-  /* 4:3 is the widest of the three native ratios (marble 1536x1024), so this
-     crops the two wide showroom shots on their left/right edges only. Both
-     are environmental displays with no centred face or single hero pack, so
-     nothing important is lost. */
-  aspect-ratio: 4 / 3;
+  position: relative;
+  flex: 0 0 45%;
+  min-width: 0;
   overflow: hidden;
-  background: var(--cream-deep, #e9e2d7);
-  flex: none;
+  background: var(--surface-alt);
 }
 .wwd-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  /* cover, never contain: the photograph fills the panel edge to edge on every
+     breakpoint, so the card never shows an ivory letterbox. */
   object-fit: cover;
   object-position: center;
   /* A slow settle on hover; disabled under prefers-reduced-motion below. */
   transition: transform .5s ease;
 }
 .wwd-card:hover .wwd-media img { transform: scale(1.03) }
+
 .wwd-body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: clamp(1.1rem, 1.6vw, 1.5rem);
+  min-width: 0;
+  padding: clamp(1rem, 1.5vw, 1.35rem);
 }
-/* Numerals are decoration but still painted text, so they need the 3:1
-   large-text minimum. Sand only reached 1.56:1 on ivory; copper clears it
-   at 3.43:1 and keeps the same washed-out warm read. */
+
+.wwd-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: .9rem;
+}
+
+/* One small circular icon above each title: a pale terracotta tint with a
+   terracotta line mark. Decorative, so it is hidden from assistive technology -
+   the title beside it carries the meaning. */
+.wwd-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  /* Terracotta at 12% over cream: a pale warm peach that reads clearly as a
+     tint of the accent rather than as a second brand colour. */
+  background: rgba(231, 111, 81, .12);
+  color: var(--terracotta);
+}
+.wwd-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The 01 / 02 / 03 counter, opposite the icon on the same row. Decorative, so it
+   is hidden: the reading order is the image, then the title, then the copy. */
 .wwd-num {
-  font-family: var(--sans);
-  font-size: .68rem;
+  flex: none;
+  font-family: var(--serif);
+  font-size: 1.55rem;
   font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--copper);
   line-height: 1;
-  margin-bottom: .7rem;
+  letter-spacing: .02em;
+  color: var(--terracotta);
+  opacity: .55;
 }
+
+/* Card titles are section headings, so they take the serif at 500 like every
+   other heading on the site rather than the small-caps sans of a list item. */
 .wwd-title {
-  font-family: var(--sans);
-  font-size: .78rem;
+  font-family: var(--serif);
+  font-size: 1.4rem;
   font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  line-height: 1.16;
+  letter-spacing: -.005em;
   color: var(--ink);
-  margin-bottom: .55rem;
+  margin-bottom: .5rem;
   /* Long enough to wrap to two lines ("Installation & Finishing") without
      pushing the card taller than its siblings. */
   text-wrap: balance;
@@ -925,120 +873,446 @@ body.tiles-lightbox-open { overflow: hidden }
   line-height: 1.65;
   margin-bottom: 1.1rem;
 }
+
+/* EXPLORE: an editorial link, not a button. A small uppercase label, a thin
+   arrow that steps out on hover, and a 1px rule beneath that lengthens from 58px
+   to 75px. The entire interaction is one restrained 250ms transition - no fill,
+   no pill, no gradient, no bounce. */
 .wwd-link {
-  margin-top: auto;
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: .4rem;
+  gap: .5rem;
+  /* Pins the CTA to the foot of the content column, so all three sit on one line
+     however differently the descriptions wrap. */
+  margin-top: auto;
+  align-self: flex-start;
+  padding-bottom: .5rem;
   font-family: var(--sans);
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .12em;
+  font-size: .625rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--terracotta);
-  align-self: flex-start;
-  transition: gap .2s ease, color .2s ease;
+  transition: color .25s ease;
+}
+.wwd-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 58px;
+  height: 1px;
+  background: var(--terracotta);
+  transition: width .25s ease;
+}
+.wwd-link-arrow {
+  width: 15px;
+  height: 10px;
+  flex: none;
+  /* The head sits on the viewBox edge, so it needs room to travel without being
+     clipped by the element box. */
+  overflow: visible;
+  transition: transform .25s ease;
 }
 .wwd-link:hover,
-.wwd-link:focus-visible { gap: .7rem; color: var(--ink) }
-.wwd-card:focus-within { border-color: var(--terracotta) }
+.wwd-link:focus-visible { color: var(--accent) }
+.wwd-link:hover::after,
+.wwd-link:focus-visible::after { width: 75px }
+.wwd-link:hover .wwd-link-arrow,
+.wwd-link:focus-visible .wwd-link-arrow { transform: translateX(4px) }
 
-/* HOW WE HELP / WHAT WE OFFER ------------------------------------------------ */
-/* Two panels under the cards. Panels are bordered boxes rather than loose
-   text, which keeps the section dense: no large blank areas between the
-   cards and this row, and both panels share one height via stretch. */
-.what-we-do-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(1rem, 1.8vw, 1.5rem);
-  align-items: stretch;
+/* HOW WE HELP --------------------------------------------------------------- */
+/* SECTION BLOCK STACKING ---------------------------------------------------- */
+/* The section reads as three stacked blocks in one column:
+     1. WHAT WE DO   - three IMAGE | CONTENT cards
+     2. HOW WE HELP  - full width, the material composition
+     3. WHAT WE OFFER- full width, the category list
+   The gap is set once, below the card grid (60-70px) and once below the help
+   panel (70-80px), as padding on the block that follows rather than as margin
+   pulled out of the block above. No negative margins anywhere: the decorative
+   layers inside HOW WE HELP are clipped by the panel itself, so nothing has to
+   be pulled back to clear its neighbour. */
+.what-we-do-grid { margin-bottom: clamp(3.75rem, 5vw, 4.375rem) }
+.what-we-do-block { min-width: 0 }
+.what-we-do-block--help { margin-bottom: clamp(4.375rem, 6vw, 5rem) }
+.what-we-do-block--offer { padding-top: 0 }
+
+/* HOW WE HELP --------------------------------------------------------------- */
+/* A premium editorial panel rather than a plain text card: an ivory field with
+   a material composition built entirely from the site's own marble asset and
+   CSS, so no new artwork is introduced. Every decorative layer is absolutely
+   positioned inside .wwd-help (overflow:hidden) and sits behind .wwd-help-body,
+   which keeps the copy on top and readable at every width. */
+.wwd-help {
+  position: relative;
+  overflow: hidden;
+  /* Isolation is the second half of the containment: overflow:hidden clips
+     descendants to this panel's box, and isolate makes that panel its own
+     stacking context, so no decorative layer can composite outside it or
+     paint over the copy. */
+  isolation: isolate;
+  border: 0;
+  border-radius: 13px;
+  background: var(--ivory);
+  /* Depth only - the reference panel carries no visible rule. */
+  box-shadow: 0 1px 2px rgba(36, 35, 33, .04),
+              0 10px 26px -20px rgba(36, 35, 33, .40);
+  padding: 28px 48px 25px;
 }
-.wwd-panel {
-  min-width: 0;
+
+/* Layer 1: the dominant marble texture, real Magadh asset, held well back so
+   the serif heading stays high-contrast over it. */
+.wwd-help-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("../images/marble/marble-cat-1536.jpg");
+  background-size: cover;
+  background-position: 62% 50%;
+  opacity: .38;
+}
+/* Layer 2: vertical wood-slat panel on the right ~13% of the card. A 90deg
+   repeating gradient yields vertical slats; no image needed. */
+.wwd-help-media::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 13%;
+  background: repeating-linear-gradient(90deg,
+    #8a5a34 0 5px, #a3703f 5px 8px, #7a4c2b 8px 14px);
+  opacity: .5;
+}
+/* Readability scrim: near-opaque ivory under the text on the left, easing to
+   translucent on the right so the stone and slats stay visible. */
+.wwd-help-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(101deg,
+    rgba(247, 243, 237, .97) 0%,
+    rgba(247, 243, 237, .93) 38%,
+    rgba(247, 243, 237, .66) 68%,
+    rgba(247, 243, 237, .42) 100%);
+}
+
+/* Layer 3: a single soft plant rising from the lower-left corner. Drawn as one
+   inline SVG so it stays a crisp vector at any size and no new raster asset is
+   introduced. It sits behind the copy, so it reads as warmth in the corner of the
+   scene rather than as an illustration competing with the steps. There is no
+   supplied photograph for this composition, so per the brief the layer is built
+   from CSS over the site's existing marble asset. */
+.wwd-plant {
+  position: absolute;
+  /* Anchored fully inside the panel: the drawing's own viewBox leaves margin
+     around the stems, so nothing is lost, and the layout box no longer hangs
+     outside .wwd-help. */
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 24%;
+  max-width: 150px;
+  aspect-ratio: 120 / 170;
+  pointer-events: none;
+  opacity: .5;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 170' fill='none' stroke='%238C4F35' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 168C18 128 30 88 54 52'/%3E%3Cpath d='M54 52c8-11 21-15 33-9-8 11-21 15-33 9Z'/%3E%3Cpath d='M22 146c-13-2-21-13-19-27 14 4 21 15 19 27Z'/%3E%3Cpath d='M24 132c12-4 23-13 26-26-15 2-24 13-26 26Z'/%3E%3Cpath d='M32 104c-14-3-21-15-19-29 15 4 21 16 19 29Z'/%3E%3Cpath d='M30 116c14-4 25-15 27-29-16 2-25 15-27 29Z'/%3E%3Cpath d='M42 76c-12-5-16-18-12-31 13 7 16 20 12 31Z'/%3E%3Cpath d='M40 86c14-6 22-19 22-34-16 5-22 19-22 34Z'/%3E%3C/svg%3E");
+}
+/* Local readability wash. The three steps run along the full width of the foot of
+   the panel, so the foliage is faded back across exactly that band and left at
+   full strength above it: the plant reads in the left of the composition while
+   .wwd-step-text keeps the contrast it has everywhere else in the section. */
+.wwd-plant::after {
+  content: "";
+  position: absolute;
+  /* Bleeds only within the plant's own box; the box itself is inside the panel,
+     so the wash can never be the thing that escapes it. */
+  left: -25%;
+  right: -35%;
+  bottom: 0;
+  height: 54%;
+  background: linear-gradient(to top,
+    rgba(247, 243, 237, .95) 0%,
+    rgba(247, 243, 237, .78) 45%,
+    rgba(247, 243, 237, 0) 100%);
+}
+
+/* Layer 4: three overlapping slab samples in the lower-right foreground.
+   .wwd-slabs is itself a clipping box, so the rotated slabs are cropped by it
+   rather than by .wwd-help a level up: each slab now has a definite, contained
+   layout box and the panel has one clear job - clipping the group. */
+.wwd-slabs {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  height: 46%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.wwd-slab {
+  position: absolute;
+  display: block;
+  border-radius: 3px;
+  box-shadow: 0 6px 14px -8px rgba(36, 35, 33, .55);
+}
+.wwd-slab--wood {
+  right: 4%;
+  bottom: 10%;
+  width: 74%;
+  height: 78%;
+  transform: rotate(-4deg);
+  background: repeating-linear-gradient(90deg,
+    #a3703f 0 7px, #8a5a34 7px 11px, #b07d48 11px 19px);
+  opacity: .82;
+}
+.wwd-slab--light {
+  right: 16%;
+  bottom: 12%;
+  width: 52%;
+  height: 66%;
+  transform: rotate(3.5deg);
+  background-image: url("../images/marble/marble-cat-1536.jpg");
+  /* contain, not cover: the slab is smaller than its frame, and cover would
+     scale the stone up until the sample read as a wall panel instead of a cut
+     piece. */
+  background-size: contain;
+  border: 1px solid rgba(36, 35, 33, .18);
+  opacity: .9;
+}
+.wwd-slab--dark {
+  right: 30%;
+  bottom: 8%;
+  width: 44%;
+  height: 58%;
+  transform: rotate(-7deg);
+  background: linear-gradient(150deg, #4a3f38 0%, #2c2521 55%, #3b322b 100%);
+  opacity: .88;
+}
+
+/* Layer 5: the copy, always on top. */
+.wwd-help-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.25rem, 2vw, 1.85rem);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
+  height: 100%;
 }
-.wwd-panel .t-label { margin-bottom: .85rem }
-.wwd-panel-title {
+
+.wwd-help-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin: 0 0 10px;
   font-family: var(--sans);
-  font-size: 1.05rem;
-  font-weight: 500;
-  letter-spacing: .01em;
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: clamp(1.1rem, 2vw, 1.5rem);
-  text-wrap: balance;
 }
+.wwd-help-rule {
+  display: block;
+  width: 38px;
+  height: 1px;
+  background: var(--accent);
+  opacity: .75;
+}
+
+.wwd-help-title {
+  font-family: var(--serif);
+  font-size: 2.125rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .005em;
+  color: var(--ink);
+  max-width: 330px;
+  margin: 0 0 clamp(1.25rem, 2.2vw, 1.75rem);
+}
+
+/* Three steps stay horizontal on every width - they are the one element the
+   reference insists must never stack. margin-top:auto drops them into the
+   lower half of the card, under the heading, matching the reference. */
 .wwd-steps {
   list-style: none;
-  margin: 0;
+  margin: auto 0 0;
   padding: 0;
   display: grid;
-  gap: clamp(.9rem, 1.6vw, 1.25rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.75rem);
 }
-.wwd-step {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: .9rem;
-  align-items: start;
+.wwd-step { position: relative; min-width: 0 }
+/* Chevron in the gutter between steps, its box aligned to the 36px icon so the
+   glyph centres on the same line. Decorative, so it is not announced. */
+.wwd-step:not(:last-child)::after {
+  content: "\203A";
+  position: absolute;
+  top: 0;
+  right: calc(-1 * clamp(1rem, 1.8vw, 1.75rem) / 2);
+  transform: translateX(50%);
+  height: 36px;
+  line-height: 36px;
+  font-size: 1.15rem;
+  color: var(--accent);
+  opacity: .5;
+}
+.wwd-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: .6rem;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: var(--cream);
+}
+.wwd-step-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wwd-step-head {
+  display: flex;
+  align-items: baseline;
+  gap: .3rem;
+  margin-bottom: .3rem;
 }
 .wwd-step-num {
   font-family: var(--sans);
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--copper);
-  line-height: 1.7;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--terracotta);
 }
 .wwd-step-title {
   font-family: var(--sans);
-  font-size: .78rem;
-  font-weight: 500;
-  letter-spacing: .1em;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: .3rem;
 }
-.wwd-step-text { font-size: .85rem; color: var(--muted); line-height: 1.6 }
+.wwd-step-text {
+  font-family: var(--sans);
+  font-size: .6rem;
+  line-height: 1.35;
+  color: var(--muted);
+  margin: 0;
+  max-width: 20ch;
+}
 
-/* Eight compact rows. A bordered list reads denser than loose links and
-   keeps the arrow aligned in a single column at every width. */
+/* WHAT WE OFFER ------------------------------------------------------------- */
+/* A full-width block below HOW WE HELP, not a panel beside it. An eyebrow, the
+   heading and one line of copy, then the eight categories as two columns of
+   horizontal rows: icon, name, arrow on the far right, a warm hairline between
+   rows. Editorial lines rather than cards - no boxes, no fills, so the block
+   reads as a continuation of the section instead of a second panel. */
+.wwd-offer-head { margin-bottom: clamp(1.5rem, 2.5vw, 2.1rem) }
+.wwd-offer-head .t-label { margin-bottom: .55rem }
+.wwd-offer-title {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin: 0 0 .6rem;
+  text-wrap: balance;
+}
+.wwd-offer-lede {
+  font-size: .95rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 58ch;
+  margin: 0;
+}
+
 .wwd-offer {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 3vw, 2.75rem);
   border-top: 1px solid var(--border);
 }
-.wwd-offer li { border-bottom: 1px solid var(--border) }
-.wwd-offer a,
-.wwd-offer-static {
+.wwd-offer-item { border-bottom: 1px solid var(--border) }
+
+.wwd-offer-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: .7rem .25rem;
-  font-size: .85rem;
+  gap: .9rem;
+  padding: clamp(.7rem, 1.2vw, .95rem) .25rem;
   color: var(--ink);
-  transition: color .2s ease, padding-left .2s ease;
+  transition: color .25s ease;
 }
-.wwd-offer a span { color: var(--terracotta); transition: transform .2s ease }
-.wwd-offer a:hover,
-.wwd-offer a:focus-visible { color: var(--terracotta); padding-left: .6rem }
-.wwd-offer a:hover span { transform: translateX(.2rem) }
-/* Sanitaryware has no section on the site yet, so it stays a non-interactive
-   label rather than a link to nowhere. */
-.wwd-offer-static { color: var(--muted) }
+.wwd-offer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(231, 111, 81, .12);
+  color: var(--terracotta);
+  transition: background-color .25s ease, color .25s ease;
+}
+.wwd-offer-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wwd-offer-name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.005em;
+}
+.wwd-offer-arrow {
+  flex: none;
+  width: 16px;
+  height: 10px;
+  overflow: visible;
+  color: var(--terracotta);
+  transition: transform .25s ease;
+}
+.wwd-offer-link:hover,
+.wwd-offer-link:focus-visible { color: var(--terracotta) }
+.wwd-offer-link:hover .wwd-offer-icon,
+.wwd-offer-link:focus-visible .wwd-offer-icon {
+  background: var(--terracotta);
+  color: var(--cream);
+}
+.wwd-offer-link:hover .wwd-offer-arrow,
+.wwd-offer-link:focus-visible .wwd-offer-arrow { transform: translateX(4px) }
 
 /* 10. Location & map -------------------------------------------------------- */
 /* Cream separates this band from the ivory page without needing a new hue. */
-.band-warm { background: var(--cream) }
+.band-warm { background: var(--cream); padding-bottom: var(--section-rule) }
 .location { background: var(--cream); overflow: hidden }
-.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); min-height: 460px }
+/* The 460px row height lived here, but .map-area's only child is absolutely
+   positioned, so the map collapsed the moment the grid stopped forcing a height.
+   The map's own min-height moves with it (below) and the text column is free to
+   be as short as its copy. */
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem) }
 .location-text {
   display: flex;
   flex-direction: column;
@@ -1051,11 +1325,39 @@ body.tiles-lightbox-open { overflow: hidden }
 .place { font-family: var(--serif); font-size: 1.45rem; font-weight: 300; color: var(--ink); line-height: 1.4; margin-bottom: .5rem }
 .addr { font-size: .9rem; color: var(--muted); line-height: 1.6 }
 
-.map-area { background: var(--surface-alt); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden }
+/* .map-area is the single positioning context for both the photo and the card.
+   It used to be a centred flex row, which let the in-flow <picture> take part
+   in layout: the picture and the card then sat side by side, the photo stopped
+   short of the right edge and the card was pushed flush against it with no
+   margin at all. Taking the picture out of flow lets the <img> fill the box,
+   and pinning the card with right/top/transform keeps it inside the photo at
+   every width without a negative margin. */
+.map-area {
+  --card-inset: clamp(1.25rem, 3vw, 2.5rem);
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-alt);
+  /* The map carries its own height because its contents are out of flow. Lowered
+     from the old 460px row height to ~24rem, which still holds the overlay card
+     with room to spare and no longer out-masses the text beside it. */
+  min-height: clamp(18rem, 26vw, 24rem);
+}
+.map-area > picture { position: absolute; inset: 0; display: block; width: 100%; height: 100% }
 .map-area img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .6 }
 /* The placeholder tile photo sits further back so the location overlay reads clearly. */
 .map-area img.muted { opacity: .35 }
-.map-overlay { position: relative; z-index: 1; text-align: center; background: rgba(255, 253, 249, .92); padding: 2rem 2.5rem }
+.map-overlay {
+  position: absolute;
+  z-index: 1;
+  right: var(--card-inset);
+  top: 50%;
+  transform: translateY(-50%);
+  /* Belt and braces: whatever the viewport does, the card cannot reach the edge. */
+  max-width: calc(100% - (var(--card-inset) * 2));
+  text-align: center;
+  background: rgba(255, 253, 249, .92);
+  padding: 2rem 2.5rem;
+}
 .map-overlay p { font-family: var(--sans); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .75rem; line-height: 1.6 }
 .map-link {
   display: inline-block;
@@ -1070,7 +1372,9 @@ body.tiles-lightbox-open { overflow: hidden }
 }
 
 /* 11. CTA & footer ---------------------------------------------------------- */
-.cta-section { background: var(--charcoal); padding-block: clamp(4rem, 8vw, 7rem) }
+/* Carried its own hardcoded clamp() instead of the tokens, so it kept the old
+   112px rhythm after everything else moved to the asymmetric scale. */
+.cta-section { background: var(--charcoal); padding-block: var(--section) var(--section-rule) }
 .cta-inner { max-width: 700px }
 .cta-section .t-label { color: rgba(255, 253, 249, .55) }
 .cta-section .t-h2 { color: var(--cream); margin-block: .5rem 1.5rem }
@@ -1085,8 +1389,23 @@ body.tiles-lightbox-open { overflow: hidden }
 
 .site-footer { background: var(--charcoal); color: rgba(255, 253, 249, .6); padding-block: clamp(3rem, 6vw, 5rem) }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem) }
-/* The logo is a dark-on-light PNG, so it is recoloured to white for the dark footer. */
-.footer-brand .footer-logo { height: 60px; width: auto; filter: brightness(0) invert(1); opacity: .8; margin-bottom: 1.25rem }
+/* The logo is a dark-on-light PNG, so it is recoloured to white for the dark
+   footer. The filter is the trap: it repaints the element's own background as
+   well as its artwork, and the global `img` rule above puts an opaque
+   --surface-alt plate behind every image. #EDE6DA -> black -> white, so the
+   placeholder became a solid white 120x60 rectangle and the white mark on top
+   of it was invisible. The PNG is genuinely transparent (~67% of it), so
+   clearing the background lets the real transparency through. `contain` is
+   also the right fit for a mark; the inherited `cover` could crop it. */
+.footer-brand .footer-logo {
+  height: 60px;
+  width: auto;
+  background: transparent;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .8;
+  margin-bottom: 1.25rem;
+}
 .footer-brand .brand-name { color: var(--cream); font-size: .88rem; letter-spacing: .14em; font-weight: 500; text-transform: uppercase; margin-bottom: .5rem }
 /* The footer used .3-.45 white on --ink, landing between 2.7:1 and 4.5:1.
    Raised to .55-.72 so every footer string clears AA 4.5:1 on #242321 while
@@ -1110,7 +1429,18 @@ body.tiles-lightbox-open { overflow: hidden }
 /* Local 1254x1254 PNGs in assets/images/social/. No icon font and no CDN:
    an icon font would add a render-blocking request and a FOUT for five marks.
    The anchors keep the full 40px touch target while the artwork sits at 28px,
-   and flex-wrap means the row reflows instead of overflowing on narrow screens. */
+   and flex-wrap means the row reflows instead of overflowing on narrow screens.
+
+   Two things had to go. The 1px translucent border drew a hard 40x40 square
+   around every mark, which read as a row of boxed buttons rather than icons,
+   so the anchor is now frameless and only circles, which also keeps the focus
+   ring round. And instagram.png / youtube.png ship as RGB with no alpha and an
+   opaque black plate baked in (measured: corner pixel 0,0,0), which showed as
+   a dark square on the charcoal footer while the other three were transparent.
+   `screen` resolves that against the dark surface without touching the artwork
+   or the brand colours. It is applied to the <img>, not the anchor, because
+   opacity or filter on the anchor would isolate the blend group and let the
+   black plate reappear on hover -- hence no opacity on the hover state. */
 .social-links {
   display: flex;
   align-items: center;
@@ -1124,21 +1454,20 @@ body.tiles-lightbox-open { overflow: hidden }
   justify-content: center;
   min-width: 40px;
   min-height: 40px;
-  border: 1px solid rgba(255, 253, 249, .18);
-  transition: border-color .2s, opacity .2s, transform .2s;
+  border-radius: 50%;
+  transition: transform .2s;
 }
 .social-links a:hover,
-.social-links a:focus-visible {
-  border-color: var(--terracotta);
-  opacity: .82;
-  transform: translateY(-1px);
-}
+.social-links a:focus-visible { transform: translateY(-2px) }
 .social-links img {
   width: 28px;
   height: 28px;
   /* contain, never cover: these are square marks and must not be cropped. */
   object-fit: contain;
   display: block;
+  /* Same placeholder-background trap as the footer logo, minus the filter. */
+  background: transparent;
+  mix-blend-mode: screen;
 }
 
 /* Inline icon inside a labelled button, banner or link. Decorative, so the
@@ -1150,20 +1479,17 @@ body.tiles-lightbox-open { overflow: hidden }
   display: block;
   flex: none;
 }
-.phone-banner .btn-icon { width: 16px; height: 16px }
 
 /* The marks are supplied as full-colour PNGs on light backgrounds. On the dark
-   CTA buttons and the terracotta banner they need a touch more presence, so
-   they sit on a soft light chip rather than being recoloured. */
-.btn-light .btn-icon,
-.phone-banner .btn-icon {
+   CTA buttons they need a touch more presence, so they sit on a soft light chip
+   rather than being recoloured. */
+.btn-light .btn-icon {
   background: rgba(255, 253, 249, .92);
   border-radius: 4px;
   padding: 2px;
   width: 22px;
   height: 22px;
 }
-.phone-banner .btn-icon { width: 20px; height: 20px }
 
 @media (prefers-reduced-motion: reduce) {
   .social-links a,
@@ -1190,11 +1516,9 @@ body.tiles-lightbox-open { overflow: hidden }
   outline-offset: 3px;
 }
 
-.gallery .g-item:focus-visible,
 .site-footer :focus-visible,
 .cta-section :focus-visible,
-.about :focus-visible,
-.phone-banner :focus-visible { outline-color: var(--cream) }
+.about :focus-visible { outline-color: var(--cream) }
 
 .visually-hidden {
   position: absolute;
@@ -1227,53 +1551,34 @@ body.tiles-lightbox-open { overflow: hidden }
 
 .skip-link:focus { transform: translate(-50%, 0) }
 
-/* 5c. Products: featured tile, discovery chips, empty state ----------------- */
-.products { background: var(--bg) }
+/* 5c. Products: category tabs ------------------------------------------------ */
+/* Bottom padding uses the full-bleed hand-off: the promo banner follows this
+   section directly and needs more air than a plain section boundary. */
+.products { background: var(--bg); padding-bottom: var(--section-rule) }
 
-/* Editorial two-up. The photograph is shown at its full 2:3 ratio and capped in
-   width, so nothing is cropped and the block stays a comfortable height. */
-.featured {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
-  margin-bottom: clamp(3rem, 6vw, 5rem);
+/* The tab bar is a control rather than a card grid, so it sits closer to its own
+   paragraph than the shared header rhythm would put it. The 3.25rem floor is
+   what actually matters: the header box measures ~16px shorter than its own
+   content, so the rendered gap is this value minus that offset. At the floor it
+   is ~36px and at 4.25vw ~45px - inside the 35-50px band at every breakpoint
+   rather than collapsing to 24px on tablets and phones. */
+.products .section-header { margin-bottom: clamp(3.25rem, 4.25vw, 4rem) }
+
+/* The tab bar is the only control that changes what is on screen, so it is
+   centred and kept to the measure of the body copy rather than running the full
+   container width. Square-ish corners and a hairline border keep the editorial
+   language of .purpose-tag; the active tab inverts to solid terracotta, which
+   is the page's existing "this is selected" signal. */
+.product-filter { margin-bottom: clamp(1rem, 2vw, 1.5rem) }
+
+.ptab-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .55rem;
 }
 
-.featured-media {
-  margin: 0;
-  max-width: 440px;
-  width: 100%;
-  overflow: hidden;
-  background: var(--surface-alt);
-}
-
-.featured-img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  transition: transform .6s ease;
-}
-
-.featured:hover .featured-img { transform: scale(1.03) }
-
-.featured-body .t-h3 { margin-top: .9rem; max-width: 20ch }
-
-/* "Find Your Tile" chip bar. Square chips with a hairline border keep the
-   editorial language; the active chip inverts to solid ink. */
-.discovery {
-  padding-block: clamp(1.6rem, 3vw, 2.25rem);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-.discovery .t-label { margin-bottom: 1rem }
-
-.chip-row { display: flex; flex-wrap: wrap; gap: .55rem }
-
-.chip {
+.ptab {
   padding: .78rem 1.15rem;
   font-family: var(--sans);
   font-size: .69rem;
@@ -1281,151 +1586,54 @@ body.tiles-lightbox-open { overflow: hidden }
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--muted);
-  background: transparent;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  /* Long labels wrap to a second line instead of forcing a horizontal
+     scrollbar on a narrow phone. */
+  max-width: 100%;
   transition: color .2s, border-color .2s, background .2s;
 }
 
-.chip:hover { color: var(--ink); border-color: var(--ink) }
-.chip.is-active { background: var(--terracotta); border-color: var(--terracotta); color: var(--charcoal) }
+.ptab:hover { color: var(--ink); border-color: var(--copper) }
 
-.discovery-note { margin-top: 1.1rem; font-size: .82rem; max-width: 62ch }
-
-/* Shown when a chip matches no catalogue photography. Honest copy plus a real
-   next step, never a fabricated product card. */
-.tile-empty { text-align: center; padding-block: clamp(2.5rem, 5vw, 4rem) }
-.tile-empty .t-body { margin-inline: auto }
-.tile-empty .btn-row { justify-content: center }
-
-/* 8b. Gallery lightbox ------------------------------------------------------ */
-body.g-lightbox-open { overflow: hidden }
-
-.g-item { margin: 0 }
-
-.g-open {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  background: none;
-  cursor: zoom-in;
+.ptab.is-active {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: var(--charcoal);
 }
 
-.g-open-label {
-  position: absolute;
-  left: .85rem;
-  bottom: .85rem;
-  z-index: 2;
-  padding: .35rem .7rem;
+/* Live result count. role="status" in the markup announces it politely after a
+   filter change without moving focus. */
+.product-filter-count {
+  margin: 1.1rem auto 0;
   font-family: var(--sans);
-  font-size: .6rem;
-  font-weight: 500;
-  letter-spacing: .14em;
+  font-size: .74rem;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--ink);
-  background: rgba(255, 253, 249, .94);
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity .25s ease, transform .25s ease;
+  color: var(--muted);
+  text-align: center;
 }
 
-.g-item:hover .g-open-label,
-.g-open:focus-visible .g-open-label { opacity: 1; transform: none }
-
-.g-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 140;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(36, 35, 33, .94);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .25s ease, visibility .25s ease;
-}
-
-.g-lightbox.open { opacity: 1; visibility: visible }
-
-.g-lightbox-figure {
-  margin: 0;
-  max-width: min(1100px, 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.g-lightbox-figure img {
-  max-width: 100%;
-  max-height: 74vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  background: transparent;
-}
-
-.g-lightbox-figure figcaption { margin-top: 1.1rem; text-align: center; max-width: 62ch }
-.g-lightbox-label { color: rgba(255, 253, 249, .58); text-align: center }
-.g-lightbox-cap { color: rgba(255, 253, 249, .76); font-size: .85rem; line-height: 1.6; margin-top: .5rem }
-
-.g-lightbox-close {
-  position: absolute;
-  top: clamp(.75rem, 2vw, 1.5rem);
-  right: clamp(.75rem, 2vw, 1.5rem);
-  width: 2.5rem;
-  height: 2.5rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--cream);
-  background: rgba(36, 35, 33, .6);
-  border: 1px solid rgba(255, 253, 249, .35);
-  cursor: pointer;
-  transition: border-color .2s, color .2s;
-}
-
-.g-lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2.75rem;
-  height: 2.75rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.6rem;
-  line-height: 1;
-  color: var(--cream);
-  background: rgba(36, 35, 33, .5);
-  border: 1px solid rgba(255, 253, 249, .28);
-  cursor: pointer;
-  transition: border-color .2s, color .2s;
-}
-
-/* Author `display: grid` outranks the UA [hidden] rule. */
-.g-lightbox-nav[hidden] { display: none }
-.g-lightbox-prev { left: clamp(.5rem, 2vw, 1.5rem) }
-.g-lightbox-next { right: clamp(.5rem, 2vw, 1.5rem) }
-.g-lightbox-close:hover,
-.g-lightbox-nav:hover { border-color: var(--cream); color: var(--terracotta) }
+/* A brand section with nothing left in it is hidden by the filter. .section
+   sets no display, so the UA sheet's [hidden] rule applies; this states it
+   explicitly so the sections cannot drift back into view if a display value is
+   ever added to .section. */
+.section[hidden] { display: none }
 
 /* 13. Responsive breakpoints ------------------------------------------------
    Four breakpoints only: 1024 (tablet), 768 (mobile), 540 (narrow mobile),
    360 (smallest phones). Everything else is fluid via clamp()/min(). */
 @media (max-width: 1024px) {
   .intro-lede { grid-template-columns: 1fr }
-  /* The What We Do panels stay two-up until the 768 breakpoint, matching the
-     card grid, so the section keeps one consistent collapse point. */
-  .tile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+  /* The What We Do cards fold to 2+1 (see 1080px) rather than the split panels,
+     which no longer exist - the section is one column from 1024px down. */
   .about-grid { grid-template-columns: 1fr }
   /* min-height here would beat the 3/2 ratio on phones and re-introduce a
      heavy horizontal crop, so the image simply follows its own ratio. */
   .about-image { min-height: 0; order: -1; align-self: start }
   .footer-grid { grid-template-columns: 1fr 1fr }
-  .featured-media { max-width: 380px }
   /* The seven-item row needs 581px, which the header only offers at full
      width; between there and the 768px layout switch it would wrap onto two
      lines. Folding the switch into the existing 1024px breakpoint keeps the
@@ -1436,29 +1644,28 @@ body.g-lightbox-open { overflow: hidden }
 }
 
 @media (max-width: 768px) {
-  .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-  /* Tablet: two cards on the first row, the third alone beneath it. */
-  .what-we-do-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-  /* The panels stack, but they share the same two-column split as the cards
-     so the section keeps its left/right rhythm. */
-  .what-we-do-split { grid-template-columns: 1fr }
-  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 200px) }
-  .g-item:nth-child(1),
-  .g-item:nth-child(4) { grid-column: 1/3 }
+  .wwd-help { padding: 24px 26px 22px }
+  .wwd-help-title { font-size: 1.85rem; max-width: 100% }
+  .wwd-steps { gap: .9rem }
+  .wwd-step:not(:last-child)::after { right: calc(-.9rem / 2) }
+  /* What We Offer is already a full-width two-column block here, so the only
+     thing tablet needs is a tighter gutter between the columns. */
+  .wwd-offer { column-gap: 1rem }
+  .wwd-offer-name { font-size: 1.12rem }
+  .wwd-offer-lede { font-size: .9rem }
   .location-grid { grid-template-columns: 1fr }
   .map-area { min-height: 280px }
-  .featured { grid-template-columns: 1fr; gap: clamp(1.75rem, 4vw, 2.5rem) }
-  .featured-media { max-width: 340px }
-  .g-lightbox-nav { top: auto; bottom: clamp(.5rem, 2vw, 1.25rem); transform: none }
-  .g-lightbox-prev { left: clamp(.75rem, 4vw, 3rem) }
-  .g-lightbox-next { right: clamp(.75rem, 4vw, 3rem) }
-  .g-lightbox-figure img { max-height: 62vh }
+  /* The photo is now full-bleed and the card overlays it, so on a phone the
+     card's own padding has to give way or it crowds the edges. The right inset
+     and max-width above already cap it against the viewport. */
+  .map-overlay { padding: 1.5rem 1.35rem }
 }
 
-/* Two columns still read at 320px, so they are kept down to 360px. */
+/* Below 360px the six uppercase labels stop fitting two to a row at their full
+   size, so the tracking and padding tighten rather than the tab bar scrolling
+   sideways. */
 @media (max-width: 360px) {
-  .tile-grid { grid-template-columns: 1fr }
-  .tile-lightbox-figure img { max-height: 56vh }
+  .ptab { padding: .68rem .8rem; font-size: .62rem; letter-spacing: .09em }
 }
 
 /* A .btn carrying an icon reserves space for the 22px chip, so the long
@@ -1471,24 +1678,90 @@ body.g-lightbox-open { overflow: hidden }
   .btn:has(.btn-icon) { max-width: 100% }
 }
 
+/* Each horizontal What We Do card needs ~300px before its content column stops
+   being cramped, so three across stop reading comfortably below this width and
+   the row folds to 2+1. */
+@media (max-width: 1080px) {
+  .what-we-do-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+
+/* Below this the two category columns get tight enough that the longer names
+   ("Tile Care & Accessories") start to crowd their icons. */
+@media (max-width: 700px) {
+  .wwd-offer { column-gap: 1.25rem }
+}
+
 @media (max-width: 540px) {
   /* Mobile: single column, and the editorial header stacks above the cards. */
   .what-we-do-grid { grid-template-columns: 1fr }
   .what-we-do-head { grid-template-columns: 1fr; align-items: start; gap: 1.25rem }
-  /* A 4:3 window on a narrow phone crops the wide showroom shots harder, so
-     the media relaxes to 16:11. More of the composition survives and the card
-     still reads as a landscape band rather than a tall stack. */
-  .wwd-media { aspect-ratio: 16 / 11 }
+  /* Each card stays horizontal on a phone, as specified. The panel drops from 45%
+     to 42% and the content padding tightens, which buys back ~14px for the copy
+     so the titles and descriptions stay readable without making the card tall.
+     No aspect-ratio here: in the horizontal layout the panel height is settled by
+     the content column, and cover keeps the photograph full-bleed regardless. */
+  .wwd-media { flex-basis: 42% }
+  .wwd-body { padding: .95rem .9rem 1rem }
+  .wwd-head { margin-bottom: .7rem }
+  .wwd-icon { width: 30px; height: 30px }
+  .wwd-icon svg { width: 16px; height: 16px }
+  .wwd-num { font-size: 1.25rem }
+  .wwd-title { font-size: 1.18rem }
+  .wwd-text { font-size: .8rem; line-height: 1.55; margin-bottom: .9rem }
   .wwd-card:hover .wwd-media img { transform: none }
-  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto }
-  .g-item:nth-child(1),
-  .g-item:nth-child(4) { grid-column: 1; grid-row: auto }
-  .g-item { min-height: 220px }
+  /* HOW WE HELP on phones. The heading scales down but the three steps stay in
+     one compact row - the reference asks for exactly that - and the material
+     composition is kept, only pulled back so it cannot crowd the copy. */
+  .wwd-help { padding: 20px 18px 18px; border-radius: 11px }
+  .wwd-help-eyebrow { gap: .5rem; margin-bottom: 8px }
+  .wwd-help-rule { width: 26px }
+  .wwd-help-title { font-size: 1.5rem; margin-bottom: 1rem }
+  .wwd-steps { gap: .6rem }
+  .wwd-step:not(:last-child)::after { right: calc(-.6rem / 2); font-size: .95rem }
+  .wwd-step-icon { width: 30px; height: 30px; margin-bottom: .45rem }
+  .wwd-step-icon svg { width: 15px; height: 15px }
+  .wwd-step-text { font-size: .55rem; line-height: 1.3 }
+  .wwd-slab--dark { opacity: .8 }
+  /* The plant would sit under the step text at this width, so the wash carries
+     more of the load and the foliage is reduced to a corner accent. */
+  .wwd-plant { width: 20%; opacity: .42 }
+  /* Two columns are for the desktop block; at this width a single column gives
+     each category name the full measure and keeps the rows airy. */
+  .wwd-offer { grid-template-columns: minmax(0, 1fr) }
+  .wwd-offer-title { font-size: 1.75rem }
+  .wwd-offer-lede { font-size: .9rem }
+  .wwd-offer-link { padding-block: .8rem }
+
+  /* Phone header: logo, ORDER ON CALL and the menu button all share one row.
+     The 118px floor on the button is right for a desktop header, but added to
+     the logo and the 44px hamburger it no longer fits a 320px measure, so the
+     floor gives way and the label keeps its weight on one line instead. */
+  .site-header > .container { --container-gutter: 1.1rem }
+  .header-inner { gap: .75rem }
+  .header-logo { height: 46px }
+  .nav-cta {
+    min-width: 104px;
+    padding: .62rem .7rem;
+    font-size: .68rem;
+    letter-spacing: .05em;
+  }
+
   .footer-grid { grid-template-columns: 1fr }
   .intro-ctas { flex-direction: column }
   .intro-ctas .btn { justify-content: center }
   /* .products-grid is deliberately absent: its base auto-fit track decides the
      column count on its own, so no width is ever assigned by hand here. */
+}
+
+/* At 320px the logo, the call and the 44px hamburger together leave only ~20px
+   between the logo and the button. One more small step in the logo buys the row
+   some air without dropping the call below its 44px touch target. */
+@media (max-width: 380px) {
+  .header-logo { height: 40px }
+  .header-actions { gap: .6rem }
+  .nav-cta { padding-inline: .6rem }
+  .wwd-title { font-size: 1.1rem }
+  .wwd-num { font-size: 1.15rem }
 }
 
 /* 16. Scroll reveal -------------------------------------------------------
@@ -1527,9 +1800,15 @@ body.g-lightbox-open { overflow: hidden }
   *::before,
   *::after { transition: none !important; animation: none !important }
   /* A transform is a position change even with no transition, so the What We Do
-     media zoom and the arrow nudges are switched off outright. */
+     media zoom and the arrow nudge are switched off outright. The underline keeps
+     its resting width rather than snapping to the hovered length. */
   .wwd-card:hover .wwd-media img { transform: none }
-  .wwd-link:hover,
-  .wwd-link:focus-visible { gap: .4rem }
-  .wwd-offer a:hover { padding-left: .25rem }
+  .wwd-link:hover .wwd-link-arrow,
+  .wwd-link:focus-visible .wwd-link-arrow { transform: none }
+  .wwd-link:hover::after,
+  .wwd-link:focus-visible::after { width: 58px }
+  .wwd-offer-link:hover .wwd-offer-arrow,
+  .wwd-offer-link:focus-visible .wwd-offer-arrow { transform: none }
+  .nav-cta:hover,
+  .nav-cta:focus-visible { transform: none }
 }
