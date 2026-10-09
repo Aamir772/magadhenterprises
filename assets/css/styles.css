@@ -385,9 +385,7 @@ img { max-width: 100%; height: auto; display: block }
   height: auto;
   max-height: 58px;
   object-fit: contain;
-  /* The master artwork ships on a black plate; screen drops the black
-     against the dark header so the mark blends instead of boxing. */
-  mix-blend-mode: screen;
+  background: transparent;
 }
 
 @media (max-width: 1024px) {
@@ -1336,9 +1334,7 @@ body.nav-open .site-header { z-index: 101 }
   max-height: 90px;
   margin-bottom: 10px;
   object-fit: contain;
-  /* Black-plate master on the ivory medallion: screen drops the plate so
-     the mark reads as a soft watermark instead of a dark rectangle. */
-  mix-blend-mode: screen;
+  background: transparent;
 }
 
 .material-center__line {
@@ -2383,9 +2379,8 @@ body.nav-open .site-header { z-index: 101 }
   width: 190px;
   height: auto;
   max-height: 60px;
-  background: transparent;
   object-fit: contain;
-}
+  background: transparent;
   margin-bottom: 1.25rem;
 }
 .footer-brand .brand-name { color: var(--cream); font-size: .88rem; letter-spacing: .14em; font-weight: 500; text-transform: uppercase; margin-bottom: .5rem }
@@ -2739,6 +2734,22 @@ body.nav-open .site-header { z-index: 101 }
   .nav-cta { padding-inline: .6rem }
   .wwd-title { font-size: 1.1rem }
   .wwd-num { font-size: 1.15rem }
+}
+
+/* At 320px the header row (logo + call button + hamburger) exceeds the
+   285px container by ~36px. Tighten gaps, compact the call button and step
+   the logo down so the row fits with margin to spare. */
+@media (max-width: 360px) {
+  .header-inner { gap: .5rem }
+  .header-logo { width: 105px }
+  .header-actions { gap: .5rem }
+  .nav-cta {
+    min-width: 0;
+    padding: .55rem .45rem;
+    font-size: .62rem;
+    letter-spacing: .06em;
+  }
+  .nav-cta-icon { width: 14px; height: 14px }
 }
 
 /* 16. Scroll reveal -------------------------------------------------------
@@ -3880,7 +3891,9 @@ body.nav-open .site-header { z-index: 101 }
 @media (max-width: 1100px) {
   #what-we-do .wwd-intro { grid-template-columns: 1fr .8fr }
   #what-we-do .wwd-vertical { display: none }
-  #what-we-do .wwd-solution-body { width: 65% }
+  /* Three-up panels narrow to ~235px here while the serif headings stay
+     large; a wider copy column keeps words like INSTALLATION inside. */
+  #what-we-do .wwd-solution-body { width: 72% }
   #what-we-do .wwd-progress { grid-template-columns: 1fr }
   #what-we-do .wwd-visual { min-height: 480px }
 }
@@ -4244,7 +4257,7 @@ body.nav-open .site-header { z-index: 101 }
   height: auto;
   max-height: 60px;
   object-fit: contain;
-  mix-blend-mode: screen;
+  background: transparent;
 }
 
 .me-footer-tagline {
