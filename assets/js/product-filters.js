@@ -1,10 +1,10 @@
 /**
  * Magadh Enterprises — product category filters.
  *
- * One tab bar in #products filters the real product cards rendered in the two
- * brand sections below it (#installation, #arment). The markup is static and
- * crawlable, so this file only ever *narrows* what is already in the HTML:
- * every card is visible without scripting and nothing is fetched or generated.
+ * A tab bar in #product-filters filters the real product cards rendered
+ * below it on a catalogue page. The markup is static and crawlable, so this
+ * file only ever *narrows* what is already in the HTML: every card is visible
+ * without scripting and nothing is fetched or generated.
  *
  * Data flow:
  *   - index.html  renders .product-card[data-category] for every product.

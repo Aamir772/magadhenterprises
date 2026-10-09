@@ -44,9 +44,10 @@
   function initMobileNav() {
     var toggle = document.getElementById('hamburger');
     var nav = document.getElementById('mobile-nav');
+    var closeBtn = document.getElementById('mobile-nav-close');
     if (!toggle || !nav) return;
 
-    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a, .mobile-link'));
     var lastFocused = null;
 
     function isOpen() {
@@ -54,7 +55,9 @@
     }
 
     function focusables() {
-      return links.concat(toggle);
+      var items = links.concat(toggle);
+      if (closeBtn) items.push(closeBtn);
+      return items;
     }
 
     function open() {
@@ -66,7 +69,7 @@
       nav.removeAttribute('inert');
       document.body.classList.add('nav-open');
       document.body.style.overflow = 'hidden';
-      if (links[0]) links[0].focus();
+      if (closeBtn) closeBtn.focus();
     }
 
     function close(returnFocus) {
@@ -75,8 +78,6 @@
       toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', 'Open menu');
-      // `inert` (rather than aria-hidden) keeps the overlay's links out of the
-      // tab order while it is closed without tripping hidden-focusable checks.
       nav.setAttribute('inert', '');
       document.body.classList.remove('nav-open');
       document.body.style.overflow = '';
@@ -94,12 +95,27 @@
       }
     });
 
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () { close(true) });
+    }
+
     // Close after following a link inside the overlay.
     links.forEach(function (link) {
       link.addEventListener('click', function () {
         close(false);
       });
     });
+
+    // Mobile products submenu toggle
+    var mobileToggle = nav.querySelector('.mobile-nav-toggle');
+    var mobileSubmenu = document.getElementById('mobile-products');
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function () {
+        var expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', String(!expanded));
+        mobileSubmenu.hidden = expanded;
+      });
+    }
 
     document.addEventListener('keydown', function (event) {
       if (!isOpen()) return;
@@ -128,7 +144,7 @@
     });
 
     // Returning to desktop width resets the overlay so the page is not left locked.
-    var desktop = window.matchMedia('(min-width: 769px)');
+    var desktop = window.matchMedia('(min-width: 1025px)');
     function onChange(event) {
       if (event.matches) close(false);
     }
@@ -137,6 +153,57 @@
     } else if (typeof desktop.addListener === 'function') {
       desktop.addListener(onChange);
     }
+  }
+
+  /* 2b. Mega menu ---------------------------------------------------------- */
+  function initMegaMenu() {
+    var toggle = document.querySelector('.nav-dropdown-toggle');
+    var menu = document.getElementById('products-mega');
+    if (!toggle || !menu) return;
+
+    var parent = toggle.closest('.nav-item');
+    var isHover = false;
+
+    function open() {
+      menu.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function close() {
+      if (isHover) return;
+      menu.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (menu.hidden) { open() } else { close() }
+    });
+
+    parent.addEventListener('mouseenter', function () {
+      isHover = true;
+      open();
+    });
+
+    parent.addEventListener('mouseleave', function () {
+      isHover = false;
+      setTimeout(close, 100);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!menu.hidden && !parent.contains(e.target)) {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+    });
   }
 
   /* 3. Prefilled WhatsApp links -------------------------------------------- */
@@ -201,13 +268,16 @@
 
   /* 5. Catalogue consistency check -----------------------------------------
      assets/js/products.js holds the product fields as structured data. The
-     markup in index.html is the rendered, crawlable version of the same data.
-     This check runs in the browser console only; it warns (never throws) if the
-     two have drifted, so a product edit in one place cannot silently miss the
-     other. Keep this quiet in production by removing the block if unwanted. */
+     markup on the catalogue pages is the rendered, crawlable version of the
+     same data. This check runs in the browser console only; it warns (never
+     throws) if the two have drifted, so a product edit in one place cannot
+     silently miss the other. Pages without product cards (e.g. the homepage)
+     are skipped. Keep this quiet in production by removing the block if
+     unwanted. */
   function initCatalogueCheck() {
     var catalogue = window.MAGADH_PRODUCTS;
     if (!catalogue || !catalogue.length) return;
+    if (!document.querySelector('.product-card')) return;
 
     var expected = {};
     catalogue.forEach(function (group) {
@@ -267,9 +337,10 @@
 
     /* Every tab must resolve to at least one rendered card, otherwise a tab
        would filter to an empty grid. This is what guarantees the tab bar can
-       never advertise a category the page does not actually stock. */
+       never advertise a category the page does not actually stock. Tab
+       validation only runs where a tab bar exists. */
     var categories = window.MAGADH_PRODUCT_CATEGORIES;
-    if (categories) {
+    if (categories && document.getElementById('product-filters')) {
       categories.forEach(function (cat) {
         if (cat.id === 'all' || cat.count) return;
         problems.push('tab has no products: ' + cat.id);
@@ -302,7 +373,7 @@
     var nav = document.querySelector('.site-nav');
     if (!nav || !('IntersectionObserver' in window)) return;
 
-    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var links = Array.prototype.slice.call(nav.querySelectorAll('.nav-link[href^="#"]'));
     var map = {};
     var targets = [];
 
@@ -363,7 +434,7 @@
 
     var targets = Array.prototype.slice.call(document.querySelectorAll(
       '.section .t-h2, .section .t-body, .cat-card, .tile-card, .product-card, ' +
-      '.featured, .intro-card, .value-item'
+      '.featured, .intro-card, .value-item, .about-image, .about-text'
     ));
     if (!targets.length) return;
 
@@ -434,6 +505,7 @@
   function init() {
     initHeaderElevation();
     initMobileNav();
+    initMegaMenu();
     initWhatsAppLinks();
     initHashNavigation();
     initScrollSpy();

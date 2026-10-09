@@ -41,10 +41,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700&display=swap" rel="stylesheet">
 
-<link rel="preload" as="image" href="assets/images/showroom/brand-banner-1440.webp"
-      imagesrcset="assets/images/showroom/brand-banner-640.webp 640w, assets/images/showroom/brand-banner-1024.webp 1024w, assets/images/showroom/brand-banner-1440.webp 1440w, assets/images/showroom/brand-banner-1733.webp 1733w"
-      imagesizes="100vw" type="image/webp" fetchpriority="high">
-
 <link rel="stylesheet" href="assets/css/styles.css">
 
 <!-- LocalBusiness structured data. Contains ONLY facts already present in the
@@ -100,21 +96,91 @@
   <div class="container">
     <div class="header-inner">
       <a href="#main" class="brand logo-brand" aria-label="Magadh Enterprises — home">
-        <img src="assets/images/branding/logo-320.png"
-           srcset="assets/images/branding/logo-320.png 320w, assets/images/branding/logo-640.png 640w, assets/images/branding/logo.png 1774w"
-           sizes="140px"
-           width="140" height="70"
-             alt="Magadh Enterprises — Building Beautiful Spaces" class="header-logo">
+        <img src="assets/images/branding/logo.png"
+           width="190" height="64"
+              alt="Magadh Enterprises - Tiles, Marble, Granite &amp; Sanitaryware" class="header-logo">
       </a>
+
+      <span class="nav-separator" aria-hidden="true"></span>
+
       <nav class="site-nav" aria-label="Primary">
-        <a href="#deals">Deals In</a>
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#find-us">Me Gaya</a>
+        <a href="#main" class="nav-link">Explore</a>
+        <div class="nav-item has-dropdown">
+          <button class="nav-link nav-dropdown-toggle" type="button"
+                  aria-expanded="false" aria-controls="products-mega">
+            Products
+            <svg class="nav-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <div class="mega-menu" id="products-mega" hidden>
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <a href="tiles.html" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/tiles/tiles-cat-640.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1"/><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1"/><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1"/><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1"/></svg></span>
+                  <span class="mega-name">Tiles</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+                <a href="marble-granite.html#marble" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/marble/marble-cat-640.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.2 4.6h17.6"/><path d="M3.2 10.4c3.2-2.6 5.6 1.6 8.8-1s5.4-1 8.8 1"/><path d="M3.2 16.6c3.2-2.6 5.6 1.6 8.8-1s5.4-1 8.8 1"/></svg></span>
+                  <span class="mega-name">Marble</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+                <a href="marble-granite.html#granite" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/granite/granite-cat-640.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3.2 20.4 8.4 18.2 18.6H5.8L3.6 8.4 12 3.2Z"/><path d="M9.3 10.6h.01"/><path d="M14.7 9.6h.01"/><path d="M12.9 14.2h.01"/><path d="M8.2 15.4h.01"/></svg></span>
+                  <span class="mega-name">Granite</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+                <a href="sanitaryware.html" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/visual/Bathroom%20Solution.png" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.8 11.6h18.4"/><path d="M4.6 11.6V6.4a2 2 0 0 1 4 0"/><path d="M2.8 11.6v2.8A3.6 3.6 0 0 0 6.4 18h11.2a3.6 3.6 0 0 0 3.6-3.6v-2.8"/><path d="M6.8 18v1.8"/><path d="M17.2 18v1.8"/></svg></span>
+                  <span class="mega-name">Sanitaryware</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+              </div>
+              <div class="mega-col">
+                <a href="tile-adhesives.html" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/laticrete/latafix-305-480.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.6 9.6h10.8l-1 10.6H7.6L6.6 9.6Z"/><path d="M6.9 9.6a5.1 5.1 0 0 1 10.2 0"/></svg></span>
+                  <span class="mega-name">Tile Adhesives</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+                <a href="grouts-epoxy.html" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/laticrete/latapoxy-480.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.6 4.4 19.6 10.4l-6.4 6.4a1.8 1.8 0 0 1-2.6 0l-2.4-2.4a1.8 1.8 0 0 1 0-2.6l6.4-6.4Z"/><path d="M11.4 7.2 5.8 12.8"/></svg></span>
+                  <span class="mega-name">Grouts &amp; Epoxy</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+                <a href="waterproofing.html" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/arment/aquaarm-proof-wp10-480.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3.4 20 6.2v5.6c0 4.6-3.2 7.6-8 8.8-4.8-1.2-8-4.2-8-8.8V6.2l8-2.8Z"/><path d="M12 9.4c1.5 1.8 2.5 3.1 2.5 4.3a2.5 2.5 0 0 1-5 0c0-1.2 1-2.5 2.5-4.3Z"/></svg></span>
+                  <span class="mega-name">Waterproofing</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+                <a href="tile-care.html" class="mega-item">
+                  <span class="mega-thumb"><img src="assets/images/laticrete/clenza-tc-480.jpg" alt="" loading="lazy"></span>
+                  <span class="mega-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.6 8.4h6a2 2 0 0 1 2 2v8.2a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-8.2a2 2 0 0 1 2-2Z"/><path d="M10.6 8.4V6.2h4.2v2.2"/><path d="M16.6 11.6h2.6v2.4h-2.6"/><path d="M15.4 5h4.4"/></svg></span>
+                  <span class="mega-name">Tile Care &amp; Accessories</span>
+                  <svg class="mega-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0.6 5h13.2"/><path d="M10.2 1.2 14.4 5l-4.2 3.8"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#what-we-do" class="nav-link">Solutions</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#find-us" class="nav-link">Visit</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </nav>
+
+      <span class="nav-separator" aria-hidden="true"></span>
+
       <div class="header-actions">
-        <a href="tel:+919661555733" class="nav-cta btn">Order on Call</a>
+        <a href="tel:+919661555733" class="nav-cta btn" aria-label="Order on Call">
+          <svg class="nav-cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Order on Call
+        </a>
         <button class="hamburger" id="hamburger" type="button"
                 aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -125,996 +191,492 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" inert>
-  <a href="#deals" class="mobile-link">Deals In</a>
-  <a href="#products" class="mobile-link">Products</a>
-  <a href="#about" class="mobile-link">About</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-  <a href="#find-us" class="mobile-link">Me Gaya</a>
-  <a href="tel:+919661555733" class="mobile-link">Order on Call</a>
+  <button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="Close menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="mobile-nav-content">
+    <a href="#main" class="mobile-link">Explore</a>
+    <div class="mobile-nav-group">
+      <button class="mobile-link mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-products">
+        Products
+        <svg class="mobile-nav-caret" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg>
+      </button>
+      <div class="mobile-nav-submenu" id="mobile-products" hidden>
+        <a href="tiles.html" class="mobile-sublink">Tiles</a>
+        <a href="marble-granite.html#marble" class="mobile-sublink">Marble</a>
+        <a href="marble-granite.html#granite" class="mobile-sublink">Granite</a>
+        <a href="sanitaryware.html" class="mobile-sublink">Sanitaryware</a>
+        <a href="tile-adhesives.html" class="mobile-sublink">Tile Adhesives</a>
+        <a href="grouts-epoxy.html" class="mobile-sublink">Grouts &amp; Epoxy</a>
+        <a href="waterproofing.html" class="mobile-sublink">Waterproofing</a>
+        <a href="tile-care.html" class="mobile-sublink">Tile Care &amp; Accessories</a>
+      </div>
+    </div>
+    <a href="#what-we-do" class="mobile-link">Solutions</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#find-us" class="mobile-link">Visit</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
 </nav>
 
 <main id="main">
 
 <!-- INTRODUCTION -->
 <section class="intro" id="hero" aria-labelledby="intro-heading">
-  <div class="container">
+  <div class="container hero-grid">
 
-    <header class="intro-head">
-      <p class="t-label">Magadh Enterprises &middot; Gaya, Bihar</p>
-      <div class="divider"></div>
-      <h1 class="t-display intro-heading" id="intro-heading">
-        Create spaces<br>you'll <em>love.</em>
-      </h1>
-      <div class="intro-lede">
-        <p class="t-body">Magadh Enterprises brings together tiles, marble, granite, sanitaryware and installation solutions for homes, renovations and construction projects.</p>
-        <p class="t-body">From selecting surface materials to finding the right installation products, we offer a range of products to help customers complete their spaces with practical and suitable solutions.</p>
+    <div class="hero-copy">
+      <header class="intro-head">
+        <p class="t-label">MAGADH ENTERPRISES · GAYA, BIHAR</p>
+        <div class="divider"></div>
+        <h1 class="t-display intro-heading" id="intro-heading">
+          MATERIALS<br>THAT SHAPE<br>SPACES.
+        </h1>
+        <div class="intro-lede">
+          <p class="t-body">Premium tiles, marble, granite, sanitaryware and installation solutions for spaces built to last.</p>
+        </div>
+      </header>
+
+      <div class="intro-ctas">
+        <a href="products.html" class="btn btn-primary">EXPLORE PRODUCTS <span aria-hidden="true">&#x2192;</span></a>
+        <a href="#find-us" class="btn btn-ghost">VISIT SHOWROOM <span aria-hidden="true">&#x2192;</span></a>
       </div>
-    </header>
+    </div>
 
-      <ul class="intro-services" aria-label="What we supply and install">
-        <li>Tiles</li>
-        <li>Marble</li>
-        <li>Granite</li>
-        <li>Sanitaryware</li>
-        <li>Installation Solutions</li>
-      </ul>
-
-      <p class="intro-place">Nagmatiya Road &middot; Gaya, Bihar</p>
-
-    <div class="intro-ctas">
-      <a href="#products" class="btn btn-primary">Explore Products</a>
-      <a href="#find-us" class="btn btn-ghost">Get Directions</a>
+    <div class="hero-media">
+      <img src="assets/images/showroom/Sunlit Marble Luxury Living Room.png" width="900" height="471"
+           alt="Magadh Enterprises showroom interior with tile, marble and sanitaryware displays"
+           fetchpriority="high" decoding="async">
     </div>
 
   </div>
 </section>
 
-<!-- CATEGORIES -->
-<section class="section categories" id="deals" aria-labelledby="categories-heading">
+<!-- HERO CATEGORY BAR -->
+<section class="catbar" aria-label="Product categories">
   <div class="container">
-    <header class="section-header">
-      <p class="t-label">Deals In</p>
-      <div class="divider"></div>
-      <h2 class="t-h2" id="categories-heading">Brands we stock.</h2>
-      <p class="t-body sub">Tiles, granite and marble from the brands we carry &mdash; plus MYK Laticrete and MYK Arment installation products.</p>
-    </header>
+    <ul class="catbar-list">
+      <li>Tiles</li>
+      <li>Marble</li>
+      <li>Granite</li>
+      <li>Sanitaryware</li>
+      <li>Installation Solutions</li>
+    </ul>
   </div>
-  <div class="cat-grid">
-    <article class="cat-card">
-      <div class="cat-card-img">
-        <picture>
-            <source type="image/jpeg" srcset="assets/images/tiles/tiles-cat-640.jpg 640w, assets/images/tiles/tiles-cat-1024.jpg 1024w, assets/images/tiles/tiles-cat-1536.jpg 1536w" sizes="(max-width: 768px) 100vw, 33vw">
-            <img src="assets/images/tiles/tiles-cat-1024.jpg" width="1536" height="1024"
-                 alt="Premium tiles display at Magadh Enterprises showroom"
-                 loading="lazy" decoding="async">
-          </picture>
-      </div>
-      <div class="cat-card-body">
-        <p class="t-label">Category 01</p>
-        <h3 class="cat-card-name">Tiles</h3>
-        <p class="cat-card-desc">Floor and wall tiles in a range of sizes, finishes and formats for residential and commercial use.</p>
-        <a class="cat-card-link" href="#products">Explore tiles<span aria-hidden="true"> &rarr;</span></a>
-      </div>
-    </article>
-    <article class="cat-card">
-      <div class="cat-card-img">
-        <picture>
-            <source type="image/jpeg" srcset="assets/images/granite/granite-cat-640.jpg 640w, assets/images/granite/granite-cat-1024.jpg 1024w, assets/images/granite/granite-cat-1536.jpg 1536w" sizes="(max-width: 768px) 100vw, 33vw">
-            <img src="assets/images/granite/granite-cat-1024.jpg" width="1536" height="1024"
-                 alt="Granite and marble stone display at Magadh Enterprises showroom"
-                 loading="lazy" decoding="async">
-          </picture>
-      </div>
-      <div class="cat-card-body">
-        <p class="t-label">Category 02</p>
-        <h3 class="cat-card-name">Granite &amp; Marble</h3>
-        <p class="cat-card-desc">Natural granite and marble for floors, walls, countertops and other interior and exterior applications.</p>
-        <a class="cat-card-link" href="#products">See stone on display<span aria-hidden="true"> &rarr;</span></a>
-      </div>
-    </article>
-    <article class="cat-card">
-      <div class="cat-card-img">
-        <picture>
-            <source type="image/jpeg" srcset="assets/images/laticrete/laticrete-cat-640.jpg 640w, assets/images/laticrete/laticrete-cat-1024.jpg 1024w, assets/images/laticrete/laticrete-cat-1536.jpg 1536w" sizes="(max-width: 768px) 100vw, 33vw">
-            <img src="assets/images/laticrete/laticrete-cat-1024.jpg" width="1536" height="1024"
-                 alt="MYK Laticrete grouts, adhesives and installation products at Magadh Enterprises"
-                 loading="lazy" decoding="async">
-          </picture>
-      </div>
-      <div class="cat-card-body">
-        <p class="t-label">Category 03</p>
-        <h3 class="cat-card-name">MYK LATICRETE</h3>
-        <p class="cat-card-desc">Tile adhesives, grouts, waterproofing and tile &amp; stone installation solutions from MYK LATICRETE.</p>
-        <a class="cat-card-link" href="#installation">Explore installation products<span aria-hidden="true"> &rarr;</span></a>
-      </div>
-    </article>
-    <article class="cat-card">
-      <div class="cat-card-img">
-        <picture>
-            <source type="image/jpeg" srcset="assets/images/arment/arment-wp-640.jpg 640w, assets/images/arment/arment-wp-1024.jpg 1024w, assets/images/arment/arment-wp-1536.jpg 1536w" sizes="(max-width: 768px) 100vw, 33vw">
-            <img src="assets/images/arment/arment-wp-1024.jpg" width="1536" height="1024"
-                 alt="MYK Arment waterproofing and construction chemical products at Magadh Enterprises"
-                 loading="lazy" decoding="async">
-          </picture>
-      </div>
-      <div class="cat-card-body">
-        <p class="t-label">Category 04</p>
-        <h3 class="cat-card-name">MYK ARMENT</h3>
-        <p class="cat-card-desc">Waterproofing, repair, bonding and construction chemical solutions from MYK Arment.</p>
-        <a class="cat-card-link" href="#arment">Explore waterproofing<span aria-hidden="true"> &rarr;</span></a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- PRODUCTS â€” EXPLORE + CATEGORY TABS -->
-<section class="section products" id="products" aria-labelledby="products-heading">
-  <div class="container">
-    <header class="section-header">
-      <p class="t-label">Explore Products</p>
-      <div class="divider"></div>
-      <h2 class="t-h2" id="products-heading">Our product categories.</h2>
-      <p class="t-body sub">Our range covers marble, granite, sanitaryware and tiles, together with tile adhesives, grouts and epoxy, waterproofing, primers, repair compounds and accessories for installation, finishing and care.</p>
-    </header>
-  </div>
-
-  <!-- CATEGORY TABS
-       Progressive enhancement. The bar ships hidden and is revealed by
-       assets/js/product-filters.js, so a visitor without scripting sees every
-       product card in full and is never shown a dead control. The buttons are
-       a group of toggles rather than ARIA tabs: they filter the page instead of
-       switching panels, so aria-pressed is the correct state and focus is not
-       trapped. Counts come from assets/js/products.js at runtime. -->
-  <div class="container">
-    <div class="product-filter" id="product-filters" role="group" aria-label="Filter products by category" hidden>
-      <div class="ptab-row">
-        <button type="button" class="ptab is-active" data-product-filter="all" aria-pressed="true">All Products</button>
-        <button type="button" class="ptab" data-product-filter="adhesives" aria-pressed="false">Tile Adhesives</button>
-        <button type="button" class="ptab" data-product-filter="grouts-epoxy" aria-pressed="false">Grouts &amp; Epoxy</button>
-        <button type="button" class="ptab" data-product-filter="waterproofing" aria-pressed="false">Waterproofing</button>
-        <button type="button" class="ptab" data-product-filter="tile-care" aria-pressed="false">Tile Care &amp; Accessories</button>
-        <button type="button" class="ptab" data-product-filter="primers-repair" aria-pressed="false">Primers &amp; Repair</button>
-      </div>
-      <p class="product-filter-count" id="product-filter-count" role="status"></p>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT WE DO / HOW WE HELP / WHAT WE OFFER -->
-<!-- PROMO BANNER -->
-<section class="promo-banner">
-  <picture>
-    <source type="image/webp"
-            srcset="assets/images/showroom/brand-banner-640.webp 640w,
-                    assets/images/showroom/brand-banner-1024.webp 1024w,
-                    assets/images/showroom/brand-banner-1440.webp 1440w,
-                    assets/images/showroom/brand-banner-1733.webp 1733w"
-            sizes="100vw">
-    <img src="assets/images/showroom/brand-banner-1733.jpg" width="1733" height="907"
-         srcset="assets/images/showroom/brand-banner-640.jpg 640w,
-                 assets/images/showroom/brand-banner-1024.jpg 1024w,
-                 assets/images/showroom/brand-banner-1440.jpg 1440w,
-                 assets/images/showroom/brand-banner-1733.jpg 1733w"
-         sizes="100vw"
-         alt="Magadh Enterprises &mdash; Tiles, Marble, Granite, Sanitaryware"
-         fetchpriority="high" decoding="async">
-  </picture>
-</section>
-
-<!-- INSTALLATION SOLUTIONS — MYK LATICRETE -->
-<section class="section installation" id="installation" aria-labelledby="installation-heading">
-  <div class="container">
-    <header class="section-header">
-      <p class="t-label">MYK Laticrete</p>
-      <div class="divider"></div>
-      <h2 class="t-h2" id="installation-heading">Installation solutions.</h2>
-      <p class="t-body sub">Tile adhesives, grouts, epoxy solutions and cleaning products for bonding, finishing and maintaining tile and stone surfaces.</p>
-    </header>
-    <div class="products-grid">
-
-      <div class="product-card" data-category="adhesives">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/latafix-305-480.jpg"
-               alt="MYK Laticrete Latafix 305 Floor and Wall Tile Adhesive" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/latafix-305-480.jpg 480w, assets/images/laticrete/latafix-305-720.jpg 720w, assets/images/laticrete/latafix-305.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tile Adhesives</p>
-          <h3 class="product-name">Latafix 305</h3>
-          <p class="product-desc">Floor &amp; wall tile adhesive. Single-component, economical, strong bond. For ceramic tiles and small-format natural stone.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Latafix 305">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="adhesives">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/laticrete-303-480.jpg"
-               alt="MYK Laticrete 303 Floor and Wall Tile Adhesive" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/laticrete-303-480.jpg 480w, assets/images/laticrete/laticrete-303-720.jpg 720w, assets/images/laticrete/laticrete-303.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tile Adhesives</p>
-          <h3 class="product-name">Laticrete 303</h3>
-          <p class="product-desc">Floor &amp; wall tile adhesive. Polymer-based, single-component. For ceramic tiles and small-format stone on dry interior surfaces.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Laticrete 303">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="adhesives">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/315-plus-325-high-flex-480.jpg"
-               alt="MYK Laticrete 315 Plus and 325 High Flex Tile Adhesive" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/315-plus-325-high-flex-480.jpg 480w, assets/images/laticrete/315-plus-325-high-flex-720.jpg 720w, assets/images/laticrete/315-plus-325-high-flex.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="320">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tile Adhesives</p>
-          <h3 class="product-name">315 Plus &amp; 325 High Flex</h3>
-          <p class="product-desc">Premium adhesives for ceramic and large-format tiles. 325 High Flex offers extra flexibility for demanding areas and large stone.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="315 Plus &amp; 325 High Flex">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="adhesives">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/super-set-480.jpg"
-               alt="MYK Laticrete Super Set cement slurry additive" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/super-set-480.jpg 480w, assets/images/laticrete/super-set.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tile Adhesives</p>
-          <h3 class="product-name">Super Set</h3>
-          <p class="product-desc">Cement slurry additive. Enhances bond strength and performance of cement slurry for tile and stone fixing.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Super Set">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="grouts-epoxy">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/latapoxy-480.jpg"
-               alt="MYK Laticrete Latapoxy All Purpose Epoxy Adhesive" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/latapoxy-480.jpg 480w, assets/images/laticrete/latapoxy.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Grouts &amp; Epoxy</p>
-          <h3 class="product-name">Latapoxy</h3>
-          <p class="product-desc">All purpose epoxy adhesive. Bonds tile, stone, metal, wood, glass and concrete. Xtra strong bond, solvent free.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Latapoxy">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="grouts-epoxy">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/dazzle-480.jpg"
-               alt="MYK Laticrete Dazzle Latapoxy Decorative Glitter Grout" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/dazzle-480.jpg 480w, assets/images/laticrete/dazzle.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Grouts &amp; Epoxy</p>
-          <h3 class="product-name">Dazzle</h3>
-          <p class="product-desc">Decorative glitter epoxy grout with metallic and glitter effects. Stain, water and chemical resistant. Available in multiple shades.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Dazzle">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="grouts-epoxy">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/sp-100-duo-480.jpg"
-               alt="MYK Laticrete SP-100 Duo Stainfree Epoxy Grout" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/sp-100-duo-480.jpg 480w, assets/images/laticrete/sp-100-duo.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Grouts &amp; Epoxy</p>
-          <h3 class="product-name">SP-100 Duo</h3>
-          <p class="product-desc">Stainfree epoxy grout for floor &amp; wall. Stain, germ, water and UV resistant. Food grade. Ideal for bathrooms, kitchens and pools.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="SP-100 Duo">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="grouts-epoxy">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/grout-admix-plus-1776-480.jpg"
-               alt="MYK Laticrete Grout Admix Plus 1776 grout additive" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/grout-admix-plus-1776-480.jpg 480w, assets/images/laticrete/grout-admix-plus-1776.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Grouts &amp; Epoxy</p>
-          <h3 class="product-name">Grout Admix Plus 1776</h3>
-          <p class="product-desc">Polymer-based grout additive. Improves colour fastness, flexibility, compressive strength and reduces water absorption.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Grout Admix Plus 1776">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="tile-care">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/clenza-tc-480.jpg"
-               alt="MYK Laticrete Clenza TC Advanced Tile Cleaner" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/clenza-tc-480.jpg 480w, assets/images/laticrete/clenza-tc.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tile Care</p>
-          <h3 class="product-name">Clenza TC</h3>
-          <p class="product-desc">Advanced tile cleaner. Heavy duty, quick action formula for removing tough stains and dirt from all tile surfaces.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Clenza TC">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="tile-care">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/tile-spacers-480.jpg"
-               alt="MYK Laticrete Tile Joint Spacers 3mm" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/tile-spacers-480.jpg 480w, assets/images/laticrete/tile-spacers-720.jpg 720w, assets/images/laticrete/tile-spacers.jpg 755w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="572">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tools &amp; Accessories</p>
-          <h3 class="product-name">Tile Spacers</h3>
-          <p class="product-desc">Tile joint spacers for uniform 3mm spacing. Ensures consistent, professional joints on floor and wall tiles.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Tile Spacers">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="tile-care">
-        <div class="product-card-img">
-          <img src="assets/images/laticrete/tile-leveling-clips-480.jpg"
-               alt="MYK Laticrete Tile Leveling Clips and Wedges" loading="lazy" decoding="async"
-                 srcset="assets/images/laticrete/tile-leveling-clips-480.jpg 480w, assets/images/laticrete/tile-leveling-clips.jpg 600w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="720">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Laticrete</p>
-          <p class="purpose-tag">Tools &amp; Accessories</p>
-          <h3 class="product-name">Tile Leveling Clips</h3>
-          <p class="product-desc">Tile leveling clips and wedges for a flat, lippage-free finish. For ceramic, vitrified, porcelain, marble and granite tiles.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Tile Leveling Clips">Enquire</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- MYK ARMENT SECTION -->
-<section class="section band-warm" id="arment" aria-labelledby="arment-heading">
-  <div class="container">
-    <header class="section-header">
-      <p class="t-label">MYK Arment</p>
-      <div class="divider"></div>
-      <h2 class="t-h2" id="arment-heading">Waterproofing &amp; construction solutions.</h2>
-      <p class="t-body sub">Construction chemicals for waterproofing, bonding, repair and surface preparation.</p>
-    </header>
-    <div class="products-grid">
-
-      <div class="product-card" data-category="waterproofing">
-        <div class="product-card-img">
-          <img src="assets/images/arment/aquaarm-superflex-480.jpg"
-               alt="MYK Arment AquaArm SuperFlex flexible waterproof coating" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/aquaarm-superflex-480.jpg 480w, assets/images/arment/aquaarm-superflex-720.jpg 720w, assets/images/arment/aquaarm-superflex.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Waterproofing</p>
-          <h3 class="product-name">AquaArm SuperFlex</h3>
-          <p class="product-desc">Flexible crack bridging waterproof coating. High elongation. Ideal for water tanks, terraces and retaining walls.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="AquaArm SuperFlex">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="waterproofing">
-        <div class="product-card-img">
-          <img src="assets/images/arment/aquaarm-proof-wp10-480.jpg"
-               alt="MYK Arment AquaArm Proof WP-10 integral waterproofing liquid" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/aquaarm-proof-wp10-480.jpg 480w, assets/images/arment/aquaarm-proof-wp10-720.jpg 720w, assets/images/arment/aquaarm-proof-wp10.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Waterproofing</p>
-          <h3 class="product-name">AquaArm Proof WP-10</h3>
-          <p class="product-desc">Integral waterproofing liquid. Chloride free, reduces permeability and shrinkage cracks. For roof slabs, water tanks and plasters.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="AquaArm Proof WP-10">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="waterproofing">
-        <div class="product-card-img">
-          <img src="assets/images/arment/aquaarm-extecoat-480.jpg"
-               alt="MYK Arment AquaArm ExTeCoat exterior waterproof coating" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/aquaarm-extecoat-480.jpg 480w, assets/images/arment/aquaarm-extecoat-720.jpg 720w, assets/images/arment/aquaarm-extecoat.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Waterproofing</p>
-          <h3 class="product-name">AquaArm ExTeCoat</h3>
-          <p class="product-desc">High build waterproof acrylate coating for exterior walls. Weather resistant, anti-algal, covers hairline cracks.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="AquaArm ExTeCoat">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="primers-repair">
-        <div class="product-card-img">
-          <img src="assets/images/arment/aquaarm-sani-guard-primer-480.jpg"
-               alt="MYK Arment AquaArm Sani Guard Primer antifungal primer" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/aquaarm-sani-guard-primer-480.jpg 480w, assets/images/arment/aquaarm-sani-guard-primer-720.jpg 720w, assets/images/arment/aquaarm-sani-guard-primer.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Primers &amp; Bonding Agents</p>
-          <h3 class="product-name">AquaArm Sani Guard Primer</h3>
-          <p class="product-desc">Antifungal primer for healthy and durable surfaces. Prevents fungal growth, improves adhesion for paints and coatings.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="AquaArm Sani Guard Primer">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="primers-repair">
-        <div class="product-card-img">
-          <img src="assets/images/arment/rearm-krackfill-paste-480.jpg"
-               alt="MYK Arment ReArm KrackFill Paste crack filler" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/rearm-krackfill-paste-480.jpg 480w, assets/images/arment/rearm-krackfill-paste-720.jpg 720w, assets/images/arment/rearm-krackfill-paste.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Crack Repair</p>
-          <h3 class="product-name">ReArm KrackFill Paste</h3>
-          <p class="product-desc">Ready to use crack fill paste for internal and external plaster surfaces. Flexible, eco-friendly, excellent adhesion.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="ReArm KrackFill Paste">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="primers-repair">
-        <div class="product-card-img">
-          <img src="assets/images/arment/rearm-super-bond-480.jpg"
-               alt="MYK Arment ReArm Super Bond epoxy concrete bonding agent" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/rearm-super-bond-480.jpg 480w, assets/images/arment/rearm-super-bond-720.jpg 720w, assets/images/arment/rearm-super-bond.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Primers &amp; Bonding Agents</p>
-          <h3 class="product-name">ReArm Super Bond</h3>
-          <p class="product-desc">Epoxy resin based concrete bonding agent. High bond strength, excellent adhesion. For building elements, columns and repairs.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="ReArm Super Bond">Enquire</a>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="primers-repair">
-        <div class="product-card-img">
-          <img src="assets/images/arment/armix-durafast-acl-480.jpg"
-               alt="MYK Arment Armix Durafast ACL acrylic liquid for concrete" loading="lazy" decoding="async"
-                 srcset="assets/images/arment/armix-durafast-acl-480.jpg 480w, assets/images/arment/armix-durafast-acl-720.jpg 720w, assets/images/arment/armix-durafast-acl.jpg 900w"
-                 sizes="(max-width: 540px) 45vw, 340px"
-                 width="480" height="480">
-        </div>
-        <div class="product-card-body">
-          <p class="brand-tag">MYK Arment</p>
-          <p class="purpose-tag">Primers &amp; Bonding Agents</p>
-          <h3 class="product-name">Armix Durafast ACL</h3>
-          <p class="product-desc">Acrylic liquid for concrete and mortar. Improves bond strength, enhances durability and reduces shrinkage cracks.</p>
-          <a href="tel:+919661555733" class="product-cta" data-wa="product" data-product="Armix Durafast ACL">Enquire</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- BRAND BANNER -->
-<section class="brand-banner" aria-label="Magadh Enterprises product range">
-  <img src="assets/images/showroom/hero-showroom.jpg" width="1000" height="400"
-       alt="Magadh Enterprises — Tiles, Marble, Granite, Sanitaryware, Adhesives, Waterproofing — Nagmatiya Road, Gaya, Bihar"
-       loading="lazy" decoding="async">
 </section>
 
 <!-- ABOUT -->
 <section class="about" id="about" aria-labelledby="about-heading">
   <div class="container">
     <div class="about-grid">
-      <div class="about-image">
-        <picture>
-          <source type="image/webp"
-                  srcset="assets/images/showroom/owner-myk-laticrete-640.webp 640w,
-                          assets/images/showroom/owner-myk-laticrete-1024.webp 1024w,
-                          assets/images/showroom/owner-myk-laticrete-1536.webp 1536w"
-                  sizes="(max-width: 1024px) 100vw, 50vw">
-          <img src="assets/images/showroom/owner-myk-laticrete-1536.jpg" width="1536" height="1024"
-               srcset="assets/images/showroom/owner-myk-laticrete-640.jpg 640w,
-                       assets/images/showroom/owner-myk-laticrete-1024.jpg 1024w,
-                       assets/images/showroom/owner-myk-laticrete-1536.jpg 1536w"
-               sizes="(max-width: 1024px) 100vw, 50vw"
-               alt="Magadh Enterprises owner with MYK Laticrete product range in showroom"
-               loading="lazy" decoding="async">
-        </picture>
+      <div class="about-image reveal">
+        <img
+            src="assets/images/showroom/Magadh Enterprises Showroom Facade.png"
+            alt="Magadh Enterprises showroom facade in Gaya, Bihar"
+            loading="lazy"
+            decoding="async"
+        >
       </div>
-      <div class="about-text">
-        <p class="t-label">About Us</p>
+      <div class="about-text reveal">
+        <p class="t-label">ABOUT MAGADH</p>
         <div class="divider"></div>
-        <h2 class="t-h2" id="about-heading">Materials that make a space.</h2>
-        <p class="t-body gap-below">Magadh Enterprises is a local destination in Gaya for tiles, marble, granite, sanitaryware and related installation products.</p>
-        <p class="t-body">We help customers find suitable materials for new homes, renovations and construction work — from floor and wall tiles to surface finishes, adhesives, grouts and waterproofing solutions.</p>
-        <div class="btn-row spaced">
-          <a href="tel:+919661555733" class="btn btn-light"><img class="btn-icon" src="assets/images/social/call.png" alt="" width="18" height="18" loading="lazy" decoding="async">Order on Call</a>
-          <a href="https://wa.me/919661555733" class="btn btn-light" data-wa="general" rel="noopener"><img class="btn-icon" src="assets/images/social/whatsapp.png" alt="" width="18" height="18" loading="lazy" decoding="async">WhatsApp</a>
-        </div>
+        <h2 class="t-h2" id="about-heading">MORE THAN<br>MATERIALS.<br>A BETTER WAY<br>TO BUILD.</h2>
+        <p class="t-body">Magadh Enterprises brings together tiles, marble, granite, sanitaryware and professional installation products under one roof in Gaya.</p>
+        <p class="t-body gap-below">From selecting the right surface to choosing the right installation system, we help you make confident decisions for spaces built to last.</p>
+        <a class="about-link" href="#about">DISCOVER MAGADH <span aria-hidden="true">→</span></a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / PROOF -->
+<section class="trust-section" id="trust" aria-labelledby="trust-heading">
+  <div class="container">
+    <p class="t-label trust-label">WHY MAGADH</p>
+    <h2 class="trust-heading" id="trust-heading">A MATERIALS DESTINATION BUILT AROUND YOUR SPACE.</h2>
+    <p class="trust-sub">From surfaces and natural stone to sanitaryware and installation systems, Magadh Enterprises brings the materials and solutions together under one roof in Gaya.</p>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-num">01</span>
+        <h3 class="trust-item-title">QUALITY</h3>
+        <p class="trust-item-text">Materials selected for performance, finish and durability.</p>
+      </div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div class="trust-item">
+        <span class="trust-num">02</span>
+        <h3 class="trust-item-title">RANGE</h3>
+        <p class="trust-item-text">Tiles, marble, granite, sanitaryware and installation solutions in one destination.</p>
+      </div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div class="trust-item">
+        <span class="trust-num">03</span>
+        <h3 class="trust-item-title">GUIDANCE</h3>
+        <p class="trust-item-text">Practical help in choosing the right material and installation solution.</p>
+      </div>
+      <div class="trust-divider" aria-hidden="true"></div>
+      <div class="trust-item">
+        <span class="trust-num">04</span>
+        <h3 class="trust-item-title">LOCAL</h3>
+        <p class="trust-item-text">A materials destination serving customers from Nagmatiya Road, Gaya.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CATEGORIES — material-solutions wheel. Order per reference: Hero → Category Bar → About → Trust → Deals. -->
+<section class="material-solutions" id="deals" aria-labelledby="material-solutions-title">
+  <div class="material-solutions__intro">
+    <span class="material-solutions__eyebrow">WHAT WE OFFER</span>
+    <h2 id="material-solutions-title">From surface to solution.</h2>
+    <p>Premium materials, professional installation and protection solutions for spaces built to last.</p>
+  </div>
+
+  <div class="material-wheel">
+    <!-- 01 — TILES -->
+    <article class="material-panel material-panel--tiles">
+      <div class="material-panel__content">
+        <span class="material-number">01</span>
+        <h3>TILES</h3>
+        <p>Surfaces that<br>define your space.</p>
+        <a href="tiles.html" class="material-link"><span>EXPLORE TILES</span><span class="material-link__arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="material-panel__image">
+        <img src="assets/images/tiles/tiles-cat-1024.jpg" width="1024" height="683" alt="Premium tiles display at Magadh Enterprises showroom" loading="lazy" decoding="async">
+      </div>
+    </article>
+
+    <!-- 02 — MARBLE & GRANITE -->
+    <article class="material-panel material-panel--stone">
+      <div class="material-panel__content">
+        <span class="material-number">02</span>
+        <h3>MARBLE &amp;<br>GRANITE</h3>
+        <p>Natural stone with<br>character and depth.</p>
+        <a href="marble-granite.html" class="material-link"><span>EXPLORE STONE</span><span class="material-link__arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="material-panel__image">
+        <img src="assets/images/marble/marble-cat-1024.jpg" width="1024" height="683" alt="Marble slabs on display at Magadh Enterprises showroom" loading="lazy" decoding="async">
+      </div>
+    </article>
+
+    <!-- 03 — INSTALLATION -->
+    <article class="material-panel material-panel--installation">
+      <div class="material-panel__content">
+        <span class="material-number">03</span>
+        <h3>INSTALLATION</h3>
+        <div class="material-brand"><span class="material-brand__mark">MYK</span><strong>LATICRETE</strong></div>
+        <p>Professional tile &amp; stone<br>installation solutions.</p>
+        <a href="tile-adhesives.html" class="material-link"><span>EXPLORE SOLUTIONS</span><span class="material-link__arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="material-panel__image">
+        <img src="assets/images/laticrete/laticrete-cat-1024.jpg" width="1024" height="683" alt="MYK Laticrete grouts, adhesives and installation products at Magadh Enterprises" loading="lazy" decoding="async">
+      </div>
+    </article>
+
+    <!-- 04 — WATERPROOFING -->
+    <article class="material-panel material-panel--waterproofing">
+      <div class="material-panel__content">
+        <span class="material-number">04</span>
+        <h3>WATERPROOFING</h3>
+        <div class="material-brand material-brand--arment"><strong>MYK</strong><strong>arment</strong></div>
+        <p>Protection and construction<br>solutions for a stronger tomorrow.</p>
+        <a href="waterproofing.html" class="material-link"><span>EXPLORE PRODUCTS</span><span class="material-link__arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="material-panel__image">
+        <img src="assets/images/arment/arment-wp-1024.jpg" width="1024" height="683" alt="MYK Arment waterproofing and construction chemical products at Magadh Enterprises" loading="lazy" decoding="async">
+      </div>
+    </article>
+
+    <!-- CENTRAL BRAND -->
+    <div class="material-center">
+      <div class="material-center__ring material-center__ring--outer"></div>
+      <div class="material-center__ring material-center__ring--inner"></div>
+      <div class="material-center__content">
+        <img class="material-center__logo" src="assets/images/branding/logo2.png" sizes="145px" width="320" height="160" alt="Magadh Enterprises - Tiles, Marble, Granite &amp; Sanitaryware" loading="lazy" decoding="async">
+        <span class="material-center__line"></span>
+        <h3>FROM SURFACE<br>TO SOLUTION.</h3>
+        <p>COMPLETE MATERIALS.<br>PROFESSIONAL INSTALLATION.<br>LASTING SPACES.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- WHAT WE DO -->
 <section class="section what-we-do" id="what-we-do" aria-labelledby="what-we-do-heading">
-  <div class="container">
-    <header class="what-we-do-head">
-      <div class="what-we-do-intro">
-        <p class="t-label">What We Do</p>
-        <div class="divider"></div>
-        <h2 class="t-h2" id="what-we-do-heading">Materials and products<br>for complete surfaces.</h2>
+  <div class="wwd-wrap">
+
+    <div class="wwd-intro">
+      <div>
+        <p class="wwd-eyebrow">WHAT WE DO</p>
+        <h1 id="what-we-do-heading">Materials and products for complete surfaces.</h1>
       </div>
-      <p class="what-we-do-lede">From premium surface materials to bathroom solutions and installation accessories &mdash; everything you need to create beautiful, lasting spaces.</p>
-    </header>
+      <p class="wwd-intro-copy">From premium surface materials to bathroom solutions and installation accessories &mdash; everything you need to create beautiful, lasting spaces.</p>
+      <p class="wwd-vertical" aria-hidden="true">SPACES<br>MATERIALS<br>SOLUTIONS</p>
+    </div>
 
-    <!-- Photography: the three supplied compositions in assets/images/visual, used
-         as-is at their native 1536x1024. Space in the filenames is percent-encoded;
-         no external or generated imagery is used anywhere in this section. -->
-    <div class="what-we-do-grid">
-      <article class="wwd-card">
-        <div class="wwd-media">
-          <img src="assets/images/visual/surface%20materials.png" width="1536" height="1024"
-               alt="Tile, marble and granite surface samples from the Magadh Enterprises range"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="wwd-body">
-          <div class="wwd-head">
-            <span class="wwd-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M12 3.4 20.6 7.6 12 11.8 3.4 7.6 12 3.4Z"></path>
-                <path d="M3.4 12.2 12 16.4l8.6-4.2"></path>
-                <path d="M3.4 16.4 12 20.6l8.6-4.2"></path>
-              </svg>
-            </span>
-            <span class="wwd-num" aria-hidden="true">01</span>
+    <div class="wwd-solutions">
+      <article class="wwd-solution">
+        <img class="wwd-solution-img" src="assets/images/visual/surface%20materials.png" width="1536" height="1024"
+             alt="Tile, marble and granite surface samples from the Magadh Enterprises range"
+             loading="lazy" decoding="async">
+        <div class="wwd-solution-body">
+          <div>
+            <span class="wwd-solution-num" aria-hidden="true">01</span>
+            <span class="wwd-rule" aria-hidden="true"></span>
+            <h2>Surface<br>Materials</h2>
+            <p>Tiles, marble and granite for floors, walls, kitchens and interior spaces.</p>
           </div>
-          <h3 class="wwd-title">Surface Materials</h3>
-          <p class="wwd-text">Tiles, marble and granite for floors, walls, kitchens and interior spaces.</p>
-          <a class="wwd-link" href="#deals">
-            <span>Explore</span>
-            <svg class="wwd-link-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path>
-              <path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
+          <a href="tiles.html" class="wwd-solution-link"><span>Explore</span><span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
 
-      <article class="wwd-card">
-        <div class="wwd-media">
-          <img src="assets/images/visual/Bathroom%20Solution.png" width="1536" height="1024"
-               alt="Sanitaryware and bathroom products on display at Magadh Enterprises, Gaya"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="wwd-body">
-          <div class="wwd-head">
-            <span class="wwd-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M2.8 11.6h18.4"></path>
-                <path d="M4.6 11.6V6.4a2 2 0 0 1 4 0"></path>
-                <path d="M2.8 11.6v2.8A3.6 3.6 0 0 0 6.4 18h11.2a3.6 3.6 0 0 0 3.6-3.6v-2.8"></path>
-                <path d="M6.8 18v1.8"></path>
-                <path d="M17.2 18v1.8"></path>
-              </svg>
-            </span>
-            <span class="wwd-num" aria-hidden="true">02</span>
+      <article class="wwd-solution">
+        <img class="wwd-solution-img" src="assets/images/visual/Bathroom%20Solution.png" width="1536" height="1024"
+             alt="Sanitaryware and bathroom products on display at Magadh Enterprises, Gaya"
+             loading="lazy" decoding="async">
+        <div class="wwd-solution-body">
+          <div>
+            <span class="wwd-solution-num" aria-hidden="true">02</span>
+            <span class="wwd-rule" aria-hidden="true"></span>
+            <h2>Bathroom<br>Solutions</h2>
+            <p>Sanitaryware and related products for complete bathroom spaces.</p>
           </div>
-          <h3 class="wwd-title">Bathroom Solutions</h3>
-          <p class="wwd-text">Sanitaryware and related products for complete bathroom spaces.</p>
-          <a class="wwd-link" href="#deals">
-            <span>Explore</span>
-            <svg class="wwd-link-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path>
-              <path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
+          <a href="sanitaryware.html" class="wwd-solution-link"><span>Explore</span><span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
 
-      <article class="wwd-card">
-        <div class="wwd-media">
-          <img src="assets/images/visual/Installtion.png" width="1536" height="1024"
-               alt="Tile adhesives, grouts and waterproofing products from the Magadh Enterprises range"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="wwd-body">
-          <div class="wwd-head">
-            <span class="wwd-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-              </svg>
-            </span>
-            <span class="wwd-num" aria-hidden="true">03</span>
+      <article class="wwd-solution">
+        <img class="wwd-solution-img" src="assets/images/visual/Installtion.png" width="1536" height="1024"
+             alt="Tile adhesives, grouts and waterproofing products from the Magadh Enterprises range"
+             loading="lazy" decoding="async">
+        <div class="wwd-solution-body">
+          <div>
+            <span class="wwd-solution-num" aria-hidden="true">03</span>
+            <span class="wwd-rule" aria-hidden="true"></span>
+            <h2>Installation<br>&amp; Finishing</h2>
+            <p>Adhesives, grouts, epoxy, waterproofing, cleaners and installation accessories.</p>
           </div>
-          <h3 class="wwd-title">Installation &amp; Finishing</h3>
-          <p class="wwd-text">Adhesives, grouts, epoxy, waterproofing, cleaners and installation accessories.</p>
-          <a class="wwd-link" href="#installation">
-            <span>Explore</span>
-            <svg class="wwd-link-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path>
-              <path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
+          <a href="tile-adhesives.html" class="wwd-solution-link"><span>Explore</span><span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
     </div>
 
-<!-- HOW WE HELP: full width, directly below WHAT WE DO -->
-    <div class="what-we-do-block what-we-do-block--help">
-      <div class="wwd-help">
-        <span class="wwd-help-media" aria-hidden="true"></span>
-        <span class="wwd-plant" aria-hidden="true"></span>
-        <span class="wwd-slabs" aria-hidden="true">
-          <i class="wwd-slab wwd-slab--wood"></i>
-          <i class="wwd-slab wwd-slab--light"></i>
-          <i class="wwd-slab wwd-slab--dark"></i>
+    <div class="wwd-progress">
+      <div class="wwd-progress-main">
+        <p class="wwd-eyebrow">HOW WE HELP</p>
+        <h2 class="wwd-progress-title">A simple way to bring your space to life.</h2>
+        <p class="wwd-progress-lede">From selection to installation, we guide you at every step with the right materials and practical solutions for your project.</p>
+
+        <ol class="wwd-timeline">
+          <span class="wwd-timeline-line" aria-hidden="true"></span>
+          <li class="wwd-step">
+            <span class="wwd-dot" aria-hidden="true"></span>
+            <span class="wwd-step-num" aria-hidden="true">01</span>
+            <h3>Explore</h3>
+            <p>Browse materials, finishes and product options at our showroom.</p>
+          </li>
+          <li class="wwd-step">
+            <span class="wwd-dot" aria-hidden="true"></span>
+            <span class="wwd-step-num" aria-hidden="true">02</span>
+            <h3>Plan</h3>
+            <p>Discuss your requirements and find the right material combination.</p>
+          </li>
+          <li class="wwd-step">
+            <span class="wwd-dot" aria-hidden="true"></span>
+            <span class="wwd-step-num" aria-hidden="true">03</span>
+            <h3>Execute</h3>
+            <p>Get the right installation solutions, adhesives, grouts and accessories.</p>
+          </li>
+          <li class="wwd-step">
+            <span class="wwd-dot" aria-hidden="true"></span>
+            <span class="wwd-step-num" aria-hidden="true">04</span>
+            <h3>Complete</h3>
+            <p>Bring everything together for a beautiful, lasting space.</p>
+          </li>
+        </ol>
+
+        <a href="#find-us" class="wwd-cta"><span>Visit Our Showroom</span><span aria-hidden="true">&rarr;</span></a>
+      </div>
+
+      <div class="wwd-visual">
+        <img src="assets/images/showroom/hero-showroom.jpg" width="900" height="471"
+             alt="Magadh Enterprises showroom interior with tile and marble displays"
+             loading="lazy" decoding="async">
+        <div class="wwd-visual-shade" aria-hidden="true"></div>
+        <div class="wwd-visual-card">
+          <p class="wwd-visual-kicker">From materials to completion</p>
+          <p class="wwd-visual-title">Quality materials. Beautiful spaces. Built to last.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOCATION / CONTACT — single unified section (keeps the visit + contact anchors) -->
+<section class="me-location-section" id="visit" aria-labelledby="visit-heading">
+  <div class="me-location-inner">
+
+    <div class="me-location-content" id="find-us">
+      <p class="me-eyebrow">VISIT US IN</p>
+      <h2 id="visit-heading">Gaya,<br>Bihar</h2>
+      <p class="me-location-business">Magadh Enterprises</p>
+      <div class="me-location-address">
+        <span class="me-location-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </span>
-        <div class="wwd-help-body">
-          <p class="wwd-help-eyebrow"><span>How We Help</span><i class="wwd-help-rule" aria-hidden="true"></i></p>
-          <h3 class="wwd-help-title">A simple way to plan<br>your materials.</h3>
-          <ol class="wwd-steps">
-            <li class="wwd-step">
-              <span class="wwd-step-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M14.9 14.9 19.5 19.5"></path></svg>
-              </span>
-              <div class="wwd-step-head"><span class="wwd-step-num">01.</span><h4 class="wwd-step-title">Explore</h4></div>
-              <p class="wwd-step-text">Browse materials, finishes and product options.</p>
-            </li>
-            <li class="wwd-step">
-              <span class="wwd-step-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5 3.5 7.5 12 11.5l8.5-4L12 3.5Z"></path><path d="M3.5 12.5 12 16.5l8.5-4"></path><path d="M3.5 17 12 21l8.5-4"></path></svg>
-              </span>
-              <div class="wwd-step-head"><span class="wwd-step-num">02.</span><h4 class="wwd-step-title">Choose</h4></div>
-              <p class="wwd-step-text">Compare suitable products for your project requirements.</p>
-            </li>
-            <li class="wwd-step">
-              <span class="wwd-step-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M6.5 3.5h7.5l4 4v13h-11.5z"></path><path d="M14 3.5v4h4"></path><path d="M9.2 14.2l2 2 3.6-3.9"></path></svg>
-              </span>
-              <div class="wwd-step-head"><span class="wwd-step-num">03.</span><h4 class="wwd-step-title">Plan</h4></div>
-              <p class="wwd-step-text">Get expert guidance and finalise the best materials.</p>
-            </li>
-          </ol>
+        <div>
+          <strong>Nagmatiya Road</strong>
+          <span>Near Railway Hospital, Railway Colony</span>
+          <span>Gaya, Bihar, India</span>
         </div>
+      </div>
+      <div class="me-location-actions" id="contact">
+        <a class="me-location-btn me-location-btn-primary" href="tel:+919661555733">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          CONTACT US
+          <b aria-hidden="true">&rarr;</b>
+        </a>
+        <a class="me-location-btn me-location-btn-secondary" href="https://maps.app.goo.gl/x1hzBJcJXmrhhHgs7" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          VIEW ON MAP
+          <b aria-hidden="true">&nearr;</b>
+        </a>
       </div>
     </div>
 
-    <!-- WHAT WE OFFER: full-width section below HOW WE HELP, on its own row -->
-    <div class="what-we-do-block what-we-do-block--offer">
-      <header class="wwd-offer-head">
-        <p class="t-label">What We Offer</p>
-        <h3 class="wwd-offer-title">Our categories.</h3>
-        <p class="wwd-offer-lede">Materials for the surfaces, spaces and finishing details that bring a project together.</p>
-      </header>
-
-      <ul class="wwd-offer">
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#products">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1"></rect>
-                <rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1"></rect>
-                <rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1"></rect>
-                <rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1"></rect>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Tiles</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#deals">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M3.2 4.6h17.6"></path>
-                <path d="M3.2 10.4c3.2-2.6 5.6 1.6 8.8-1s5.4-1 8.8 1"></path>
-                <path d="M3.2 16.6c3.2-2.6 5.6 1.6 8.8-1s5.4-1 8.8 1"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Marble</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#deals">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M12 3.2 20.4 8.4 18.2 18.6H5.8L3.6 8.4 12 3.2Z"></path>
-                <path d="M9.3 10.6h.01"></path><path d="M14.7 9.6h.01"></path>
-                <path d="M12.9 14.2h.01"></path><path d="M8.2 15.4h.01"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Granite</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#products">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M2.8 11.6h18.4"></path>
-                <path d="M4.6 11.6V6.4a2 2 0 0 1 4 0"></path>
-                <path d="M2.8 11.6v2.8A3.6 3.6 0 0 0 6.4 18h11.2a3.6 3.6 0 0 0 3.6-3.6v-2.8"></path>
-                <path d="M6.8 18v1.8"></path><path d="M17.2 18v1.8"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Sanitaryware</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#installation">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M6.6 9.6h10.8l-1 10.6H7.6L6.6 9.6Z"></path>
-                <path d="M6.9 9.6a5.1 5.1 0 0 1 10.2 0"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Tile Adhesives</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#installation">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M13.6 4.4 19.6 10.4l-6.4 6.4a1.8 1.8 0 0 1-2.6 0l-2.4-2.4a1.8 1.8 0 0 1 0-2.6l6.4-6.4Z"></path>
-                <path d="M11.4 7.2 5.8 12.8"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Grouts &amp; Epoxy</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#arment">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M12 3.4 20 6.2v5.6c0 4.6-3.2 7.6-8 8.8-4.8-1.2-8-4.2-8-8.8V6.2l8-2.8Z"></path>
-                <path d="M12 9.4c1.5 1.8 2.5 3.1 2.5 4.3a2.5 2.5 0 0 1-5 0c0-1.2 1-2.5 2.5-4.3Z"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Waterproofing</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-        <li class="wwd-offer-item">
-          <a class="wwd-offer-link" href="#installation">
-            <span class="wwd-offer-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M8.6 8.4h6a2 2 0 0 1 2 2v8.2a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-8.2a2 2 0 0 1 2-2Z"></path>
-                <path d="M10.6 8.4V6.2h4.2v2.2"></path>
-                <path d="M16.6 11.6h2.6v2.4h-2.6"></path>
-                <path d="M15.4 5h4.4"></path>
-              </svg>
-            </span>
-            <span class="wwd-offer-name">Tile Care &amp; Accessories</span>
-            <svg class="wwd-offer-arrow" viewBox="0 0 16 10" fill="none" stroke="currentColor"
-                 stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true" focusable="false">
-              <path d="M0.6 5h13.2"></path><path d="M10.2 1.2 14.4 5l-4.2 3.8"></path>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="cta-section" id="contact" aria-labelledby="contact-heading">
-  <div class="container">
-    <div class="cta-inner">
-      <p class="t-label">Get in Touch</p>
-      <div class="divider on-dark"></div>
-      <h2 class="t-h2" id="contact-heading">Planning your next project?</h2>
-      <p class="t-body">Visit Magadh Enterprises for tiles, marble, granite, sanitaryware and installation products — or call and WhatsApp us before you visit.</p>
-      <div class="cta-buttons">
-        <a href="tel:+919661555733" class="btn btn-light"><img class="btn-icon" src="assets/images/social/call.png" alt="" width="18" height="18" loading="lazy" decoding="async">Order on Call: 96615&nbsp;55733</a>
-        <a href="https://wa.me/919661555733" class="btn btn-light" data-wa="general" rel="noopener"><img class="btn-icon" src="assets/images/social/whatsapp.png" alt="" width="18" height="18" loading="lazy" decoding="async">WhatsApp Us</a>
-        <a href="https://maps.app.goo.gl/x1hzBJcJXmrhhHgs7" target="_blank" rel="noopener" class="btn btn-light"><img class="btn-icon" src="assets/images/social/location.png" alt="" width="18" height="18" loading="lazy" decoding="async">Get Directions</a>
-      </div>
-      <div class="cta-address-block">
-        <address class="cta-address">
-            <strong>Magadh Enterprises</strong><br>
-          Nagmatiya Road, Near Railway Hospital, Railway Colony<br>
-          Gaya, Bihar, India
-        </address>
+    <div class="me-location-visual">
+      <img src="assets/images/showroom/Magadh Enterprises Showroom Facade.png"
+           alt="Magadh Enterprises showroom in Gaya"
+           loading="lazy" decoding="async">
+      <div class="me-location-overlay">
+        <span>MAGADH ENTERPRISES</span>
+        <strong>Materials for<br>spaces that last.</strong>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- FIND US -->
-<section class="location" id="find-us" aria-labelledby="find-us-heading">
-  <div class="container">
-    <div class="location-grid">
-      <div class="location-text">
-        <p class="t-label">Find Us</p>
-        <div class="divider"></div>
-        <h2 class="t-h2" id="find-us-heading">Visit us in Gaya.</h2>
-        <div class="address-block">
-          <p class="place">Magadh Enterprises</p>
-          <address class="addr">
-            Nagmatiya Road<br>
-            Near Railway Hospital, Railway Colony<br>
-            Gaya, Bihar, India
-          </address>
-        </div>
-        <div class="btn-row">
-          <a href="https://maps.app.goo.gl/x1hzBJcJXmrhhHgs7" target="_blank" rel="noopener" class="btn btn-primary"><img class="btn-icon" src="assets/images/social/location.png" alt="" width="18" height="18" loading="lazy" decoding="async">Get Directions</a>
-          <a href="tel:+919661555733" class="btn btn-ghost"><img class="btn-icon" src="assets/images/social/call.png" alt="" width="18" height="18" loading="lazy" decoding="async">+91&nbsp;96615&nbsp;55733</a>
-        </div>
-      </div>
-      <div class="map-area">
-        <picture>
-          <source type="image/jpeg" srcset="assets/images/granite/granite-cat-640.jpg 640w, assets/images/granite/granite-cat-1024.jpg 1024w, assets/images/granite/granite-cat-1536.jpg 1536w" sizes="(max-width: 768px) 100vw, 33vw">
-          <img src="assets/images/granite/granite-cat-1024.jpg" width="1536" height="1024"
-               class="muted"
-               alt="Magadh Enterprises tile showroom display"
-               loading="lazy" decoding="async">
-        </picture>
-        <div class="map-overlay">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8C4F35" stroke-width="1.5" aria-hidden="true" focusable="false">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            <circle cx="12" cy="9" r="2.5"/>
-          </svg>
-          <p>Nagmatiya Road<br>Gaya, Bihar</p>
-          <a href="https://maps.app.goo.gl/x1hzBJcJXmrhhHgs7" target="_blank" rel="noopener" class="map-link">Open in Google Maps →</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="assets/images/branding/logo-320.png"
-              srcset="assets/images/branding/logo-320.png 320w, assets/images/branding/logo-640.png 640w, assets/images/branding/logo.png 1774w"
-              sizes="120px"
-              width="120" height="60"
-             alt="Magadh Enterprises" class="footer-logo" loading="lazy" decoding="async">
-        <p class="brand-desc">Building materials and finishing solutions — Nagmatiya Road, Gaya, Bihar.</p>
-        <p class="footer-tagline">Tiles &middot; Marble<br>Granite &middot; Sanitaryware</p>
+<!-- PREMIUM FOOTER -->
+<footer class="me-footer">
+  <div class="me-footer-main">
+    <div class="me-footer-showroom-bg" aria-hidden="true"></div>
+    <div class="me-footer-content">
+
+      <div class="me-footer-brand">
+        <a href="#main" class="me-footer-logo-link" aria-label="Magadh Enterprises — back to top">
+          <img src="assets/images/branding/logo.png"
+               width="190" height="64"
+               alt="Magadh Enterprises - Tiles, Marble, Granite &amp; Sanitaryware" class="me-footer-logo" loading="lazy" decoding="async">
+        </a>
+        <h2 class="me-footer-tagline">Building beautiful<br>spaces, <em>together.</em></h2>
+        <div class="me-footer-accent" aria-hidden="true"></div>
+        <p class="me-footer-description">Your trusted destination for premium tiles, marble, granite, sanitaryware and installation solutions in Gaya, Bihar.</p>
+        <div class="me-footer-trust">
+          <div class="me-footer-trust-item">
+            <span class="me-trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+            </span>
+            <span><strong>Quality</strong>Materials</span>
+          </div>
+          <div class="me-footer-trust-divider" aria-hidden="true"></div>
+          <div class="me-footer-trust-item">
+            <span class="me-trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg>
+            </span>
+            <span><strong>Expert</strong>Guidance</span>
+          </div>
+          <div class="me-footer-trust-divider" aria-hidden="true"></div>
+          <div class="me-footer-trust-item">
+            <span class="me-trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg>
+            </span>
+            <span><strong>Reliable</strong>Support</span>
+          </div>
+        </div>
+        <p class="me-footer-category-line" aria-label="Categories: tiles, marble, granite, sanitaryware">
+          <span>TILES</span><i aria-hidden="true">•</i><span>MARBLE</span><i aria-hidden="true">•</i><span>GRANITE</span><i aria-hidden="true">•</i><span>SANITARYWARE</span>
+        </p>
       </div>
-      <div class="footer-col">
-        <h3>Products</h3>
-        <ul>
-          <li><a href="#deals">Tiles</a></li>
-          <li><a href="#deals">Marble</a></li>
-          <li><a href="#deals">Granite</a></li>
-          <li><a href="#deals">Sanitaryware</a></li>
-          <li><a href="#installation">MYK Laticrete</a></li>
-          <li><a href="#arment">MYK Arment</a></li>
-        </ul>
+
+      <div class="me-footer-column">
+        <p class="me-footer-heading">PRODUCTS</p>
+        <nav class="me-footer-links" aria-label="Product categories">
+          <a href="tiles.html">Tiles</a>
+          <a href="marble-granite.html#marble">Marble</a>
+          <a href="marble-granite.html#granite">Granite</a>
+          <a href="sanitaryware.html">Sanitaryware</a>
+          <a href="tile-adhesives.html">MYK Laticrete</a>
+          <a href="waterproofing.html">MYK Arment</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h3>Navigate</h3>
-        <ul>
-          <li><a href="#main">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#find-us">Find Us</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+
+      <div class="me-footer-column">
+        <p class="me-footer-heading">NAVIGATE</p>
+        <nav class="me-footer-links" aria-label="Site sections">
+          <a href="#main">Home</a>
+          <a href="#about">About</a>
+          <a href="products.html">Products</a>
+          <a href="#what-we-do">Solutions</a>
+          <a href="#find-us">Find Us</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-      <div class="footer-col">
-        <h3>Contact</h3>
-        <ul>
-          <li><a href="https://wa.me/919661555733" data-wa="visit" rel="noopener">WhatsApp</a></li>
-        </ul>
-        <h3 class="spaced">Follow Us</h3>
-        <div class="social-links">
+
+      <div class="me-footer-column me-footer-contact">
+        <p class="me-footer-heading">CONTACT</p>
+        <a href="tel:+919661555733" class="me-footer-contact-item">
+          <span class="me-contact-round" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span>+91 96615 55733</span>
+        </a>
+        <a href="https://wa.me/919661555733" target="_blank" rel="noopener" class="me-footer-contact-item">
+          <span class="me-contact-round" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z"/></svg></span>
+          <span>WhatsApp</span>
+        </a>
+        <div class="me-footer-contact-item me-footer-address">
+          <span class="me-contact-round" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </span>
+          <span>Nagmatiya Road,<br>Near Railway Hospital,<br>Railway Colony,<br>Gaya, Bihar, India</span>
+        </div>
+        <div class="me-footer-contact-divider" aria-hidden="true"></div>
+        <p class="me-footer-heading me-footer-follow-heading">FOLLOW US</p>
+        <div class="me-footer-social">
           <a href="https://www.facebook.com/profile.php?id=61593836797469" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <img src="assets/images/social/facebook.png" alt="Facebook" width="28" height="28" loading="lazy" decoding="async">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.5 21v-7h2.4l.6-3h-3V9.1c0-.9.3-1.6 1.7-1.6h1.4V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V11H7.5v3h2.7v7h3.3z"/></svg>
           </a>
           <a href="https://www.instagram.com/magadh.home/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <img src="assets/images/social/instagram.png" alt="Instagram" width="28" height="28" loading="lazy" decoding="async">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1.1" fill="currentColor" stroke="none"/></svg>
           </a>
           <a href="https://www.youtube.com/channel/UCH4h26FJVHBCyzo5ydk17tg" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <img src="assets/images/social/youtube.png" alt="YouTube" width="28" height="28" loading="lazy" decoding="async">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><rect x="3" y="6.5" width="18" height="11" rx="3"/><path d="M10.5 9.8l4.5 2.7-4.5 2.7z" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="https://wa.me/919661555733" data-wa="visit" rel="noopener noreferrer" aria-label="WhatsApp">
-            <img src="assets/images/social/whatsapp.png" alt="WhatsApp" width="28" height="28" loading="lazy" decoding="async">
+          <a href="https://wa.me/919661555733" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z"/></svg>
           </a>
           <a href="tel:+919661555733" aria-label="Call us">
-            <img src="assets/images/social/call.png" alt="Call us" width="28" height="28" loading="lazy" decoding="async">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </a>
         </div>
       </div>
+
     </div>
-    <div class="footer-bottom">
+  </div>
+
+  <div class="me-footer-bottom">
+    <div class="me-footer-bottom-inner">
       <p>&copy; <span data-current-year>2026</span> Magadh Enterprises. All rights reserved.</p>
-      <p class="footer-address">Nagmatiya Road, Gaya, Bihar, India</p>
+      <a href="#visit" class="me-footer-bottom-location">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Nagmatiya Road, Gaya, Bihar, India
+      </a>
     </div>
   </div>
 </footer>
 
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/products.js" defer></script>
-<script src="assets/js/product-filters.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

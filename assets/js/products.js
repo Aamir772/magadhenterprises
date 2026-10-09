@@ -1,21 +1,21 @@
 /**
  * Product catalogue, single source of truth.
  *
- * The rendered HTML in index.html is what search engines and no-JS visitors see,
- * so it stays static and crawlable. This module exists so the repeated product
- * fields (brand tag, name, description, image) live in one editable place
- * instead of being copy-pasted, and so a build step or future CMS integration
- * has something structured to read.
+ * The rendered HTML on the catalogue pages is what search engines and no-JS
+ * visitors see, so it stays static and crawlable. This module exists so the
+ * repeated product fields (brand tag, name, description, image) live in one
+ * editable place instead of being copy-pasted, and so a build step or future
+ * CMS integration has something structured to read.
  *
  * IMPORTANT: every value below is copied verbatim from the original baseline
  * site. No specifications, prices or claims have been added. If you edit a
- * product here, mirror the change in index.html (or add a generator).
+ * product here, mirror the change on its catalogue page (or add a generator).
  *
  * CATEGORIES
  * ----------
- * `category` is the slug the "Explore Products" tabs filter on and must match
- * the `data-category` attribute on the matching .product-card in index.html.
- * It is derived from `purpose`, which is the business's own classification:
+ * `category` is the slug the catalogue filters on and must match the
+ * `data-category` attribute on the matching .product-card. It is derived
+ * from `purpose`, which is the business's own classification:
  *
  *   Tile Adhesives ............ adhesives
  *   Grouts & Epoxy ............ grouts-epoxy
@@ -25,18 +25,22 @@
  *   Primers & Bonding Agents .. primers-repair
  *   Crack Repair .............. primers-repair
  *
+ * `section` is the id of the <section> rendering the group's cards — one
+ * section per catalogue page (tile-adhesives, grouts-epoxy, tile-care,
+ * waterproofing).
+ *
  * Marble, granite and sanitaryware are showroom categories (see the category
- * cards in index.html) with no product records, so they have no tab and no
- * products are fabricated for them.
+ * blocks on products.html) with no product records, so they have no tab and
+ * no products are fabricated for them.
  */
 window.MAGADH_PRODUCTS = (function () {
   'use strict';
 
   return [
     {
-      section: 'installation',
+      section: 'tile-adhesives',
       sectionLabel: 'MYK Laticrete',
-      sectionHeading: 'Installation solutions.',
+      sectionHeading: 'Tile adhesives.',
       items: [
         {
           name: 'Latafix 305',
@@ -77,7 +81,14 @@ window.MAGADH_PRODUCTS = (function () {
           height: 900,
           alt: 'MYK Laticrete Super Set cement slurry additive',
           description: 'Cement slurry additive. Enhances bond strength and performance of cement slurry for tile and stone fixing.'
-        },
+        }
+      ]
+    },
+    {
+      section: 'grouts-epoxy',
+      sectionLabel: 'MYK Laticrete',
+      sectionHeading: 'Grouts & epoxy.',
+      items: [
         {
           name: 'Latapoxy',
             purpose: 'Grouts & Epoxy',
@@ -117,7 +128,14 @@ window.MAGADH_PRODUCTS = (function () {
           height: 900,
           alt: 'MYK Laticrete Grout Admix Plus 1776 grout additive',
           description: 'Polymer-based grout additive. Improves colour fastness, flexibility, compressive strength and reduces water absorption.'
-        },
+        }
+      ]
+    },
+    {
+      section: 'tile-care',
+      sectionLabel: 'MYK Laticrete',
+      sectionHeading: 'Tile care & accessories.',
+      items: [
         {
           name: 'Clenza TC',
             purpose: 'Tile Care',
@@ -151,9 +169,9 @@ window.MAGADH_PRODUCTS = (function () {
       ]
     },
     {
-      section: 'arment',
+      section: 'waterproofing',
       sectionLabel: 'MYK Arment',
-      sectionHeading: 'Waterproofing & construction solutions.',
+      sectionHeading: 'Waterproofing solutions.',
       items: [
         {
           name: 'AquaArm SuperFlex',
@@ -234,12 +252,12 @@ window.MAGADH_PRODUCTS = (function () {
  * The "Explore Products" category tabs, in display order.
  *
  * `count` is derived from the catalogue above rather than typed by hand, so a
- * tab can never advertise a number the grid does not hold. The tab bar itself
- * is static markup in index.html (crawlable, and visible without scripting);
- * this list documents the taxonomy the filter reads from the DOM.
+ * tab can never advertise a number the grid does not hold. Tab bars are
+ * static markup on the catalogue pages (crawlable, and visible without
+ * scripting); this list documents the taxonomy filters read from the DOM.
  *
  * Marble, granite and sanitaryware are showroom categories, not product
- * groups: the business has photography and category cards for them but no
+ * groups: the business has photography and category blocks for them but no
  * product records, so they get no tab and no invented products.
  */
 window.MAGADH_PRODUCT_CATEGORIES = (function () {
