@@ -12,6 +12,15 @@ assets/images/visual/
 # 900x1350 derivatives under assets/images/tiles/collection/ are what visitors get.
 assets/images/original/
 
+# Generated builds
+/dist/
+/release/
+/staging/
+
+# Deployment archives
+*.zip
+
+# Local reports (optional: keep tracked if you want them in GitHub)
 # Node tooling is only used for local validation, never for the deployed site.
 node_modules/
 package.json

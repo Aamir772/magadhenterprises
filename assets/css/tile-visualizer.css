@@ -304,7 +304,7 @@
 .tv-tile-img {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   background: var(--surface-alt);
 }

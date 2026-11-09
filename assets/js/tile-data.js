@@ -1,9 +1,9 @@
 /**
  * Magadh Enterprises — Tile Visualizer catalogue.
  *
- * Source photography: assets/images/visual/ (display photographs supplied
- * by the business). Web-ready derivatives live in assets/images/tiles/<id>/.
- * Originals are never modified.
+ * Tile photography: assets/images/tiles/collection/ (the published photographs
+ * shared with the Tiles collection page). tile-01..tile-17 map onto the
+ * collection masters, so there is a single photo of record per tile.
  *
  * PRODUCT METADATA
  * ----------------
@@ -48,9 +48,10 @@ window.MAGADH_TILES = (function () {
     ['tile-17', 'Tiles- (19).jpg']
   ];
 
-  var ACTUAL_W = 1350;
-  var ACTUAL_H = 1800;
-  var THUMB = 320;
+  var ACTUAL_W = 900;
+  var ACTUAL_H = 1350;
+  var THUMB_W = 480;
+  var THUMB_H = 720;
 
   var tiles = RAW.map(function (entry) {
     var id = entry[0];
@@ -62,16 +63,19 @@ window.MAGADH_TILES = (function () {
       finish: null,
       type: null,
       alt: 'Tile ' + id.slice(-2) + ' from the Magadh Enterprises tile range, Gaya',
-      actual: 'assets/images/tiles/' + id + '/actual.jpg',
-      // Square centre crop of the same photograph, used only for the picker
-      // thumbnail. Generated from `actual`; the tile itself is never altered
-      // and the full-resolution original stays the source of truth.
-      actualSquare: 'assets/images/tiles/' + id + '/actual-square.jpg',
+      // The published tile photograph (900×1350 collection master) is shared
+      // with the Tiles collection page, so there is one photo of record.
+      actual: 'assets/images/tiles/collection/' + id + '.jpg',
+      // Pickler-thumbnail derivation at 480px wide. The portrait 2:3 crop below
+      // differs from the original square-crop intent, but it keeps the whole
+      // tile visible in the picker.
+      actualSquare: 'assets/images/tiles/collection/' + id + '-480.png',
       actualWidth: ACTUAL_W,
       actualHeight: ACTUAL_H,
-      thumbWidth: THUMB,
-      thumbHeight: THUMB,
-      source: 'assets/images/visual/' + entry[1],
+      thumbWidth: THUMB_W,
+      thumbHeight: THUMB_H,
+      // Same real photograph is the source of record for the AI pipeline.
+      source: 'assets/images/tiles/collection/' + id + '.jpg',
       // This tile may be sent to the AI pipeline as the source material.
       generatable: true,
       // Drop a real installation photograph in here (for example

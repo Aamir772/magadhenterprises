@@ -902,6 +902,10 @@ body.nav-open .site-header { z-index: 101 }
   padding-block: clamp(4rem, 7vw, 6rem);
 }
 
+@media (max-width: 768px) {
+  .trust-section { padding-block: 3.5rem }
+}
+
 .trust-section .trust-label {
   font-family: var(--sans);
   font-size: .72rem;
@@ -1423,7 +1427,7 @@ body.nav-open .site-header { z-index: 101 }
 }
 
 @media (max-width: 620px) {
-  .material-solutions { padding: 70px 0 }
+  .material-solutions { padding: 56px 0 }
   .material-solutions__intro {
     width: min(100% - 32px, 500px);
     margin-bottom: 40px;
@@ -3363,17 +3367,38 @@ body.nav-open .site-header { z-index: 101 }
   justify-content: center;
   flex-wrap: wrap;
   gap: .9rem 1.5rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
-  font-weight: 500;
-  letter-spacing: .02em;
-  color: var(--color-dark);
   margin: 0;
 }
 
-.tiles-brands-names span[aria-hidden="true"] {
-  color: var(--color-gold);
-  font-size: 1rem;
+.tiles-brands-logo {
+  height: 3rem;
+  width: auto;
+  min-width: 5.5rem;
+  max-width: 11rem;
+  object-fit: contain;
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: .4rem .75rem;
+  box-shadow: 0 1px 3px rgba(1, 14, 23, .06);
+}
+
+.tiles-brands-sep {
+  width: 1px;
+  height: 2rem;
+  background: var(--color-gold);
+  opacity: .55;
+}
+
+@media (max-width: 480px) {
+  .tiles-brands-logo {
+    height: 2rem;
+    min-width: 4rem;
+    max-width: 8rem;
+    padding: .3rem .5rem;
+  }
+  .tiles-brands-sep {
+    height: 1.4rem;
+  }
 }
 
 /* Collection header + material grid. */
@@ -3899,7 +3924,7 @@ body.nav-open .site-header { z-index: 101 }
 }
 
 @media (max-width: 800px) {
-  #what-we-do { padding: 75px 22px }
+  #what-we-do { padding: 56px 22px }
   #what-we-do .wwd-intro {
     grid-template-columns: 1fr;
     gap: 25px;
@@ -4155,12 +4180,12 @@ body.nav-open .site-header { z-index: 101 }
 }
 
 @media (max-width: 900px) {
-  .me-location-section { padding: 70px 0 }
+  .me-location-section { padding: 56px 0 }
   .me-location-inner {
     width: calc(100% - 32px);
     grid-template-columns: 1fr;
   }
-  .me-location-content { padding: 55px 35px }
+  .me-location-content { padding: 48px 35px }
   .me-location-visual { min-height: 420px }
   .me-location-content h2 { font-size: clamp(54px, 13vw, 78px) }
 }
@@ -4545,6 +4570,13 @@ a.me-footer-contact-item:hover .me-contact-round {
     max-width: none;
   }
   .me-footer-contact .me-footer-heading { grid-column: 1 / -1 }
+  /* Phone/WhatsApp/address rows span the full width; at ~150px
+     half-columns even a phone number wraps word-by-word. */
+  .me-footer-contact > a.me-footer-contact-item,
+  .me-footer-contact .me-footer-address {
+    grid-column: 1 / -1;
+    max-width: 560px;
+  }
   .me-footer-contact-divider { grid-column: 1 / -1 }
   .me-footer-follow-heading { grid-column: 1 }
   .me-footer-social { grid-column: 2 }
@@ -4564,29 +4596,37 @@ a.me-footer-contact-item:hover .me-contact-round {
   .me-footer-content {
     width: calc(100% - 40px);
     min-height: auto;
-    padding: 70px 0 55px;
+    padding: 48px 0 40px;
     display: flex;
     flex-direction: column;
-    gap: 55px;
+    gap: 36px;
   }
   .me-footer-brand { max-width: none }
+  .me-footer-logo-link { margin-bottom: 28px }
   .me-footer-logo { width: 165px; max-height: 55px }
   .me-footer-tagline { font-size: 48px }
+  .me-footer-accent { margin: 22px 0 20px }
   .me-footer-trust {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    margin-top: 32px;
   }
   .me-footer-trust-divider { display: none }
   .me-footer-category-line {
     flex-wrap: wrap;
     line-height: 2;
+    margin-top: 32px;
   }
   .me-footer-column { padding-top: 0 }
   .me-footer-contact { display: block }
   .me-footer-contact .me-footer-heading { display: inline-flex }
-  .me-footer-contact-divider { margin: 35px 0 }
-  .me-footer-social { margin-top: 20px }
+  .me-footer-contact-item > span:last-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .me-footer-contact-divider { margin: 24px 0 }
+  .me-footer-social { margin-top: 12px }
   .me-footer-social a {
     width: 40px;
     height: 40px;
@@ -4628,4 +4668,59 @@ a.me-footer-contact-item:hover .me-contact-round {
   .me-footer-social a:hover {
     transform: none;
   }
+}
+
+/* ============================================================================
+   ADVERTISING SLOTS (Google AdSense-ready) -----------------------------------
+   Reserved, responsive containers for future AdSense units. They are collapsed
+   (display:none) until assets/js/ads.js receives a real publisher ID + ad-unit
+   IDs, so the page NEVER shows an empty ad box or a blank band. Ads are kept on
+   their own full-width rows, away from buttons, navigation and floating
+   controls, and are not sticky/floating.
+
+   To remove advertising entirely: delete this block, assets/js/ads.js and its
+   single <script> tag in the page. Nothing else depends on it.
+   ============================================================================ */
+.ad-slot { display: none }
+
+/* Only rendered once ads.js has built the unit, i.e. real IDs are configured. */
+.ad-slot.is-active { display: block }
+
+.ad-slot__inner {
+  width: min(100% - (var(--container-gutter) * 2), var(--container-max));
+  margin-inline: auto;
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .55rem;
+}
+
+/* Small disclosure label, only visible when a unit is live. */
+.ad-slot__label {
+  font-family: var(--sans);
+  font-size: .625rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* The ad frame itself. Width is fluid; the max-widths match the responsive
+   AdSense formats so small screens shrink instead of overflowing. */
+.ad-slot .adsbygoogle {
+  display: block;
+  width: 100%;
+  max-width: 970px;
+  overflow: hidden;
+}
+
+/* Content-page variant: sits inside a prose column, so it stays narrower. */
+.ad-slot--content .ad-slot__inner { padding-block: clamp(1.5rem, 3vw, 2.5rem) }
+.ad-slot--content .adsbygoogle { max-width: 728px }
+
+@media (max-width: 560px) {
+  .ad-slot__inner { padding-block: clamp(1.5rem, 6vw, 2.25rem) }
+  .ad-slot .adsbygoogle { max-width: 100% }
 }
