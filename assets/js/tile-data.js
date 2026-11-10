@@ -68,8 +68,9 @@ window.MAGADH_TILES = (function () {
       actual: 'assets/images/tiles/collection/' + id + '.jpg',
       // Pickler-thumbnail derivation at 480px wide. The portrait 2:3 crop below
       // differs from the original square-crop intent, but it keeps the whole
-      // tile visible in the picker.
-      actualSquare: 'assets/images/tiles/collection/' + id + '-480.png',
+      // tile visible in the picker. WebP here is display-only; the server-side
+      // catalog keeps the JPEG `actual` as the AI source of record.
+      actualSquare: 'assets/images/tiles/collection/' + id + '-480.webp',
       actualWidth: ACTUAL_W,
       actualHeight: ACTUAL_H,
       thumbWidth: THUMB_W,

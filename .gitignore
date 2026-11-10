@@ -5,7 +5,17 @@ magadh_netlify.zip
 # The 17 full-resolution source photographs (approx. 150MB). Kept on disk as the
 # provenance record; the rotation-corrected web derivatives under
 # assets/images/tiles/ are the tracked versions actually served to visitors.
-assets/images/visual/
+assets/images/visual/*
+!assets/images/visual/Bathroom Solution.png
+!assets/images/visual/Bathroom Solution-1200.webp
+!assets/images/visual/Exxaro-2.jpg
+!assets/images/visual/Installtion.png
+!assets/images/visual/Installtion-1200.webp
+!assets/images/visual/logo-crystal.png
+!assets/images/visual/surface materials.png
+!assets/images/visual/surface materials-1200.webp
+!assets/images/visual/vura.jpg
+!assets/images/visual/vura-700.webp
 
 # Second, larger full-resolution upload drop (19 original "Tiles- (N).jpg" files,
 # approx. 167MB). Same reasoning as above: on-disk archive only. The tracked
@@ -30,3 +40,5 @@ package-lock.json
 .DS_Store
 Thumbs.db
 *.swp
+# Local Netlify folder
+.netlify

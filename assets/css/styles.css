@@ -2014,6 +2014,7 @@ body.nav-open .site-header { z-index: 101 }
   inset: 0;
   z-index: 0;
   background-image: url("../images/marble/marble-cat-1536.jpg");
+  background-image: image-set(url("../images/marble/marble-cat-1536.webp") type("image/webp"), url("../images/marble/marble-cat-1536.jpg") type("image/jpeg"));
   background-size: cover;
   background-position: 62% 50%;
   opacity: .38;
@@ -2124,6 +2125,7 @@ body.nav-open .site-header { z-index: 101 }
   height: 66%;
   transform: rotate(3.5deg);
   background-image: url("../images/marble/marble-cat-1536.jpg");
+  background-image: image-set(url("../images/marble/marble-cat-1536.webp") type("image/webp"), url("../images/marble/marble-cat-1536.jpg") type("image/jpeg"));
   /* contain, not cover: the slab is smaller than its frame, and cover would
      scale the stone up until the sample read as a wall panel instead of a cut
      piece. */
@@ -4245,6 +4247,9 @@ body.nav-open .site-header { z-index: 101 }
   background-image:
     linear-gradient(90deg, #211f1d 0%, rgba(33, 31, 29, .95) 12%, rgba(33, 31, 29, .65) 42%, rgba(33, 31, 29, .12) 100%),
     url("../images/showroom/hero-showroom.jpg");
+  background-image:
+    linear-gradient(90deg, #211f1d 0%, rgba(33, 31, 29, .95) 12%, rgba(33, 31, 29, .65) 42%, rgba(33, 31, 29, .12) 100%),
+    image-set(url("../images/showroom/hero-showroom.webp") type("image/webp"), url("../images/showroom/hero-showroom.jpg") type("image/jpeg"));
   background-size: cover;
   background-position: center;
   opacity: .82;

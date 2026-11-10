@@ -2,42 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://magadhenterprises.netlify.app/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/tiles.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/marble-granite.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/products.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/sanitaryware.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/waterproofing.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/tile-care.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/tile-adhesives.html</loc>
+  </url>
+  <url>
+    <loc>https://magadhenterprises.netlify.app/grouts-epoxy.html</loc>
   </url>
   <url>
     <loc>https://magadhenterprises.netlify.app/tile-visualizer</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://magadhenterprises.netlify.app/#deals</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://magadhenterprises.netlify.app/#products</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://magadhenterprises.netlify.app/#arment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://magadhenterprises.netlify.app/#gallery</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://magadhenterprises.netlify.app/#find-us</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://magadhenterprises.netlify.app/#contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>
