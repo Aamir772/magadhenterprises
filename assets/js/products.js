@@ -17,26 +17,241 @@
  * `data-category` attribute on the matching .product-card. It is derived
  * from `purpose`, which is the business's own classification:
  *
+ *   Tiles ..................... tiles
+ *   Marble .................... marble (no product records on file)
+ *   Granite ................... granite (no product records on file)
+ *   Sanitaryware .............. sanitaryware (no product records on file)
  *   Tile Adhesives ............ adhesives
  *   Grouts & Epoxy ............ grouts-epoxy
  *   Waterproofing ............. waterproofing
  *   Tile Care ................. tile-care
- *   Tools & Accessories ....... tile-care
+ *   Tools & Accessories ....... tools-accessories
  *   Primers & Bonding Agents .. primers-repair
  *   Crack Repair .............. primers-repair
  *
- * `section` is the id of the <section> rendering the group's cards — one
- * section per catalogue page (tile-adhesives, grouts-epoxy, tile-care,
- * waterproofing).
- *
  * Marble, granite and sanitaryware are showroom categories (see the category
- * blocks on products.html) with no product records, so they have no tab and
- * no products are fabricated for them.
+ * blocks on products.html) with no product records on file, so the catalogue
+ * renders their tabs with a count of 0 and no inventory is fabricated for them.
+ *
+ * TILES
+ * -----
+ * The tiles collect has NOT had brand, size, finish or model metadata verified
+ * (see assets/js/tile-data.js), so tile products carry neutral "Tile Design NN"
+ * names and no specification fields. Tile photography is shared with the Tile
+ * Visualizer. Crystal Ceramics, Exxaro and Vura are tile BRANDS, not products —
+ * they live in the Brands sections (tiles.html / brand showcases), not here.
  */
 window.MAGADH_PRODUCTS = (function () {
   'use strict';
 
   return [
+    {
+      section: 'tiles',
+      sectionLabel: 'Magadh Enterprises',
+      sectionHeading: 'Tiles.',
+      items: [
+        {
+          name: 'Tile Design 01',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-01-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 01 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 02',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-02-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 02 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 03',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-03-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 03 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 04',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-04-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 04 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 05',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-05-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 05 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 06',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-06-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 06 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 07',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-07-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 07 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 08',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-08-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 08 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 09',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-09-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 09 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 10',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-10-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 10 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 11',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-11-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 11 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 12',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-12-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 12 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 13',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-13-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 13 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 14',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-14-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 14 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 15',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-15-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 15 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 16',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-16-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 16 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 17',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-17-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 17 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 18',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-18-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 18 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 19',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-19-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 19 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        },
+        {
+          name: 'Tile Design 20',
+          purpose: 'Tiles',
+          category: 'tiles',
+          image: 'assets/images/tiles/collection/tile-20-480.webp',
+          width: 480,
+          height: 720,
+          alt: 'Tile Design 20 from the Magadh Enterprises tile range, Gaya',
+          description: 'Showroom tile from the Magadh Enterprises range, Gaya. Field sizes, finishes and applications are not yet verified for online listing - ask our team at the showroom.'
+        }
+      ]
+    },
     {
       section: 'tile-adhesives',
       sectionLabel: 'MYK Laticrete',
@@ -149,7 +364,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Tile Spacers',
             purpose: 'Tools & Accessories',
-            category: 'tile-care',
+            category: 'tools-accessories',
           image: 'assets/images/laticrete/tile-spacers.jpg',
           width: 755,
           height: 900,
@@ -159,7 +374,7 @@ window.MAGADH_PRODUCTS = (function () {
         {
           name: 'Tile Leveling Clips',
             purpose: 'Tools & Accessories',
-            category: 'tile-care',
+            category: 'tools-accessories',
           image: 'assets/images/laticrete/tile-leveling-clips.jpg',
           width: 600,
           height: 900,
@@ -256,20 +471,25 @@ window.MAGADH_PRODUCTS = (function () {
  * static markup on the catalogue pages (crawlable, and visible without
  * scripting); this list documents the taxonomy filters read from the DOM.
  *
- * Marble, granite and sanitaryware are showroom categories, not product
- * groups: the business has photography and category blocks for them but no
- * product records, so they get no tab and no invented products.
+ * Marble, granite and sanitaryware have no product records on file, so their
+ * tabs render with a count of 0 and their grid state offers an honest
+ * "ask our team" message — no inventory is fabricated for them.
  */
 window.MAGADH_PRODUCT_CATEGORIES = (function () {
   'use strict';
 
   var ORDER = [
     { id: 'all', label: 'All Products' },
+    { id: 'tiles', label: 'Tiles' },
+    { id: 'marble', label: 'Marble' },
+    { id: 'granite', label: 'Granite' },
+    { id: 'sanitaryware', label: 'Sanitaryware' },
     { id: 'adhesives', label: 'Tile Adhesives' },
     { id: 'grouts-epoxy', label: 'Grouts & Epoxy' },
-    { id: 'waterproofing', label: 'Waterproofing' },
+    { id: 'primers-repair', label: 'Primers & Repair' },
     { id: 'tile-care', label: 'Tile Care & Accessories' },
-    { id: 'primers-repair', label: 'Primers & Repair' }
+    { id: 'waterproofing', label: 'Waterproofing' },
+    { id: 'tools-accessories', label: 'Tools & Accessories' }
   ];
 
   var counts = {};

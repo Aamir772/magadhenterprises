@@ -47,7 +47,7 @@
     var closeBtn = document.getElementById('mobile-nav-close');
     if (!toggle || !nav) return;
 
-    var links = Array.prototype.slice.call(nav.querySelectorAll('a, .mobile-link'));
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
     var lastFocused = null;
 
     function isOpen() {
@@ -55,7 +55,10 @@
     }
 
     function focusables() {
-      var items = links.concat(toggle);
+      var mobileToggle = nav.querySelector('.mobile-nav-toggle');
+      var items = links.slice();
+      if (mobileToggle) items.push(mobileToggle);
+      items = items.concat(toggle);
       if (closeBtn) items.push(closeBtn);
       return items;
     }
@@ -277,14 +280,33 @@
   function initCatalogueCheck() {
     var catalogue = window.MAGADH_PRODUCTS;
     if (!catalogue || !catalogue.length) return;
+
+    /* products.html renders its grid from products.js itself, so the static
+       markup comparison below is meaningless there — a mismatch warning would
+       be a constant false positive. Verify the generated grid instead. */
+    var generatedGrid = document.getElementById('product-grid');
+    if (generatedGrid) {
+      var expectedTotal = 0;
+      catalogue.forEach(function (group) { expectedTotal += group.items.length; });
+      if (generatedGrid.children.length !== expectedTotal) {
+        console.warn('Magadh: products.html grid (' + generatedGrid.children.length + ' cards) does not match products.js (' + expectedTotal + ' records).');
+      }
+      return;
+    }
+
     if (!document.querySelector('.product-card')) return;
 
     var expected = {};
     catalogue.forEach(function (group) {
+      /* Single-category catalogue pages (tile-care.html and friends) render
+         only their own section in static markup; comparing them against the
+         whole catalogue would be one long false alarm. Compare like-for-like. */
+      if (!document.getElementById(group.section)) return;
       group.items.forEach(function (item) {
         expected[group.section + '|' + item.name] = item;
       });
     });
+    if (!Object.keys(expected).length) return;
 
     var rendered = {};
     document.querySelectorAll('.product-card').forEach(function (card) {
@@ -378,8 +400,10 @@
     var targets = [];
 
     links.forEach(function (link) {
+      var hash = link.getAttribute('href');
+      if (hash === '#main' || hash === '#') return;
       var section;
-      try { section = document.querySelector(link.getAttribute('href')); } catch (e) { return; }
+      try { section = document.querySelector(hash); } catch (e) { return; }
       if (!section) return;
       map[section.id] = link;
       targets.push(section);
@@ -502,6 +526,75 @@
     });
   }
 
+
+  /* 6. Interactive HOW WE HELP timeline ------------------------------------ */
+  function initWwdTimeline() {
+    var steps = document.querySelectorAll('.wwd-step-premium');
+    var panel = document.getElementById('wwd-step-panel');
+    if (!steps.length || !panel) return;
+
+    var titles = ['Explore', 'Plan', 'Execute', 'Complete'];
+    var descs = [
+      'Browse tiles, marble, granite, sanitaryware, finishes and product options at our showroom.',
+      'Discuss your requirements and find the right material combinations for your space.',
+      'Get the right installation solutions, adhesives, grouts and accessories.',
+      'Bring every element together for a beautiful, functional and lasting space.'
+    ];
+
+    function activate(index) {
+      steps.forEach(function (step, i) {
+        if (i === index) {
+          step.classList.add('is-active');
+          step.setAttribute('aria-selected', 'true');
+        } else {
+          step.classList.remove('is-active');
+          step.setAttribute('aria-selected', 'false');
+        }
+      });
+      panel.querySelector('.wwd-step-panel__title').textContent = titles[index];
+      panel.querySelector('.wwd-step-panel__desc').textContent = descs[index];
+    }
+
+    steps.forEach(function (step, i) {
+      step.addEventListener('click', function () { activate(i); });
+      step.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          var next = (i + 1) % steps.length;
+          steps[next].focus();
+          activate(next);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          var prev = (i - 1 + steps.length) % steps.length;
+          steps[prev].focus();
+          activate(prev);
+        }
+      });
+    });
+  }
+
+
+  /* 9. Product ribbon pause control --------------------------------------- */
+  function initProductRibbon() {
+    var pauseBtn = document.getElementById('ribbon-pause');
+    var ribbon = document.querySelector('.product-ribbon');
+    if (!pauseBtn || !ribbon) return;
+
+    var paused = false;
+
+    pauseBtn.addEventListener('click', function () {
+      paused = !paused;
+      ribbon.classList.toggle('is-paused', paused);
+      pauseBtn.setAttribute('aria-label', paused ? 'Resume ribbon animation' : 'Pause ribbon animation');
+      var svg = pauseBtn.querySelector('svg');
+      if (svg) {
+        svg.innerHTML = paused
+          ? '<polygon points="5,3 19,12 5,21"/>'
+          : '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      }
+    });
+  }
+
   function init() {
     initHeaderElevation();
     initMobileNav();
@@ -510,6 +603,7 @@
     initHashNavigation();
     initScrollSpy();
     initReveal();
+    initWwdTimeline();
     initYear();
     initCatalogueCheck();
   }

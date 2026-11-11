@@ -52,8 +52,8 @@
       <span class="nav-separator" aria-hidden="true"></span>
 
       <nav class="site-nav" aria-label="Primary">
-        <a href="tile-visualizer.html" class="nav-link">Tile Visualizer</a>
-        <a href="index.html#deals" class="nav-link">Deals In</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">Brands</a>
 <div class="nav-item has-dropdown">
           <button class="nav-link nav-dropdown-toggle" type="button"
                   aria-expanded="false" aria-controls="products-mega">
@@ -109,8 +109,9 @@
             </div>
           </div>
         </div>
-        <a href="index.html#what-we-do" class="nav-link">Gallery</a>
-        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#what-we-do" class="nav-link">Solutions</a>
+        <a href="tile-visualizer.html" class="nav-link">Tile Visualizer</a>
+        <a href="index.html#trust" class="nav-link">About</a>
         <a href="index.html#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -135,8 +136,8 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
   <div class="mobile-nav-content">
-    <a href="tile-visualizer.html" class="mobile-link">Tile Visualizer</a>
-    <a href="index.html#deals" class="mobile-link">Deals In</a>
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="index.html#about" class="mobile-link">Brands</a>
 <div class="mobile-nav-group">
       <button class="mobile-link mobile-nav-toggle" type="button" aria-expanded="false"
 aria-controls="mobile-products">
@@ -154,8 +155,9 @@ aria-controls="mobile-products">
         <a href="tile-care.html" class="mobile-sublink">Tile Care &amp; Accessories</a>
       </div>
     </div>
-    <a href="index.html#what-we-do" class="mobile-link">Gallery</a>
-    <a href="index.html#about" class="mobile-link">About</a>
+    <a href="index.html#what-we-do" class="mobile-link">Solutions</a>
+    <a href="tile-visualizer.html" class="mobile-link">Tile Visualizer</a>
+    <a href="index.html#trust" class="mobile-link">About</a>
     <a href="index.html#contact" class="mobile-link">Contact</a>
   </div>
 </nav>
@@ -179,18 +181,91 @@ aria-controls="mobile-products">
   </div>
 </section>
 
-<!-- BRAND STRIP -->
-<section class="tiles-brands" aria-label="Our tile brands">
-  <div class="container">
-    <p class="tiles-brands-eyebrow">OUR TILE BRANDS</p>
-    <div class="tiles-brands-rule" aria-hidden="true"></div>
-    <p class="tiles-brands-names">
-      <img class="tiles-brands-logo" src="assets/images/visual/logo-crystal.png" width="243" height="131" alt="Crystal Ceramics brand logo" loading="lazy" decoding="async">
-      <span class="tiles-brands-sep" aria-hidden="true"></span>
-      <img class="tiles-brands-logo" src="assets/images/visual/Exxaro-2.jpg" width="850" height="478" alt="Exxaro brand logo" loading="lazy" decoding="async">
-      <span class="tiles-brands-sep" aria-hidden="true"></span>
-      <picture><source srcset="assets/images/visual/vura-700.webp" type="image/webp"><img class="tiles-brands-logo" src="assets/images/visual/vura.jpg" width="700" height="900" alt="Vura brand logo" loading="lazy" decoding="async"></picture>
-    </p>
+﻿<!-- TILE BRANDS SHOWCASE -->
+<section class="brand-showcase" id="tile-brands-showcase" aria-label="Our tile brands" aria-roledescription="carousel">
+  <div class="brand-showcase__header">
+    <p class="brand-showcase__eyebrow">OUR TILE BRANDS</p>
+    <h2 class="brand-showcase__title">Recognised brands. Premium surfaces.</h2>
+    <p class="brand-showcase__subtitle">Discover the tile brands we represent at Magadh Enterprises, Gaya.</p>
+  </div>
+
+  <div class="brand-carousel" id="tile-brands-carousel" role="region" aria-roledescription="carousel" aria-label="Tile brands">
+    <div class="brand-carousel__viewport">
+      <div class="brand-carousel__track">
+
+        <!-- Slide 1: Crystal Ceramics -->
+        <div class="brand-slide is-active" data-brand="crystal" role="group" aria-roledescription="slide" aria-label="Crystal Ceramics, 1 of 3">
+          <div class="brand-slide__media">
+            <img src="assets/images/tiles/tiles-cat-1024.jpg" alt="Crystal Ceramics premium tile collection on display at Magadh Enterprises showroom" class="brand-slide__product" width="1024" height="683" loading="lazy" decoding="async">
+          </div>
+          <div class="brand-slide__panel">
+            <div class="brand-slide__logo-wrap">
+              <img src="assets/images/visual/logo-crystal.png" alt="Crystal Ceramics brand logo" class="brand-slide__logo" width="243" height="131">
+            </div>
+            <h3 class="brand-slide__name">Crystal Ceramics</h3>
+            <p class="brand-slide__tagline">Premium tile surfaces for every space.</p>
+            <p class="brand-slide__desc">Crystal Ceramics delivers high-quality ceramic and vitrified tiles designed for residential and commercial applications. Available in a range of finishes, sizes and textures at Magadh Enterprises.</p>
+            <div class="brand-slide__actions">
+              <a href="tiles.html" class="btn btn-primary">Explore Tiles <span aria-hidden="true">&#x2192;</span></a>
+              <a href="https://wa.me/919661555733" class="btn btn-ghost" data-wa="general" rel="noopener">Enquire on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Exxaro Tiles -->
+        <div class="brand-slide" data-brand="exxaro" role="group" aria-roledescription="slide" aria-label="Exxaro Tiles, 2 of 3" aria-hidden="true">
+          <div class="brand-slide__media">
+            <img src="assets/images/visual/Exxaro-2.jpg" alt="Exxaro Tiles campaign artwork showing tile products and interior applications" class="brand-slide__product" width="850" height="478" loading="lazy" decoding="async">
+          </div>
+          <div class="brand-slide__panel">
+            <div class="brand-slide__logo-wrap brand-slide__logo-wrap--text">
+              <span class="brand-slide__logo-text">EXXARO</span>
+            </div>
+            <h3 class="brand-slide__name">Exxaro Tiles</h3>
+            <p class="brand-slide__tagline">Tiles that transform spaces.</p>
+            <p class="brand-slide__desc">Exxaro offers a curated range of tiles for floors and walls, combining design innovation with durable performance. Browse the Exxaro collection at the Magadh Enterprises showroom.</p>
+            <div class="brand-slide__actions">
+              <a href="tiles.html" class="btn btn-primary">Explore Tiles <span aria-hidden="true">&#x2192;</span></a>
+              <a href="https://wa.me/919661555733" class="btn btn-ghost" data-wa="general" rel="noopener">Enquire on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Vura -->
+        <div class="brand-slide" data-brand="vura" role="group" aria-roledescription="slide" aria-label="Vura, 3 of 3" aria-hidden="true">
+          <div class="brand-slide__media">
+            <picture><source srcset="assets/images/visual/vura-700.webp" type="image/webp"><img src="assets/images/visual/vura.jpg" alt="Vura brand campaign featuring adhesive and construction products" class="brand-slide__product" width="700" height="900" loading="lazy" decoding="async"></picture>
+          </div>
+          <div class="brand-slide__panel">
+            <div class="brand-slide__logo-wrap">
+              <picture><source srcset="assets/images/visual/vura-700.webp" type="image/webp"><img src="assets/images/visual/vura.jpg" alt="Vura brand logo" class="brand-slide__logo" width="700" height="900"></picture>
+            </div>
+            <h3 class="brand-slide__name">Vura</h3>
+            <p class="brand-slide__tagline">Quality you can build on.</p>
+            <p class="brand-slide__desc">Vura provides reliable tiling and construction products for professional and residential projects. Available at Magadh Enterprises, Gaya.</p>
+            <div class="brand-slide__actions">
+              <a href="tiles.html" class="btn btn-primary">Explore Tiles <span aria-hidden="true">&#x2192;</span></a>
+              <a href="https://wa.me/919661555733" class="btn btn-ghost" data-wa="general" rel="noopener">Enquire on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="brand-carousel__controls">
+      <button class="brand-carousel__btn brand-carousel__prev" type="button" aria-label="Previous brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="brand-carousel__dots" role="tablist" aria-label="Brand slides">
+        <button class="brand-carousel__dot is-active" type="button" role="tab" aria-selected="true" aria-label="Crystal Ceramics" data-slide="0"></button>
+        <button class="brand-carousel__dot" type="button" role="tab" aria-selected="false" aria-label="Exxaro Tiles" data-slide="1"></button>
+        <button class="brand-carousel__dot" type="button" role="tab" aria-selected="false" aria-label="Vura" data-slide="2"></button>
+      </div>
+      <button class="brand-carousel__btn brand-carousel__next" type="button" aria-label="Next brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -257,8 +332,7 @@ aria-controls="mobile-products">
         <p class="brand-desc">Building materials and finishing solutions — Nagmatiya Road, Gaya, Bihar.</p>
         <p class="footer-tagline">Tiles &middot; Marble<br>Granite &middot; Sanitaryware</p>
       </div>
-      <div class="footer-col">
-        <h3>Products</h3>
+      <div class="footer-col footer-col--links"><div class="footer-group"><h3>Products</h3>
         <ul>
           <li><a href="tiles.html">Tiles</a></li>
           <li><a href="marble-granite.html#marble">Marble</a></li>
@@ -266,10 +340,7 @@ aria-controls="mobile-products">
           <li><a href="sanitaryware.html">Sanitaryware</a></li>
           <li><a href="tile-adhesives.html">MYK Laticrete</a></li>
           <li><a href="waterproofing.html">MYK Arment</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Navigate</h3>
+        </ul></div><div class="footer-group"><h3>Navigate</h3>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#about">About</a></li>
@@ -312,6 +383,7 @@ rel="noopener" aria-label="Contact Magadh Enterprises on WhatsApp">WhatsApp</a><
 
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/products.js" defer></script>
+<script src="assets/js/brand-showcase.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/ads.js" defer></script>
 </body>

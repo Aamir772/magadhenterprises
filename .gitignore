@@ -42,3 +42,11 @@ Thumbs.db
 *.swp
 # Local Netlify folder
 .netlify
+
+!assets/images/visual/myk dhoni.png
+!assets/images/visual/brand-mylktacrete.png
+!assets/images/visual/MYK arment.jpg
+# Environment variables and secrets
+.env
+.env.*
+!.env.example

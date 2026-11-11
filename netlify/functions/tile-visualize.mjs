@@ -98,6 +98,13 @@ const SPACES = {
 
 /* ------------------------------------------------------------- cost control */
 
+/* RATE LIMITING NOTE:
+ * The current rate limiter uses an in-memory Map, which is reset when the
+ * serverless function cold-starts or scales to a new instance. An attacker
+ * could bypass rate limits by waiting for a new instance. For production,
+ * consider Netlify's built-in rate limiting or an external store (Redis/Upstash).
+ * Current limits are preserved as a first layer of protection.
+ */
 const LIMITS = {
   MAX_BODY_BYTES: 8 * 1024,      // request body
   MAX_TILE_BYTES: 6 * 1024 * 1024,
@@ -335,6 +342,7 @@ function json(status, payload) {
 }
 
 export async function handler(event) {
+  try {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 204, headers: { ...CORS_HEADERS }, body: '' };
   }
@@ -444,4 +452,8 @@ export async function handler(event) {
 
   cacheSet(key, out);
   return json(200, out);
+  } catch (err) {
+    console.error('[tile-visualize] unexpected error:', err?.message || err);
+    return json(500, { success: false, error: 'service_unavailable', message: 'AI visualization is temporarily unavailable. Please try again later.' });
+  }
 }

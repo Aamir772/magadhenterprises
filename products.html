@@ -52,8 +52,8 @@
       <span class="nav-separator" aria-hidden="true"></span>
 
       <nav class="site-nav" aria-label="Primary">
-        <a href="tile-visualizer.html" class="nav-link">Tile Visualizer</a>
-        <a href="index.html#deals" class="nav-link">Deals In</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">Brands</a>
         <div class="nav-item has-dropdown">
           <button class="nav-link nav-dropdown-toggle" type="button"
                   aria-expanded="false" aria-controls="products-mega">
@@ -109,8 +109,9 @@
             </div>
           </div>
         </div>
-        <a href="index.html#what-we-do" class="nav-link">Gallery</a>
-        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#what-we-do" class="nav-link">Solutions</a>
+        <a href="tile-visualizer.html" class="nav-link">Tile Visualizer</a>
+        <a href="index.html#trust" class="nav-link">About</a>
         <a href="index.html#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -135,8 +136,8 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
   <div class="mobile-nav-content">
-    <a href="tile-visualizer.html" class="mobile-link">Tile Visualizer</a>
-    <a href="index.html#deals" class="mobile-link">Deals In</a>
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="index.html#about" class="mobile-link">Brands</a>
 <div class="mobile-nav-group">
       <button class="mobile-link mobile-nav-toggle" type="button" aria-expanded="false"
 aria-controls="mobile-products">
@@ -154,115 +155,121 @@ aria-controls="mobile-products">
         <a href="tile-care.html" class="mobile-sublink">Tile Care &amp; Accessories</a>
       </div>
     </div>
-    <a href="index.html#what-we-do" class="mobile-link">Gallery</a>
-    <a href="index.html#about" class="mobile-link">About</a>
+    <a href="index.html#what-we-do" class="mobile-link">Solutions</a>
+    <a href="tile-visualizer.html" class="mobile-link">Tile Visualizer</a>
+    <a href="index.html#trust" class="mobile-link">About</a>
     <a href="index.html#contact" class="mobile-link">Contact</a>
   </div>
 </nav>
 
 <main id="main">
 
-<section class="page-hero" aria-labelledby="page-title">
-  <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Home</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">Products</span>
-    </nav>
-    <p class="t-label">OUR PRODUCTS</p>
-    <div class="divider"></div>
-    <h1 id="page-title">Materials for every stage of your space.</h1>
-    <p class="t-body">Explore tiles, natural stone, sanitaryware and professional installation solutions available at Magadh Enterprises.</p>
+<!-- PRODUCT RIBBON — compact scrolling showcase -->
+<section class="product-ribbon" aria-label="Product and brand showcase">
+  <div class="product-ribbon__track" id="product-ribbon-track">
+    <div class="product-ribbon__content">
+      <span class="product-ribbon__item">
+        <img src="assets/images/visual/logo-crystal.png" alt="Crystal Ceramics" width="120" height="65" loading="lazy" decoding="async">
+        <span>Crystal Ceramics Tiles</span>
+      </span>
+      <span class="product-ribbon__item">
+        <img src="assets/images/visual/Exxaro-2.jpg" alt="Exxaro Tiles" width="120" height="67" loading="lazy" decoding="async">
+        <span>Exxaro Tiles</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/visual/vura-700.webp" type="image/webp"><img src="assets/images/visual/vura.jpg" alt="Vura" width="60" height="77" loading="lazy" decoding="async"></picture>
+        <span>Vura Adhesives</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/marble/marble-cat-1024.webp" type="image/webp"><img src="assets/images/marble/marble-cat-1024.jpg" alt="Marble" width="120" height="80" loading="lazy" decoding="async"></picture>
+        <span>Natural Marble</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/granite/granite-cat-1024.webp" type="image/webp"><img src="assets/images/granite/granite-cat-1024.jpg" alt="Granite" width="120" height="80" loading="lazy" decoding="async"></picture>
+        <span>Premium Granite</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/visual/Bathroom%20Solution-1200.webp" type="image/webp"><img src="assets/images/visual/Bathroom%20Solution.png" alt="Sanitaryware" width="120" height="80" loading="lazy" decoding="async"></picture>
+        <span>Sanitaryware</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/laticrete/latafix-305-480.jpg" type="image/webp"><img src="assets/images/laticrete/latafix-305-480.jpg" alt="Latafix 305" width="60" height="60" loading="lazy" decoding="async"></picture>
+        <span>MYK Laticrete Adhesives</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/arment/aquaarm-proof-wp10-480.jpg" type="image/webp"><img src="assets/images/arment/aquaarm-proof-wp10-480.jpg" alt="AquaArm" width="60" height="60" loading="lazy" decoding="async"></picture>
+        <span>MYK Arment Waterproofing</span>
+      </span>
+      <span class="product-ribbon__item">
+        <img src="assets/images/laticrete/clenza-tc-480.jpg" alt="Clenza TC" width="60" height="90" loading="lazy" decoding="async">
+        <span>Tile Care & Accessories</span>
+      </span>
+    </div>
+    <div class="product-ribbon__content" aria-hidden="true">
+      <span class="product-ribbon__item">
+        <img src="assets/images/visual/logo-crystal.png" alt="" width="120" height="65" loading="lazy" decoding="async">
+        <span>Crystal Ceramics Tiles</span>
+      </span>
+      <span class="product-ribbon__item">
+        <img src="assets/images/visual/Exxaro-2.jpg" alt="" width="120" height="67" loading="lazy" decoding="async">
+        <span>Exxaro Tiles</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/visual/vura-700.webp" type="image/webp"><img src="assets/images/visual/vura.jpg" alt="" width="60" height="77" loading="lazy" decoding="async"></picture>
+        <span>Vura Adhesives</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/marble/marble-cat-1024.webp" type="image/webp"><img src="assets/images/marble/marble-cat-1024.jpg" alt="" width="120" height="80" loading="lazy" decoding="async"></picture>
+        <span>Natural Marble</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/granite/granite-cat-1024.webp" type="image/webp"><img src="assets/images/granite/granite-cat-1024.jpg" alt="" width="120" height="80" loading="lazy" decoding="async"></picture>
+        <span>Premium Granite</span>
+      </span>
+      <span class="product-ribbon__item">
+        <picture><source srcset="assets/images/visual/Bathroom%20Solution-1200.webp" type="image/webp"><img src="assets/images/visual/Bathroom%20Solution.png" alt="" width="120" height="80" loading="lazy" decoding="async"></picture>
+        <span>Sanitaryware</span>
+      </span>
+      <span class="product-ribbon__item">
+        <img src="assets/images/laticrete/latafix-305-480.jpg" alt="" width="60" height="60" loading="lazy" decoding="async">
+        <span>MYK Laticrete Adhesives</span>
+      </span>
+      <span class="product-ribbon__item">
+        <img src="assets/images/arment/aquaarm-proof-wp10-480.jpg" alt="" width="60" height="60" loading="lazy" decoding="async">
+        <span>MYK Arment Waterproofing</span>
+      </span>
+      <span class="product-ribbon__item">
+        <img src="assets/images/laticrete/clenza-tc-480.jpg" alt="" width="60" height="90" loading="lazy" decoding="async">
+        <span>Tile Care & Accessories</span>
+      </span>
+    </div>
   </div>
+  <button class="product-ribbon__pause" type="button" aria-label="Pause ribbon animation" id="ribbon-pause">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </button>
 </section>
 
-<section class="section cat-index" aria-label="Product categories">
+<!-- PRODUCT CATALOGUE -->
+<section class="section product-catalogue" aria-labelledby="catalogue-title">
   <div class="container">
-
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <picture><source srcset="assets/images/tiles/tiles-cat-1024.webp" type="image/webp"><img src="assets/images/tiles/tiles-cat-1024.jpg" width="1024" height="683" alt="Premium tiles display at Magadh Enterprises showroom" loading="lazy" decoding="async"></picture>
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">01</span>
-        <h2>TILES</h2>
-        <p>Floor and wall tiles in a range of sizes, finishes and formats for residential and commercial use.</p>
-        <a href="tiles.html" class="btn btn-ghost">EXPLORE TILES <span aria-hidden="true">&#x2192;</span></a>
-      </div>
+    <div class="product-catalogue__header">
+      <p class="t-label">PRODUCT CATALOGUE</p>
+      <div class="divider"></div>
+      <h2 id="catalogue-title" class="product-catalogue__title">All Products</h2>
+      <p class="product-catalogue__count" id="catalogue-count" role="status" aria-live="polite">Loading products...</p>
     </div>
 
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <picture><source srcset="assets/images/marble/marble-cat-1024.webp" type="image/webp"><img src="assets/images/marble/marble-cat-1024.jpg" width="1024" height="683" alt="Marble slabs on display at Magadh Enterprises showroom" loading="lazy" decoding="async"></picture>
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">02</span>
-        <h2>MARBLE &amp; GRANITE</h2>
-        <p>Natural granite and marble for floors, walls, countertops and other interior and exterior applications.</p>
-        <a href="marble-granite.html" class="btn btn-ghost">EXPLORE STONE <span aria-hidden="true">&#x2192;</span></a>
-      </div>
+    <div class="product-filter-bar" id="product-filter-bar" role="toolbar" aria-label="Product category filters">
+      <!-- Filter buttons generated by JS from MAGADH_PRODUCTS -->
     </div>
 
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <picture><source srcset="assets/images/visual/Bathroom%20Solution-1200.webp" type="image/webp"><img src="assets/images/visual/Bathroom%20Solution.png" width="1536" height="1024" alt="Sanitaryware and bathroom products on display at Magadh Enterprises, Gaya" loading="lazy" decoding="async"></picture>
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">03</span>
-        <h2>SANITARYWARE</h2>
-        <p>Sanitaryware and related products for complete bathroom spaces.</p>
-        <a href="sanitaryware.html" class="btn btn-ghost">EXPLORE SANITARYWARE <span aria-hidden="true">&#x2192;</span></a>
-      </div>
+    <div class="product-grid" id="product-grid">
+      <!-- Product cards generated by JS from MAGADH_PRODUCTS -->
     </div>
 
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <img src="assets/images/laticrete/latafix-305-480.jpg" width="480" height="480" alt="MYK Laticrete Latafix 305 Floor and Wall Tile Adhesive" loading="lazy" decoding="async">
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">04</span>
-        <h2>TILE ADHESIVES</h2>
-        <p>Floor &amp; wall tile adhesives for ceramic tiles, large-format tiles and natural stone.</p>
-        <a href="tile-adhesives.html" class="btn btn-ghost">EXPLORE ADHESIVES <span aria-hidden="true">&#x2192;</span></a>
-      </div>
+    <div class="product-catalogue__empty" id="catalogue-empty" hidden>
+      <p>No products found in this category.</p>
     </div>
-
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <img src="assets/images/laticrete/sp-100-duo-480.jpg" width="480" height="720" alt="MYK Laticrete SP-100 Duo Stainfree Epoxy Grout" loading="lazy" decoding="async">
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">05</span>
-        <h2>GROUTS &amp; EPOXY</h2>
-        <p>Grouts, epoxy adhesives and additives for finishing and protecting tile and stone surfaces.</p>
-        <a href="grouts-epoxy.html" class="btn btn-ghost">EXPLORE GROUTS <span aria-hidden="true">&#x2192;</span></a>
-      </div>
-    </div>
-
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <img src="assets/images/arment/aquaarm-proof-wp10-480.jpg" width="480" height="480" alt="MYK Arment AquaArm Proof WP-10 integral waterproofing liquid" loading="lazy" decoding="async">
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">06</span>
-        <h2>WATERPROOFING</h2>
-        <p>Construction chemicals for waterproofing, bonding, repair and surface preparation.</p>
-        <a href="waterproofing.html" class="btn btn-ghost">EXPLORE WATERPROOFING <span aria-hidden="true">&#x2192;</span></a>
-      </div>
-    </div>
-
-    <div class="cat-row">
-      <div class="cat-row-media">
-        <img src="assets/images/laticrete/clenza-tc-480.jpg" width="480" height="720" alt="MYK Laticrete Clenza TC Advanced Tile Cleaner" loading="lazy" decoding="async">
-      </div>
-      <div class="cat-row-body">
-        <span class="cat-row-num" aria-hidden="true">07</span>
-        <h2>TILE CARE &amp; ACCESSORIES</h2>
-        <p>Cleaners, spacers, clips and accessories for tile installation and care.</p>
-        <a href="tile-care.html" class="btn btn-ghost">EXPLORE TILE CARE <span aria-hidden="true">&#x2192;</span></a>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -303,8 +310,7 @@ aria-controls="mobile-products">
         <p class="brand-desc">Building materials and finishing solutions — Nagmatiya Road, Gaya, Bihar.</p>
         <p class="footer-tagline">Tiles &middot; Marble<br>Granite &middot; Sanitaryware</p>
       </div>
-      <div class="footer-col">
-        <h3>Products</h3>
+      <div class="footer-col footer-col--links"><div class="footer-group"><h3>Products</h3>
         <ul>
           <li><a href="tiles.html">Tiles</a></li>
           <li><a href="marble-granite.html#marble">Marble</a></li>
@@ -312,10 +318,7 @@ aria-controls="mobile-products">
           <li><a href="sanitaryware.html">Sanitaryware</a></li>
           <li><a href="tile-adhesives.html">MYK Laticrete</a></li>
           <li><a href="waterproofing.html">MYK Arment</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Navigate</h3>
+        </ul></div><div class="footer-group"><h3>Navigate</h3>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#about">About</a></li>
@@ -359,6 +362,7 @@ rel="noopener" aria-label="Contact Magadh Enterprises on WhatsApp">WhatsApp</a><
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/products.js" defer></script>
 <script src="assets/js/catalogue.js" defer></script>
+<script src="assets/js/product-catalogue.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/ads.js" defer></script>
 </body>
